@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 class AddProductController extends GetxController {
@@ -14,15 +14,13 @@ class AddProductController extends GetxController {
       await firestore
           .collection("products")
           .doc(hasil.id)
-          .update({"prouct_Id": hasil.id});
+          .update({"id": hasil.id});
 
-      return {"error": false, "message": "Add product successful"};
+      return {"error": false, "message": "Add Category successful"};
     } on FirebaseAuthException catch (e) {
       return {"error": true, "message": "${e.message}"};
     } catch (e) {
-      debugPrint(e.toString());
-      //error biasa
-      return {"error": true, "message": "Failed to add product"};
+      return {"error": true, "message": "Failed to add Category"};
     }
   }
 }

@@ -39,65 +39,60 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Container(
-                  color: AppColor.appGrey,
+      child: Column(
+        children: [
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              color: AppColor.appGrey,
+            ),
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: MyEmailTextField(
+                keyboardType: TextInputType.emailAddress,
+                controller: emailC,
+                hintText: "Email"),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Obx(() => MyPassTextField(
+                controller: passC,
+                hintText: "Password",
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    controller.isHidden.toggle();
+                  },
+                  icon: Icon(controller.isHidden.isFalse
+                      ? Icons.remove_red_eye
+                      : Icons.remove_red_eye_outlined),
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: MyEmailTextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: emailC,
-                  hintText: "Email"),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Obx(() => MyPassTextField(
-                  controller: passC,
-                  hintText: "Password",
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      controller.isHidden.toggle();
-                    },
-                    icon: Icon(controller.isHidden.isFalse
-                        ? Icons.remove_red_eye
-                        : Icons.remove_red_eye_outlined),
-                  ),
-                  obscureText: controller.isHidden.value)),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ElevatedButton(
-                  onPressed: signUserIn,
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(MediaQuery.of(context).size.width, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(9)),
-                  ),
-                  child: Obx(
-                    () => Text(
-                        controller.isLoading.isFalse ? "Log In" : "Loading..."),
-                  )),
-            )
-          ],
-        ),
+                obscureText: controller.isHidden.value)),
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ElevatedButton(
+                onPressed: signUserIn,
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(MediaQuery.of(context).size.width, 50),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(9)),
+                ),
+                child: Obx(
+                  () => Text(
+                      controller.isLoading.isFalse ? "Log In" : "Loading..."),
+                )),
+          )
+        ],
       ),
     ));
   }
