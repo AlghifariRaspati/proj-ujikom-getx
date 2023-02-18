@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "240736603999",
+    "project_id": "ujikom-getx",
+    "storage_bucket": "ujikom-getx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240736603999:android:1fdbf90ec649f45956f0ea",
+        "android_client_info": {
+          "package_name": "com.example.ujikom_getx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240736603999-i37r5pbdsn03ri8a3nrvd1ksj1dvv3j8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1G9WQFGaawakvYpIbiyGv-0ANFHQShe0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240736603999-i37r5pbdsn03ri8a3nrvd1ksj1dvv3j8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "240736603999-0492ptefs4773eum1g133htr8g0hu1fa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ujikomGetx"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
