@@ -50,6 +50,7 @@ class AddProductView extends GetView<AddProductController> {
                           controller.isLoading(false);
 
                           Get.back();
+                          Get.back();
 
                           Get.snackbar(
                               hasil["error"] == true ? "Error" : "Success",

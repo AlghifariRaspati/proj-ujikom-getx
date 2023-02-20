@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -7,23 +8,11 @@ class AuthController extends GetxController {
   // uid -> ada user yang sedang login
 
   late FirebaseAuth auth;
+  late CollectionReference usersRef;
 
   Future<Map<String, dynamic>> login(String email, String pass) async {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: pass);
-
-      return {"error": false, "message": "Berhasil login"};
-    } on FirebaseAuthException catch (e) {
-      return {"error": true, "message": "${e.message}"};
-    } catch (e) {
-      //error biasa
-      return {"error": true, "message": "tidak dapat login"};
-    }
-  }
-
-  Future<Map<String, dynamic>> logout() async {
-    try {
-      await auth.signOut();
 
       return {"error": false, "message": "Login Success"};
     } on FirebaseAuthException catch (e) {
@@ -31,6 +20,19 @@ class AuthController extends GetxController {
     } catch (e) {
       //error biasa
       return {"error": true, "message": "Failed to Login"};
+    }
+  }
+
+  Future<Map<String, dynamic>> logout() async {
+    try {
+      await auth.signOut();
+
+      return {"error": false, "message": "Log Out Success"};
+    } on FirebaseAuthException catch (e) {
+      return {"error": true, "message": "${e.message}"};
+    } catch (e) {
+      //error biasa
+      return {"error": true, "message": "Failed to Log Out"};
     }
   }
 

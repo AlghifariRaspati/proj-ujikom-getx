@@ -2,28 +2,30 @@ name: ujikom_getx
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
-  sdk: '>=2.19.1 <3.0.0'
+environment:
+  sdk: ">=2.19.1 <3.0.0"
 
-dependencies: 
+dependencies:
+  cloud_firestore: ^4.4.0
   cupertino_icons: ^1.0.2
-  get: 4.6.5
-  flutter: 
-    sdk: flutter
+  firebase_auth: ^4.2.6
   firebase_core: ^2.5.0
   firebase_storage: ^11.0.11
-  firebase_auth: ^4.2.6
-  shared_preferences: ^2.0.17
-  provider: ^6.0.5
-  cloud_firestore: ^4.4.0
-  intl: ^0.17.0
+  flutter:
+    sdk: flutter
   flutter_screenutil: ^5.6.1
+  get: 4.6.5
+  intl: ^0.17.0
+  open_file: ^3.2.1
+  path_provider: ^2.0.12
+  pdf: ^3.9.0
+  provider: ^6.0.5
+  shared_preferences: ^2.0.17
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^2.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
-flutter: 
+flutter:
   uses-material-design: true
-

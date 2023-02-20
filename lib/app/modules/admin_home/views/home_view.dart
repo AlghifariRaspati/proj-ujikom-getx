@@ -30,12 +30,12 @@ class HomeView extends GetView<HomeController> {
 
               switch (index) {
                 case 0:
-                  title = "Add Products";
+                  title = "Add Category";
                   icon = Icons.note_add_rounded;
                   onTap = () => Get.toNamed(Routes.add_product);
                   break;
                 case 1:
-                  title = "Manage Products";
+                  title = "Manage Category";
                   icon = Icons.edit;
                   onTap = () => Get.toNamed(Routes.products);
                   break;
@@ -45,11 +45,9 @@ class HomeView extends GetView<HomeController> {
                   onTap = () => Get.toNamed(Routes.users);
                   break;
                 case 3:
-                  title = "Products Log";
+                  title = "Activity Log";
                   icon = Icons.library_books;
-                  onTap = () {
-                    debugPrint("Halaman Log");
-                  };
+                  onTap = () => Get.toNamed(Routes.activity_log);
                   break;
                 default:
               }
