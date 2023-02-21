@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
@@ -32,25 +33,25 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                 color: AppColor.appGrey,
               ),
             ),
-            const SizedBox(
-              height: 25,
+            SizedBox(
+              height: 25.h,
             ),
             MyEmailTextField(
                 keyboardType: TextInputType.name,
                 controller: nameC,
                 hintText: "Category Name"),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             MyEmailTextField(
                 keyboardType: TextInputType.number,
                 controller: priceC,
                 hintText: "Price per/kg"),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             SizedBox(
-              height: 50,
+              height: 50.h,
               child: ElevatedButton(
                   onPressed: () async {
                     if (controller.isLoadingUpdate.isFalse) {
@@ -115,12 +116,11 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                                           ? const Text("DELETE")
                                           : Container(
                                               padding: const EdgeInsets.all(2),
-                                              height: 15,
-                                              width: 15,
-                                              child:
-                                                  const CircularProgressIndicator(
+                                              height: 15.h,
+                                              width: 15.w,
+                                              child: CircularProgressIndicator(
                                                 color: Colors.lightBlue,
-                                                strokeWidth: 1,
+                                                strokeWidth: 1.w,
                                               ),
                                             ))),
                             ],

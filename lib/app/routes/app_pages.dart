@@ -66,7 +66,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.owner_home,
-      page: () => const OwnerHomeView(),
+      page: () => OwnerHomeView(),
       binding: OwnerHomeBinding(),
     ),
     GetPage(

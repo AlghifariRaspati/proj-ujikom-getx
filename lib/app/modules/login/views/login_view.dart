@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import '../../../controllers/auth_controller.dart';
@@ -40,27 +41,30 @@ class LoginView extends GetView<LoginController> {
         body: SafeArea(
       child: Column(
         children: [
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Container(
-              color: AppColor.appGrey,
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Container(
+                color: AppColor.appGrey,
+              ),
             ),
           ),
-          const SizedBox(
-            height: 25,
+          SizedBox(
+            height: 25.h,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: MyEmailTextField(
                 keyboardType: TextInputType.emailAddress,
                 controller: emailC,
                 hintText: "Email"),
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: 10.h,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Obx(() => MyPassTextField(
                 controller: passC,
                 hintText: "Password",
@@ -74,15 +78,15 @@ class LoginView extends GetView<LoginController> {
                 ),
                 obscureText: controller.isHidden.value)),
           ),
-          const SizedBox(
-            height: 25,
+          SizedBox(
+            height: 25.h,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: ElevatedButton(
                 onPressed: signUserIn,
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(MediaQuery.of(context).size.width, 50),
+                  minimumSize: Size(MediaQuery.of(context).size.width, 50.h),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(9)),
                 ),

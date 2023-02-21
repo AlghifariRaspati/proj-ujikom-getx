@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import '../../../../utils/colors.dart';
@@ -21,8 +22,10 @@ class HomeView extends GetView<HomeController> {
         child: GridView.builder(
             itemCount: 4,
             padding: const EdgeInsets.all(20),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 20.w,
+                crossAxisSpacing: 20.h),
             itemBuilder: (context, index) {
               late String title;
               late IconData icon;
@@ -61,15 +64,15 @@ class HomeView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: 50,
-                          height: 50,
+                          width: 50.w,
+                          height: 50.h,
                           child: Icon(
                             icon,
                             size: 50,
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 10.h,
                         ),
                         Text(
                           title,

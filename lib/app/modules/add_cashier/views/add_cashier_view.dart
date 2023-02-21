@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
@@ -29,25 +30,25 @@ class AddCashierView extends GetView<AddCashierController> {
                   keyboardType: TextInputType.name,
                   controller: nameC,
                   hintText: "Username"),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               MyEmailTextField(
                   keyboardType: TextInputType.emailAddress,
                   controller: emailC,
                   hintText: "Email"),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               MyEmailTextField(
                   keyboardType: TextInputType.name,
                   controller: passC,
                   hintText: "Password"),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               SizedBox(
-                height: 50,
+                height: 50.h,
                 child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(

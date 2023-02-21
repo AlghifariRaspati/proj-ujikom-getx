@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -53,7 +54,7 @@ class ProductsView extends GetView<ProductsController> {
                           ProductModel product = allProducts[index];
                           return Card(
                             elevation: 5,
-                            margin: const EdgeInsets.only(bottom: 20),
+                            margin: EdgeInsets.only(bottom: 20.h),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(9)),
                             child: InkWell(
@@ -65,7 +66,7 @@ class ProductsView extends GetView<ProductsController> {
                               },
                               borderRadius: BorderRadius.circular(9),
                               child: Container(
-                                height: 100,
+                                height: 100.h,
                                 padding: const EdgeInsets.all(20),
                                 child: Row(children: [
                                   // product content
@@ -79,16 +80,16 @@ class ProductsView extends GetView<ProductsController> {
                                           style: const TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        const SizedBox(
-                                          height: 5,
+                                        SizedBox(
+                                          height: 5.h,
                                         ),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: [
                                             const Text("Price per/kg :"),
-                                            const SizedBox(
-                                              width: 5,
+                                            SizedBox(
+                                              width: 5.w,
                                             ),
                                             Text(NumberFormat.currency(
                                                     locale: 'id',

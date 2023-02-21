@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import '../../../../components/my_email_textfield.dart';
@@ -25,18 +26,18 @@ class AddProductView extends GetView<AddProductController> {
                   keyboardType: TextInputType.name,
                   controller: nameC,
                   hintText: "Category Name"),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               MyEmailTextField(
                   keyboardType: TextInputType.number,
                   controller: priceC,
                   hintText: "Price per/kg"),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               SizedBox(
-                height: 50,
+                height: 50.h,
                 child: ElevatedButton(
                     onPressed: () async {
                       if (controller.isLoading.isFalse) {
