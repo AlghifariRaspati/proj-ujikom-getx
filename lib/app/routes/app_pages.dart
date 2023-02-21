@@ -61,7 +61,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.cashier_home,
-      page: () => const CashierHomeView(),
+      page: () => CashierHomeView(),
       binding: CashierHomeBinding(),
     ),
     GetPage(
