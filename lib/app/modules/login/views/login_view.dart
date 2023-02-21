@@ -7,7 +7,6 @@ import '../../../../components/my_email_textfield.dart';
 import '../../../../components/my_pass_textfield.dart';
 import '../../../../utils/colors.dart';
 
-import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -26,7 +25,7 @@ class LoginView extends GetView<LoginController> {
         if (hasil["error"] == true) {
           Get.snackbar("Error", hasil["message"]);
         } else {
-          Get.offAllNamed(Routes.home);
+          await authC.checkUserRoleAndNavigate();
         }
       } else {
         Get.snackbar("Error", "Email and Password needs to be filled.");

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class ProductsDetailController extends GetxController {
   RxBool isLoadingUpdate = false.obs;
@@ -11,10 +12,14 @@ class ProductsDetailController extends GetxController {
 
   Future<Map<String, dynamic>> editProduct(Map<String, dynamic> data) async {
     try {
-      await firestore
-          .collection("products")
-          .doc(data["id"])
-          .update({"nama_produk": data["nama_produk"], "harga": data["harga"]});
+      data['updated_at'] = FieldValue.serverTimestamp();
+
+      await firestore.collection("products").doc(data["id"]).update({
+        "nama_produk": data["nama_produk"],
+        "harga": data["harga"],
+        "updated_at":
+            DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal()),
+      });
 
       return {"error": false, "message": "Update category successful"};
     } on FirebaseAuthException catch (e) {
