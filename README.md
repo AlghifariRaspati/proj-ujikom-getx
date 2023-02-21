@@ -1,6 +1,6 @@
 # ujikom_getx
 
-A new Flutter project.
+Project Ujikom Flutter+GetX
 
 ## Getting Started
 
