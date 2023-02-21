@@ -15,7 +15,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Admin Home'),
+        title: const Text('You are logged in as Admin'),
         centerTitle: true,
       ),
       body: SafeArea(

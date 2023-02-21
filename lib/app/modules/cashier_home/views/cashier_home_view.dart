@@ -13,7 +13,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CashierHomeView'),
+        title: const Text('You are logged in as a Cashier'),
         centerTitle: true,
       ),
       body: Center(

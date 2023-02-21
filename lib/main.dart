@@ -18,6 +18,7 @@ void main() async {
   Get.put(AuthController(), permanent: true);
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   runApp(MyApp());
 }
 
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // mengarahkan default screen user berdasarkan role
     return ScreenUtilInit(
-      designSize: const Size(375, 677),
+      designSize: const Size(360, 690),
       builder: (context, child) => StreamBuilder<User?>(
           stream: auth.authStateChanges(),
           builder: (context, snapAuth) {

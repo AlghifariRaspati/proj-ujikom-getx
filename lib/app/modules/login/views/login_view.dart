@@ -39,63 +39,72 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Container(
-                color: AppColor.appGrey,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Container(
+                  color: AppColor.appGrey,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 25.h,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: MyEmailTextField(
-                keyboardType: TextInputType.emailAddress,
-                controller: emailC,
-                hintText: "Email"),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Obx(() => MyPassTextField(
-                controller: passC,
-                hintText: "Password",
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    controller.isHidden.toggle();
-                  },
-                  icon: Icon(controller.isHidden.isFalse
-                      ? Icons.remove_red_eye
-                      : Icons.remove_red_eye_outlined),
-                ),
-                obscureText: controller.isHidden.value)),
-          ),
-          SizedBox(
-            height: 25.h,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: ElevatedButton(
-                onPressed: signUserIn,
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(MediaQuery.of(context).size.width, 50.h),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(9)),
-                ),
-                child: Obx(
-                  () => Text(
-                      controller.isLoading.isFalse ? "Log In" : "Loading..."),
-                )),
-          )
-        ],
+            SizedBox(
+              height: 25.h,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: MyEmailTextField(
+                  keyboardType: TextInputType.emailAddress,
+                  controller: emailC,
+                  hintText: "Email"),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Obx(() => MyPassTextField(
+                  controller: passC,
+                  hintText: "Password",
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      controller.isHidden.toggle();
+                    },
+                    icon: Icon(controller.isHidden.isFalse
+                        ? Icons.remove_red_eye
+                        : Icons.remove_red_eye_outlined),
+                  ),
+                  obscureText: controller.isHidden.value)),
+            ),
+            SizedBox(
+              height: 25.h,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: ElevatedButton(
+                  onPressed: signUserIn,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(MediaQuery.of(context).size.width, 50.h),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(9)),
+                  ),
+                  child: Obx(() => controller.isLoading.isFalse
+                      ? const Text("Log In")
+                      : Container(
+                          padding: const EdgeInsets.all(2),
+                          height: 15.h,
+                          width: 15.w,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 1.w,
+                          ),
+                        ))),
+            )
+          ],
+        ),
       ),
     ));
   }

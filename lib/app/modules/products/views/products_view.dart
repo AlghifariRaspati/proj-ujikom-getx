@@ -66,43 +66,45 @@ class ProductsView extends GetView<ProductsController> {
                               },
                               borderRadius: BorderRadius.circular(9),
                               child: Container(
-                                height: 100.h,
                                 padding: const EdgeInsets.all(20),
-                                child: Row(children: [
-                                  // product content
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          product.namaProduk,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          height: 5.h,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            const Text("Price per/kg :"),
-                                            SizedBox(
-                                              width: 5.w,
-                                            ),
-                                            Text(NumberFormat.currency(
-                                                    locale: 'id',
-                                                    symbol: 'Rp.',
-                                                    decimalDigits: 0)
-                                                .format(int.parse(
-                                                    product.harga.toString()))),
-                                          ],
-                                        )
-                                      ],
+                                child: IntrinsicHeight(
+                                  child: Row(children: [
+                                    // product content
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            product.namaProduk,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              const Text("Price per/kg :"),
+                                              SizedBox(
+                                                width: 5.w,
+                                              ),
+                                              Text(NumberFormat.currency(
+                                                      locale: 'id',
+                                                      symbol: 'Rp.',
+                                                      decimalDigits: 0)
+                                                  .format(int.parse(product
+                                                      .harga
+                                                      .toString()))),
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ]),
+                                  ]),
+                                ),
                               ),
                             ),
                           );

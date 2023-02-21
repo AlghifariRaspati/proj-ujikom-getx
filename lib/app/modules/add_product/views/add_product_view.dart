@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import '../../../../components/my_email_textfield.dart';
 
+import '../../../../components/textfield_clear.dart';
 import '../controllers/add_product_controller.dart';
 
 class AddProductView extends GetView<AddProductController> {
@@ -22,22 +22,30 @@ class AddProductView extends GetView<AddProductController> {
           child: ListView(
             padding: const EdgeInsets.all(20),
             children: [
-              MyEmailTextField(
+              MyClearTextField(
                   keyboardType: TextInputType.name,
                   controller: nameC,
-                  hintText: "Category Name"),
+                  hintText: "Category Name",
+                  suffixIcon: IconButton(
+                    onPressed: nameC.clear,
+                    icon: const Icon(Icons.clear),
+                  )),
               SizedBox(
                 height: 10.h,
               ),
-              MyEmailTextField(
+              MyClearTextField(
                   keyboardType: TextInputType.number,
                   controller: priceC,
-                  hintText: "Price per/kg"),
+                  hintText: "Price per/kg",
+                  suffixIcon: IconButton(
+                    onPressed: priceC.clear,
+                    icon: const Icon(Icons.clear),
+                  )),
               SizedBox(
                 height: 10.h,
               ),
               SizedBox(
-                height: 50.h,
+                height: 40.h,
                 child: ElevatedButton(
                     onPressed: () async {
                       if (controller.isLoading.isFalse) {
@@ -65,9 +73,17 @@ class AddProductView extends GetView<AddProductController> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(9)),
                     ),
-                    child: Obx(() => Text(controller.isLoading.isFalse
-                        ? "Save"
-                        : "Loading...."))),
+                    child: Obx(() => controller.isLoading.isFalse
+                        ? const Text("Save")
+                        : Container(
+                            padding: const EdgeInsets.all(2),
+                            height: 15.h,
+                            width: 15.w,
+                            child: CircularProgressIndicator(
+                              color: Colors.lightBlue,
+                              strokeWidth: 1.w,
+                            ),
+                          ))),
               )
             ],
           ),

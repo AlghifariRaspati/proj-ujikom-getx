@@ -13,7 +13,7 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('OwnerHomeView'),
+        title: const Text('You are logged in as an Owner'),
         centerTitle: true,
       ),
       body: Center(

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../components/my_email_textfield.dart';
+import '../../../../components/textfield_clear.dart';
 import '../../../../utils/colors.dart';
 import '../../../data/models/product_model.dart';
 import '../controllers/products_detail_controller.dart';
@@ -36,17 +37,27 @@ class ProductsDetail extends GetView<ProductsDetailController> {
             SizedBox(
               height: 25.h,
             ),
-            MyEmailTextField(
+            MyClearTextField(
                 keyboardType: TextInputType.name,
                 controller: nameC,
-                hintText: "Category Name"),
+                hintText: "Category Name",
+                suffixIcon: IconButton(
+                  onPressed: nameC.clear,
+                  icon: const Icon(Icons.clear),
+                )),
             SizedBox(
               height: 10.h,
             ),
-            MyEmailTextField(
+            MyClearTextField(
                 keyboardType: TextInputType.number,
                 controller: priceC,
-                hintText: "Price per/kg"),
+                hintText: "Price per/kg",
+                suffixIcon: IconButton(
+                  onPressed: priceC.clear,
+                  icon: const Icon(
+                    Icons.clear,
+                  ),
+                )),
             SizedBox(
               height: 10.h,
             ),
