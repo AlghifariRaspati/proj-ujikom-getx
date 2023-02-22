@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+// MASIH BUTUH ADMIN SDK UNTUK MENGUBAH DAN MENDELETE USER
+
 class CashierDetailsController extends GetxController {
   RxBool isLoadingUpdate = false.obs;
   RxBool isLoadingDelete = false.obs;
