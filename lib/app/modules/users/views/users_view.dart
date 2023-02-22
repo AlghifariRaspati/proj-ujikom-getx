@@ -38,7 +38,7 @@ class UsersView extends GetView<UsersController> {
                 case 1:
                   title = "Edit Cashier";
                   icon = Icons.edit;
-                  onTap = () => Get.toNamed(Routes.products);
+                  onTap = () => Get.toNamed(Routes.cashiers);
                   break;
                 default:
               }

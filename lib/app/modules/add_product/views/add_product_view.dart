@@ -75,12 +75,11 @@ class AddProductView extends GetView<AddProductController> {
                     ),
                     child: Obx(() => controller.isLoading.isFalse
                         ? const Text("Save")
-                        : Container(
-                            padding: const EdgeInsets.all(2),
+                        : SizedBox(
                             height: 15.h,
                             width: 15.w,
                             child: CircularProgressIndicator(
-                              color: Colors.lightBlue,
+                              color: Colors.white,
                               strokeWidth: 1.w,
                             ),
                           ))),

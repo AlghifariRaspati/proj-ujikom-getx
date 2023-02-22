@@ -5,19 +5,19 @@ import 'package:get/get.dart';
 
 import '../../../../components/textfield_clear.dart';
 import '../../../../utils/colors.dart';
-import '../../../data/models/product_model.dart';
-import '../controllers/products_detail_controller.dart';
+import '../../../data/models/user_model.dart';
+import '../controllers/cashier_details_controller.dart';
 
-class ProductsDetail extends GetView<ProductsDetailController> {
-  ProductsDetail({Key? key}) : super(key: key);
-  final TextEditingController nameC = TextEditingController();
-  final TextEditingController priceC = TextEditingController();
+class CashierDetailsView extends GetView<CashierDetailsController> {
+  CashierDetailsView({Key? key}) : super(key: key);
+  final TextEditingController emailC = TextEditingController();
+  final TextEditingController passC = TextEditingController();
 
-  final ProductModel product = Get.arguments;
+  final UserModel user = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    nameC.text = product.namaProduk;
-    priceC.text = product.harga.toString();
+    emailC.text = user.email;
+    passC.text = user.pass;
 
     return Scaffold(
         appBar: AppBar(
@@ -38,10 +38,10 @@ class ProductsDetail extends GetView<ProductsDetailController> {
             ),
             MyClearTextField(
                 keyboardType: TextInputType.name,
-                controller: nameC,
+                controller: emailC,
                 hintText: "Category Name",
                 suffixIcon: IconButton(
-                  onPressed: nameC.clear,
+                  onPressed: emailC.clear,
                   icon: const Icon(Icons.clear),
                 )),
             SizedBox(
@@ -49,10 +49,10 @@ class ProductsDetail extends GetView<ProductsDetailController> {
             ),
             MyClearTextField(
                 keyboardType: TextInputType.number,
-                controller: priceC,
+                controller: passC,
                 hintText: "Price per/kg",
                 suffixIcon: IconButton(
-                  onPressed: priceC.clear,
+                  onPressed: passC.clear,
                   icon: const Icon(
                     Icons.clear,
                   ),
@@ -65,13 +65,12 @@ class ProductsDetail extends GetView<ProductsDetailController> {
               child: ElevatedButton(
                   onPressed: () async {
                     if (controller.isLoadingUpdate.isFalse) {
-                      if (nameC.text.isNotEmpty && priceC.text.isNotEmpty) {
+                      if (emailC.text.isNotEmpty && passC.text.isNotEmpty) {
                         controller.isLoadingUpdate(true);
-                        Map<String, dynamic> hasil =
-                            await controller.editProduct({
-                          "id": product.id,
-                          "nama_produk": nameC.text,
-                          "harga": int.tryParse(priceC.text) ?? 0
+                        Map<String, dynamic> hasil = await controller.editUser({
+                          "id": user.id,
+                          "email": emailC.text,
+                          "password": passC.text
                         });
                         controller.isLoadingUpdate(false);
                         Get.snackbar(
@@ -97,8 +96,8 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                   showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                            content: const Text(
-                                "are you sure to delete this product?"),
+                            content:
+                                const Text("are you sure to delete this user?"),
                             actions: [
                               TextButton(
                                   onPressed: () => Get.back(),
@@ -107,8 +106,7 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                                   onPressed: () async {
                                     controller.isLoadingDelete(true);
                                     Map<String, dynamic> hasil =
-                                        await controller
-                                            .deleteProduct(product.id);
+                                        await controller.deleteUser(user.id);
                                     controller.isLoadingDelete(false);
 
                                     Get.back(); // close dialog
@@ -137,7 +135,7 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                           ));
                 },
                 child: Text(
-                  "Delete Category",
+                  "Delete User",
                   style: TextStyle(color: Colors.red[900]),
                 ))
           ],

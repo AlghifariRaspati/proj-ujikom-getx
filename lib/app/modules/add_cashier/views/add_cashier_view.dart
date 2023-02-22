@@ -24,6 +24,8 @@ class AddCashierView extends GetView<AddCashierController> {
           Get.snackbar("Error", hasil["message"]);
         } else {
           Get.back();
+          Get.snackbar(
+              hasil["error"] == true ? "Error" : "Success", hasil["message"]);
         }
       } else {
         Get.snackbar("Error", "Email and Password needs to be filled.");
