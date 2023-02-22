@@ -23,24 +23,12 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  MyApp({Key? key}) : super(key: key);
 
   // mengambil role user dari firebase
   final FirebaseAuth auth = FirebaseAuth.instance;
   final CollectionReference usersRef =
       FirebaseFirestore.instance.collection('users');
-
-  Future<String> getUserRole(User user) async {
-    final userDoc = await usersRef.doc(user.uid).get();
-
-    if (userDoc.exists) {
-      final userData = userDoc.data() as Map<String, dynamic>;
-      final userRole = userData['role'] as String;
-      return userRole;
-    }
-
-    return 'unknown';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,59 +36,50 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       builder: (context, child) => StreamBuilder<User?>(
-          stream: auth.authStateChanges(),
-          builder: (context, snapAuth) {
-            if (snapAuth.connectionState == ConnectionState.waiting) {
-              return const LoadingScreen();
-            }
+        stream: auth.authStateChanges(),
+        builder: (context, snapAuth) {
+          if (snapAuth.connectionState == ConnectionState.waiting) {
+            return const LoadingScreen();
+          }
 
-            if (snapAuth.hasData) {
-              final user = snapAuth.data!;
-              return FutureBuilder<String>(
-                future: getUserRole(user),
-                builder: (context, snapRole) {
-                  if (snapRole.connectionState == ConnectionState.waiting) {
-                    return const LoadingScreen();
-                  }
+          if (snapAuth.hasData) {
+            final user = snapAuth.data!;
+            return FutureBuilder<DocumentSnapshot>(
+              future: usersRef.doc(user.uid).get(),
+              builder: (context, snapUser) {
+                if (snapUser.connectionState == ConnectionState.waiting) {
+                  return const LoadingScreen();
+                }
 
-                  final userRole = snapRole.data ?? 'unknown';
+                final userData = snapUser.data?.data() as Map<String, dynamic>?;
 
-                  switch (userRole) {
-                    case 'admin':
-                      return GetMaterialApp(
-                        debugShowCheckedModeBanner: false,
-                        initialRoute: Routes.home,
-                        getPages: AppPages.routes,
-                      );
-                    case 'cashier':
-                      return GetMaterialApp(
-                        debugShowCheckedModeBanner: false,
-                        initialRoute: Routes.cashier_home,
-                        getPages: AppPages.routes,
-                      );
-                    case 'owner':
-                      return GetMaterialApp(
-                        debugShowCheckedModeBanner: false,
-                        initialRoute: Routes.owner_home,
-                        getPages: AppPages.routes,
-                      );
-                    default:
-                      return GetMaterialApp(
-                        debugShowCheckedModeBanner: false,
-                        initialRoute: Routes.login,
-                        getPages: AppPages.routes,
-                      );
-                  }
-                },
-              );
-            }
+                final userRole = userData?['role'] as String? ?? 'unknown';
 
-            return GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              initialRoute: Routes.login,
-              getPages: AppPages.routes,
+                switch (userRole) {
+                  case 'admin':
+                    return buildApp(Routes.home);
+                  case 'cashier':
+                    return buildApp(Routes.cashier_home);
+                  case 'owner':
+                    return buildApp(Routes.owner_home);
+                  default:
+                    return buildApp(Routes.login);
+                }
+              },
             );
-          }),
+          }
+
+          return buildApp(Routes.login);
+        },
+      ),
+    );
+  }
+
+  GetMaterialApp buildApp(String initialRoute) {
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: initialRoute,
+      getPages: AppPages.routes,
     );
   }
 }

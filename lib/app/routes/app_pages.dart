@@ -22,8 +22,6 @@ import '../modules/products/bindings/products_binding.dart';
 import '../modules/products/views/products_view.dart';
 import '../modules/products_detail/bindings/products_detail_binding.dart';
 import '../modules/products_detail/views/products_detail_view.dart';
-import '../modules/users/bindings/users_binding.dart';
-import '../modules/users/views/users_view.dart';
 
 part 'app_routes.dart';
 
@@ -40,11 +38,6 @@ class AppPages {
       name: _Paths.login,
       page: () => LoginView(),
       binding: LoginBinding(),
-    ),
-    GetPage(
-      name: _Paths.users,
-      page: () => const UsersView(),
-      binding: UsersBinding(),
     ),
     GetPage(
       name: _Paths.products,

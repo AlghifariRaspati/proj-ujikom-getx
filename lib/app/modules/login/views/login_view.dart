@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import '../../../../components/title_text.dart';
+import '../../../../utils/colors.dart';
 import '../../../controllers/auth_controller.dart';
 
 import '../../../../components/my_email_textfield.dart';
 import '../../../../components/my_pass_textfield.dart';
-import '../../../../utils/colors.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -42,17 +43,14 @@ class LoginView extends GetView<LoginController> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Container(
-                  color: AppColor.appGrey,
-                ),
+            const Padding(
+              padding: EdgeInsets.all(20),
+              child: TitleText(
+                text: "LaundryBuddy",
               ),
             ),
             SizedBox(
-              height: 25.h,
+              height: 20.h,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),

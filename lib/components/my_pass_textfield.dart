@@ -26,14 +26,17 @@ class MyPassTextField extends StatelessWidget {
       obscureText: obscureText,
       controller: controller,
       decoration: InputDecoration(
-          filled: true,
-          hintText: hintText,
-          fillColor: AppColor.appBase,
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColor.appGrey)),
-          focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.lightBlue)),
-          suffixIcon: suffixIcon),
+        filled: true,
+        hintText: hintText,
+        fillColor: AppColor.appBase,
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: AppColor.appGrey)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: AppColor.appGrey)),
+        suffixIcon: suffixIcon,
+      ),
     );
   }
 }

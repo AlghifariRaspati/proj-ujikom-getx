@@ -39,18 +39,18 @@ class HomeView extends GetView<HomeController> {
                   break;
                 case 1:
                   title = "Manage Category";
-                  icon = Icons.edit;
+                  icon = Icons.edit_document;
                   onTap = () => Get.toNamed(Routes.products);
                   break;
                 case 2:
-                  title = "Manage Cashier";
+                  title = "Add Cashier";
                   icon = Icons.person;
-                  onTap = () => Get.toNamed(Routes.users);
+                  onTap = () => Get.toNamed(Routes.add_cashier);
                   break;
                 case 3:
-                  title = "Activity Log";
-                  icon = Icons.library_books;
-                  onTap = () => Get.toNamed(Routes.activity_log);
+                  title = "Edit Cashier";
+                  icon = Icons.edit_document;
+                  onTap = () => Get.toNamed(Routes.cashiers);
                   break;
                 default:
               }

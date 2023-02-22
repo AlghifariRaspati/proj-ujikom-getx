@@ -5,7 +5,6 @@ abstract class Routes {
   Routes._();
   static const home = _Paths.home;
   static const login = _Paths.login;
-  static const users = _Paths.users;
   static const products = _Paths.products;
   // ignore: constant_identifier_names
   static const add_product = _Paths.add_product;
@@ -28,7 +27,7 @@ abstract class _Paths {
   _Paths._();
   static const home = '/home';
   static const login = '/login';
-  static const users = '/users';
+
   static const products = '/products';
   // ignore: constant_identifier_names
   static const add_product = '/add-product';

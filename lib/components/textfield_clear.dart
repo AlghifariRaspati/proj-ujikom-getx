@@ -33,9 +33,10 @@ class MyClearTextField extends StatelessWidget {
             hintText: hintText,
             fillColor: AppColor.appBase,
             enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(color: AppColor.appGrey)),
-            focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.lightBlue)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColor.appSecondary)),
             suffixIcon: suffixIcon),
       ),
     );
