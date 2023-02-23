@@ -13,39 +13,43 @@ class CashierHomeView extends GetView<CashierHomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('You are logged in as a Cashier'),
-        centerTitle: true,
+        title: const Text('Hello, Cashier'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  content: const Text("Are you sure you want to log out?"),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text("CANCEL"),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        Map<String, dynamic> hasil = await authC.logout();
+                        if (hasil["error"] == false) {
+                          Get.offAllNamed(Routes.login);
+                        } else {
+                          Get.snackbar("Error", hasil["error"]);
+                        }
+                      },
+                      child: const Text("CONFIRM"),
+                    )
+                  ],
+                ),
+              );
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       body: Center(
         child: Text(
           'CashierHomeView is working',
           style: TextStyle(fontSize: 20),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                    content: const Text("are you sure to log out?"),
-                    actions: [
-                      TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text("CANCEL")),
-                      TextButton(
-                          onPressed: () async {
-                            Map<String, dynamic> hasil = await authC.logout();
-                            if (hasil["error"] == false) {
-                              Get.offAllNamed(Routes.login);
-                            } else {
-                              Get.snackbar("Error", hasil["error"]);
-                            }
-                          },
-                          child: const Text("CONFIRM"))
-                    ],
-                  ));
-        },
-        child: const Icon(Icons.logout),
       ),
     );
   }

@@ -8,6 +8,7 @@ class AddProductController extends GetxController {
   RxBool isLoading = false.obs;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final auth = FirebaseAuth.instance;
 
   Future<Map<String, dynamic>> addProduct(Map<String, dynamic> data) async {
     try {
@@ -19,6 +20,23 @@ class AddProductController extends GetxController {
         "created_at":
             DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal()),
       });
+      String? uid = auth.currentUser?.uid;
+      String email =
+          auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
+      String dateTimeStr =
+          DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
+      Map<String, dynamic> logData = {
+        "email": email,
+        "activity": "Added a Product",
+        "id": uid,
+      };
+
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("logs")
+          .doc(dateTimeStr)
+          .set(logData);
 
       return {"error": false, "message": "Add Product successful"};
     } on FirebaseAuthException catch (e) {

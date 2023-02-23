@@ -23,6 +23,7 @@ void main() async {
   runApp(MyApp());
 }
 
+// Fungsi dibawah ini untuk mengambil role user yang ada di database dan mengarahkan mereka ke halamannya
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 

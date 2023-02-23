@@ -9,6 +9,7 @@ class ProductsDetailController extends GetxController {
   RxBool isLoadingDelete = false.obs;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final auth = FirebaseAuth.instance;
 
   Future<Map<String, dynamic>> editProduct(Map<String, dynamic> data) async {
     try {
@@ -21,6 +22,29 @@ class ProductsDetailController extends GetxController {
             DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal()),
       });
 
+      String productId = firestore
+          .collection("products")
+          .doc(data["id"])
+          .id; // fetch the ID of the edited product
+
+      String? uid = auth.currentUser?.uid;
+      String email =
+          auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
+      String dateTimeStr =
+          DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
+      Map<String, dynamic> logData = {
+        "email": email,
+        "activity": "Edited a Product",
+        "id": uid,
+      };
+
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("logs")
+          .doc(dateTimeStr)
+          .set(logData);
+
       return {"error": false, "message": "Update Product successful"};
     } on FirebaseAuthException catch (e) {
       return {"error": true, "message": "${e.message}"};
@@ -31,6 +55,22 @@ class ProductsDetailController extends GetxController {
 
   Future<Map<String, dynamic>> deleteProduct(String id) async {
     try {
+      String? uid = auth.currentUser?.uid;
+      String email =
+          auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
+      String dateTimeStr =
+          DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
+      Map<String, dynamic> logData = {
+        "email": email,
+        "activity": "Deleted a Product",
+        "id": uid,
+      };
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("logs")
+          .doc(dateTimeStr)
+          .set(logData);
       await firestore.collection("products").doc(id).delete();
 
       return {"error": false, "message": "Delete Product successful"};

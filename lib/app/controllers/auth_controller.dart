@@ -20,11 +20,13 @@ class AuthController extends GetxController {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: pass);
       String? uid = auth.currentUser?.uid;
+      String dateTimeStr =
+          DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
 
       String timestamp =
           DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal());
 
-      // add user updated at
+      // tambah updated_at user
       Map<String, dynamic> userData = {
         "id": uid,
         "email": email,
@@ -32,22 +34,21 @@ class AuthController extends GetxController {
         "updated_at": timestamp
       };
 
-      // Add the user data to the "users" collection
+      // tambah data user ke firebase
       await usersRef.doc(uid).update(userData);
 
       Map<String, dynamic> logData = {
+        "email": email,
         "activity": "logged in",
         "id": uid,
-        "updated_at":
-            DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal()),
       };
 
-      // Add the log data to the "log" collection
+      // tambah log data ke bagian logs
       await FirebaseFirestore.instance
           .collection("users")
           .doc(uid)
           .collection("logs")
-          .doc(uid)
+          .doc(dateTimeStr)
           .set(logData);
 
       return {"error": false, "message": "Login Success"};
@@ -63,18 +64,21 @@ class AuthController extends GetxController {
   Future<Map<String, dynamic>> logout() async {
     try {
       String? uid = auth.currentUser?.uid;
+      String email =
+          auth.currentUser?.email ?? ''; // get the current user's email address
+      String dateTimeStr =
+          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
       Map<String, dynamic> logData = {
-        "activity": "logged out",
+        "email": email,
+        "activity": "Logged Out",
         "id": uid,
-        "updated_at":
-            DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal()),
       };
 
       await FirebaseFirestore.instance
           .collection("users")
           .doc(uid)
           .collection("logs")
-          .doc(uid)
+          .doc(dateTimeStr)
           .set(logData);
       await auth.signOut();
 
@@ -99,7 +103,7 @@ class AuthController extends GetxController {
       String timestamp =
           DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal());
 
-      // add user created at
+      // tambah user created_at
       Map<String, dynamic> userData = {
         "id": uid,
         "email": email,
@@ -108,8 +112,30 @@ class AuthController extends GetxController {
         "created_at": timestamp
       };
 
-      // Add the user data to the "users" collection
+      // Tambah data user ke database users
       await usersRef.doc(uid).set(userData);
+
+      String dateTimeStr =
+          DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
+
+      // Dapatkan UID dari user yang sedang login
+      String? currentUserUid = FirebaseAuth.instance.currentUser?.uid;
+      String? currentUserEmail = FirebaseAuth.instance.currentUser?.email;
+
+      Map<String, dynamic> logData = {
+        "email": currentUserEmail,
+        "activity": "Registered a User",
+        "id": currentUserUid,
+        "created_at": timestamp
+      };
+
+      // Tambah data log ke collection logs di bawah user yang sedang login
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(currentUserUid)
+          .collection("logs")
+          .doc(dateTimeStr)
+          .set(logData);
 
       return {"error": false, "message": "Registration Success"};
     } on FirebaseAuthException catch (e) {
