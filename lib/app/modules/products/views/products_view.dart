@@ -14,7 +14,7 @@ class ProductsView extends GetView<ProductsController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Category'),
+          title: const Text('Product'),
           centerTitle: true,
         ),
         body: SafeArea(
@@ -30,7 +30,7 @@ class ProductsView extends GetView<ProductsController> {
 
                 if (snapProducts.data!.docs.isEmpty) {
                   return const Center(
-                    child: Text("No Category"),
+                    child: Text("No Product"),
                   );
                 }
 

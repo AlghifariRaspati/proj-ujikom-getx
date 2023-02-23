@@ -21,11 +21,11 @@ class ProductsDetailController extends GetxController {
             DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal()),
       });
 
-      return {"error": false, "message": "Update category successful"};
+      return {"error": false, "message": "Update Product successful"};
     } on FirebaseAuthException catch (e) {
       return {"error": true, "message": "${e.message}"};
     } catch (e) {
-      return {"error": true, "message": "Failed to Update category"};
+      return {"error": true, "message": "Failed to Update Product"};
     }
   }
 
@@ -33,11 +33,11 @@ class ProductsDetailController extends GetxController {
     try {
       await firestore.collection("products").doc(id).delete();
 
-      return {"error": false, "message": "Delete category successful"};
+      return {"error": false, "message": "Delete Product successful"};
     } on FirebaseAuthException catch (e) {
       return {"error": true, "message": "${e.message}"};
     } catch (e) {
-      return {"error": true, "message": "Failed to Delete category"};
+      return {"error": true, "message": "Failed to Delete Product"};
     }
   }
 }

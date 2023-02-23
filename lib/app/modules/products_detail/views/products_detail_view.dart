@@ -21,7 +21,7 @@ class ProductsDetail extends GetView<ProductsDetailController> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Category Detail'),
+          title: const Text('Product Detail'),
           centerTitle: true,
         ),
         body: ListView(
@@ -37,9 +37,8 @@ class ProductsDetail extends GetView<ProductsDetailController> {
               height: 25.h,
             ),
             MyClearTextField(
-                keyboardType: TextInputType.name,
                 controller: nameC,
-                hintText: "Category Name",
+                hintText: "Product Name",
                 suffixIcon: IconButton(
                   onPressed: nameC.clear,
                   icon: const Icon(Icons.clear),
@@ -48,7 +47,6 @@ class ProductsDetail extends GetView<ProductsDetailController> {
               height: 10.h,
             ),
             MyClearTextField(
-                keyboardType: TextInputType.number,
                 controller: priceC,
                 hintText: "Price per/kg",
                 suffixIcon: IconButton(
@@ -137,7 +135,7 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                           ));
                 },
                 child: Text(
-                  "Delete Category",
+                  "Delete Product",
                   style: TextStyle(color: Colors.red[900]),
                 ))
           ],

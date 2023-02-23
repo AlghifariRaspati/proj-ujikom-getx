@@ -21,7 +21,7 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Category Detail'),
+          title: const Text('Cashier Detail'),
           centerTitle: true,
         ),
         body: ListView(
@@ -37,9 +37,8 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
               height: 25.h,
             ),
             MyClearTextField(
-                keyboardType: TextInputType.name,
                 controller: emailC,
-                hintText: "Category Name",
+                hintText: "Cashier Email",
                 suffixIcon: IconButton(
                   onPressed: emailC.clear,
                   icon: const Icon(Icons.clear),
@@ -48,9 +47,8 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
               height: 10.h,
             ),
             MyClearTextField(
-                keyboardType: TextInputType.number,
                 controller: passC,
-                hintText: "Price per/kg",
+                hintText: "Cashier Password",
                 suffixIcon: IconButton(
                   onPressed: passC.clear,
                   icon: const Icon(

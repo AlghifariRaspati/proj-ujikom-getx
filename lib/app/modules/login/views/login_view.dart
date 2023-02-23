@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:ujikom_getx/utils/colors.dart';
 import '../../../../components/title_text.dart';
-import '../../../../utils/colors.dart';
+
 import '../../../controllers/auth_controller.dart';
 
 import '../../../../components/my_email_textfield.dart';
@@ -39,71 +40,87 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(20),
-              child: TitleText(
-                text: "LaundryBuddy",
+      backgroundColor: AppColor.appSecondary,
+      body: Center(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: 300.w,
+            height: 400.h,
+            child: Material(
+              elevation: 5,
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const TitleText(
+                      text: "LaundryBuddy",
+                    ),
+                    SizedBox(
+                      height: 50.h,
+                    ),
+                    MyEmailTextField(
+                      controller: emailC,
+                      hintText: "Email",
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Obx(
+                      () => MyPassTextField(
+                        controller: passC,
+                        hintText: "Password",
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            controller.isHidden.toggle();
+                          },
+                          icon: Icon(controller.isHidden.isFalse
+                              ? Icons.remove_red_eye
+                              : Icons.remove_red_eye_outlined),
+                          color: AppColor.appSecondary,
+                        ),
+                        obscureText: controller.isHidden.value,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    ElevatedButton(
+                      onPressed: signUserIn,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColor.appSecondary,
+                        minimumSize: Size(260.w, 50.h),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(9),
+                        ),
+                      ),
+                      child: Obx(
+                        () => controller.isLoading.isFalse
+                            ? const Text(
+                                "Log In",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              )
+                            : SizedBox(
+                                width: 24.w,
+                                height: 24.h,
+                                child: const CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: MyEmailTextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: emailC,
-                  hintText: "Email"),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Obx(() => MyPassTextField(
-                  controller: passC,
-                  hintText: "Password",
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      controller.isHidden.toggle();
-                    },
-                    icon: Icon(controller.isHidden.isFalse
-                        ? Icons.remove_red_eye
-                        : Icons.remove_red_eye_outlined),
-                  ),
-                  obscureText: controller.isHidden.value)),
-            ),
-            SizedBox(
-              height: 25.h,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: ElevatedButton(
-                  onPressed: signUserIn,
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(MediaQuery.of(context).size.width, 50.h),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(9)),
-                  ),
-                  child: Obx(() => controller.isLoading.isFalse
-                      ? const Text("Log In")
-                      : Container(
-                          padding: const EdgeInsets.all(2),
-                          height: 15.h,
-                          width: 15.w,
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                            strokeWidth: 1.w,
-                          ),
-                        ))),
-            )
-          ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }

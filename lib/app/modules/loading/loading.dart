@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ujikom_getx/utils/colors.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
@@ -6,6 +7,7 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: LoadingView(),
     );
   }
@@ -16,10 +18,10 @@ class LoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: CircularProgressIndicator(
-          color: Colors.lightBlue,
+          color: AppColor.appPrimary,
         ),
       ),
     );

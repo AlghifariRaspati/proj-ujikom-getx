@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 
 import '../../../../components/textfield_clear.dart';
@@ -15,7 +14,7 @@ class AddProductView extends GetView<AddProductController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Add Category'),
+          title: const Text('Add Product'),
           centerTitle: true,
         ),
         body: SafeArea(
@@ -23,9 +22,8 @@ class AddProductView extends GetView<AddProductController> {
             padding: const EdgeInsets.all(20),
             children: [
               MyClearTextField(
-                  keyboardType: TextInputType.name,
                   controller: nameC,
-                  hintText: "Category Name",
+                  hintText: "Product Name",
                   suffixIcon: IconButton(
                     onPressed: nameC.clear,
                     icon: const Icon(Icons.clear),
@@ -34,7 +32,6 @@ class AddProductView extends GetView<AddProductController> {
                 height: 10.h,
               ),
               MyClearTextField(
-                  keyboardType: TextInputType.number,
                   controller: priceC,
                   hintText: "Price per/kg",
                   suffixIcon: IconButton(
@@ -45,7 +42,7 @@ class AddProductView extends GetView<AddProductController> {
                 height: 10.h,
               ),
               SizedBox(
-                height: 40.h,
+                height: 50.h,
                 child: ElevatedButton(
                     onPressed: () async {
                       if (controller.isLoading.isFalse) {

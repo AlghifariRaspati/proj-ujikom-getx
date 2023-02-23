@@ -7,25 +7,22 @@ class MyClearTextField extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final controller;
   final String hintText;
-  // ignore: prefer_typing_uninitialized_variables
-  final keyboardType;
+
   // ignore: prefer_typing_uninitialized_variables
   final suffixIcon;
 
-  const MyClearTextField(
-      {Key? key,
-      required this.suffixIcon,
-      required this.controller,
-      required this.hintText,
-      required this.keyboardType})
-      : super(key: key);
+  const MyClearTextField({
+    Key? key,
+    required this.suffixIcon,
+    required this.controller,
+    required this.hintText,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50.w,
       child: TextField(
-        keyboardType: keyboardType,
         autocorrect: false,
         controller: controller,
         decoration: InputDecoration(

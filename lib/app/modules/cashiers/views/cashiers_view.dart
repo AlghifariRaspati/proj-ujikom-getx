@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:ujikom_getx/app/data/models/user_model.dart';
+import '../../../data/models/user_model.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/cashiers_controller.dart';
@@ -15,14 +15,14 @@ class CashiersView extends GetView<CashiersController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Category'),
+          title: const Text('Cashiers'),
           centerTitle: true,
         ),
         body: SafeArea(
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
               stream: controller.streamProducts(),
               builder: (context, snapUser) {
-                //check if data is available
+                //mengecek data
                 if (snapUser.connectionState == ConnectionState.waiting) {
                   return const Center(
                     child: CircularProgressIndicator(),
@@ -31,7 +31,7 @@ class CashiersView extends GetView<CashiersController> {
 
                 if (snapUser.data!.docs.isEmpty) {
                   return const Center(
-                    child: Text("No Category"),
+                    child: Text("No Cashiers"),
                   );
                 }
 
@@ -70,7 +70,6 @@ class CashiersView extends GetView<CashiersController> {
                                 padding: const EdgeInsets.all(20),
                                 child: IntrinsicHeight(
                                   child: Row(children: [
-                                    // data content
                                     Expanded(
                                       child: Column(
                                         crossAxisAlignment:

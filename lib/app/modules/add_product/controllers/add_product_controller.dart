@@ -20,11 +20,11 @@ class AddProductController extends GetxController {
             DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal()),
       });
 
-      return {"error": false, "message": "Add Category successful"};
+      return {"error": false, "message": "Add Product successful"};
     } on FirebaseAuthException catch (e) {
       return {"error": true, "message": "${e.message}"};
     } catch (e) {
-      return {"error": true, "message": "Failed to add Category"};
+      return {"error": true, "message": "Failed to add Product"};
     }
   }
 }

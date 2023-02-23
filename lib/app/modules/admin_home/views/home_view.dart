@@ -33,12 +33,12 @@ class HomeView extends GetView<HomeController> {
 
               switch (index) {
                 case 0:
-                  title = "Add Category";
+                  title = "Add Product";
                   icon = Icons.note_add_rounded;
                   onTap = () => Get.toNamed(Routes.add_product);
                   break;
                 case 1:
-                  title = "Manage Category";
+                  title = "Manage Product";
                   icon = Icons.edit_document;
                   onTap = () => Get.toNamed(Routes.products);
                   break;
@@ -56,7 +56,7 @@ class HomeView extends GetView<HomeController> {
               }
               return Material(
                 borderRadius: BorderRadius.circular(9),
-                color: AppColor.appGrey,
+                color: AppColor.appLightGrey,
                 child: InkWell(
                   onTap: onTap,
                   borderRadius: BorderRadius.circular(9),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-import 'package:ujikom_getx/components/textfield_clear.dart';
 
+import '../../../../components/textfield_clear.dart';
 import '../../../controllers/auth_controller.dart';
 import '../controllers/add_cashier_controller.dart';
 
@@ -47,7 +46,6 @@ class AddCashierView extends GetView<AddCashierController> {
             padding: const EdgeInsets.all(20),
             children: [
               MyClearTextField(
-                keyboardType: TextInputType.emailAddress,
                 controller: emailC,
                 hintText: "Email",
                 suffixIcon: IconButton(
@@ -59,7 +57,6 @@ class AddCashierView extends GetView<AddCashierController> {
                 height: 10.h,
               ),
               MyClearTextField(
-                keyboardType: TextInputType.name,
                 controller: passC,
                 hintText: "Password",
                 suffixIcon: IconButton(

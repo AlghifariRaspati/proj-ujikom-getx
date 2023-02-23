@@ -13,9 +13,10 @@ class TitleText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-          color: AppColor.appDarkGrey,
-          fontSize: 24.sp,
-          fontWeight: FontWeight.bold),
+          color: AppColor.appPrimary,
+          fontSize: 26.sp,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Nexa'),
     );
   }
 }
