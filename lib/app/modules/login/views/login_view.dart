@@ -56,7 +56,7 @@ class LoginView extends GetView<LoginController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const TitleText(
-                      text: "LaundryBuddy",
+                      text: "Laundry App",
                     ),
                     SizedBox(
                       height: 50.h,
