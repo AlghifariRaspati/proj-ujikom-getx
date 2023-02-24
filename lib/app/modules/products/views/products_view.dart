@@ -13,105 +13,104 @@ class ProductsView extends GetView<ProductsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Product'),
-          centerTitle: true,
-        ),
-        body: SafeArea(
-          child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-              stream: controller.streamProducts(),
-              builder: (context, snapProducts) {
-                //check if data is available
-                if (snapProducts.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
+      appBar: AppBar(
+        title: const Text('Products'),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+          stream: controller.streamProducts(),
+          builder: (context, snapProducts) {
+            // Check if there's data
+            if (snapProducts.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
 
-                if (snapProducts.data!.docs.isEmpty) {
-                  return const Center(
-                    child: Text("No Product"),
-                  );
-                }
+            if (snapProducts.data!.docs.isEmpty) {
+              return const Center(
+                child: Text("No Product"),
+              );
+            }
 
-                // looping data
-                List<ProductModel> allProducts = [];
+            // Create a list of products from the stream data
+            final allProducts = List<ProductModel>.from(
+              snapProducts.data!.docs.map(
+                (doc) => ProductModel.fromJson(doc.data()),
+              ),
+            );
 
-                for (var element in snapProducts.data!.docs) {
-                  allProducts.add(ProductModel.fromJson(element.data()));
-                }
-                return SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Scrollbar(
-                    interactive: true,
-                    child: ListView.builder(
-                        shrinkWrap:
-                            true, // untuk mengecilkan konten dari listview
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: allProducts.length,
-                        padding: const EdgeInsets.all(20),
-                        itemBuilder: (context, index) {
-                          ProductModel product = allProducts[index];
-                          return Card(
-                            elevation: 5,
-                            margin: EdgeInsets.only(bottom: 20.h),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(9)),
-                            child: InkWell(
-                              onTap: () {
-                                Get.toNamed(Routes.products_detail,
-                                    arguments:
-                                        product //lempar data dari data produk
-                                    );
-                              },
-                              borderRadius: BorderRadius.circular(9),
-                              child: Container(
-                                padding: const EdgeInsets.all(20),
-                                child: IntrinsicHeight(
-                                  child: Row(children: [
-                                    // product content
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            product.namaProduk,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 5.h,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              const Text("Price per/kg :"),
-                                              SizedBox(
-                                                width: 5.w,
-                                              ),
-                                              Text(NumberFormat.currency(
-                                                      locale: 'id',
-                                                      symbol: 'Rp.',
-                                                      decimalDigits: 0)
-                                                  .format(int.parse(product
-                                                      .harga
-                                                      .toString()))),
-                                            ],
-                                          )
-                                        ],
-                                      ),
+            return ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: allProducts.length,
+              padding: const EdgeInsets.all(20),
+              itemBuilder: (context, index) {
+                final product = allProducts[index];
+                return Card(
+                  elevation: 5,
+                  margin: EdgeInsets.only(bottom: 20.h),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(9),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(
+                        Routes.products_detail,
+                        arguments: product,
+                      );
+                    },
+                    borderRadius: BorderRadius.circular(9),
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      child: IntrinsicHeight(
+                        child: Row(
+                          children: [
+                            // product content
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    product.namaProduk,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ]),
-                                ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Text("Price per/kg :"),
+                                      SizedBox(
+                                        width: 5.w,
+                                      ),
+                                      Text(
+                                        NumberFormat.currency(
+                                          locale: 'id',
+                                          symbol: 'Rp.',
+                                          decimalDigits: 0,
+                                        ).format(int.parse(
+                                            product.harga.toString())),
+                                      ),
+                                    ],
+                                  )
+                                ],
                               ),
                             ),
-                          );
-                        }),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 );
-              }),
-        ));
+              },
+            );
+          },
+        ),
+      ),
+    );
   }
 }

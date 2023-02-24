@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -18,20 +17,14 @@ class ProductsDetailController extends GetxController {
       await firestore.collection("products").doc(data["id"]).update({
         "nama_produk": data["nama_produk"],
         "harga": data["harga"],
-        "updated_at":
-            DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal()),
+        "updated_at": DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
       });
-
-      String productId = firestore
-          .collection("products")
-          .doc(data["id"])
-          .id; // fetch the ID of the edited product
 
       String? uid = auth.currentUser?.uid;
       String email =
           auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
       String dateTimeStr =
-          DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
+          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
       Map<String, dynamic> logData = {
         "email": email,
         "activity": "Edited a Product",
@@ -59,7 +52,7 @@ class ProductsDetailController extends GetxController {
       String email =
           auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
       String dateTimeStr =
-          DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
+          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
       Map<String, dynamic> logData = {
         "email": email,
         "activity": "Deleted a Product",

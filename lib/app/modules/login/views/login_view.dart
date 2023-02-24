@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:ujikom_getx/utils/colors.dart';
+import '../../../../utils/colors.dart';
 import '../../../../components/title_text.dart';
 
 import '../../../controllers/auth_controller.dart';
@@ -55,11 +55,25 @@ class LoginView extends GetView<LoginController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // AspectRatio(
+                    //   aspectRatio: 16 / 8,
+                    //   child: Container(
+                    //     decoration: BoxDecoration(color: AppColor.appGrey),
+                    //     child: Center(
+                    //         child: Text(
+                    //       "Placeholder",
+                    //       style: TextStyle(color: AppColor.appPrimary),
+                    //     )),
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
                     const TitleText(
                       text: "Laundry App",
                     ),
                     SizedBox(
-                      height: 50.h,
+                      height: 25.h,
                     ),
                     MyEmailTextField(
                       controller: emailC,
@@ -114,6 +128,9 @@ class LoginView extends GetView<LoginController> {
                               ),
                       ),
                     ),
+                    SizedBox(
+                      height: 50.h,
+                    )
                   ],
                 ),
               ),

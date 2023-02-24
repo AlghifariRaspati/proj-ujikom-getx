@@ -20,11 +20,9 @@ class AuthController extends GetxController {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: pass);
       String? uid = auth.currentUser?.uid;
-      String dateTimeStr =
-          DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
 
       String timestamp =
-          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal());
+          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
 
       // tambah updated_at user
       Map<String, dynamic> userData = {
@@ -48,7 +46,7 @@ class AuthController extends GetxController {
           .collection("users")
           .doc(uid)
           .collection("logs")
-          .doc(dateTimeStr)
+          .doc(timestamp)
           .set(logData);
 
       return {"error": false, "message": "Login Success"};
@@ -66,7 +64,7 @@ class AuthController extends GetxController {
       String? uid = auth.currentUser?.uid;
       String email =
           auth.currentUser?.email ?? ''; // get the current user's email address
-      String dateTimeStr =
+      String timestamp =
           DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
       Map<String, dynamic> logData = {
         "email": email,
@@ -78,7 +76,7 @@ class AuthController extends GetxController {
           .collection("users")
           .doc(uid)
           .collection("logs")
-          .doc(dateTimeStr)
+          .doc(timestamp)
           .set(logData);
       await auth.signOut();
 
@@ -101,7 +99,7 @@ class AuthController extends GetxController {
       await app.delete();
 
       String timestamp =
-          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal());
+          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
 
       // tambah user created_at
       Map<String, dynamic> userData = {
@@ -114,9 +112,6 @@ class AuthController extends GetxController {
 
       // Tambah data user ke database users
       await usersRef.doc(uid).set(userData);
-
-      String dateTimeStr =
-          DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
 
       // Dapatkan UID dari user yang sedang login
       String? currentUserUid = FirebaseAuth.instance.currentUser?.uid;
@@ -134,7 +129,7 @@ class AuthController extends GetxController {
           .collection("users")
           .doc(currentUserUid)
           .collection("logs")
-          .doc(dateTimeStr)
+          .doc(timestamp)
           .set(logData);
 
       return {"error": false, "message": "Registration Success"};

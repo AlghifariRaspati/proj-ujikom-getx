@@ -46,23 +46,19 @@ class AddCashierView extends GetView<AddCashierController> {
             padding: const EdgeInsets.all(20),
             children: [
               MyClearTextField(
+                keyboardType: TextInputType.emailAddress,
                 controller: emailC,
                 hintText: "Email",
-                suffixIcon: IconButton(
-                  onPressed: emailC.clear,
-                  icon: const Icon(Icons.clear),
-                ),
+                onPressed: emailC.clear,
               ),
               SizedBox(
                 height: 10.h,
               ),
               MyClearTextField(
+                keyboardType: TextInputType.name,
                 controller: passC,
                 hintText: "Password",
-                suffixIcon: IconButton(
-                  onPressed: passC.clear,
-                  icon: const Icon(Icons.clear),
-                ),
+                onPressed: passC.clear,
               ),
               SizedBox(
                 height: 10.h,

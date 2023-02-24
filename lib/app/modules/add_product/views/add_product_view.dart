@@ -22,22 +22,20 @@ class AddProductView extends GetView<AddProductController> {
             padding: const EdgeInsets.all(20),
             children: [
               MyClearTextField(
-                  controller: nameC,
-                  hintText: "Product Name",
-                  suffixIcon: IconButton(
-                    onPressed: nameC.clear,
-                    icon: const Icon(Icons.clear),
-                  )),
+                keyboardType: TextInputType.name,
+                controller: nameC,
+                hintText: "Product Name",
+                onPressed: nameC.clear,
+              ),
               SizedBox(
                 height: 10.h,
               ),
               MyClearTextField(
-                  controller: priceC,
-                  hintText: "Price per/kg",
-                  suffixIcon: IconButton(
-                    onPressed: priceC.clear,
-                    icon: const Icon(Icons.clear),
-                  )),
+                keyboardType: TextInputType.number,
+                controller: priceC,
+                hintText: "Price per/kg",
+                onPressed: priceC.clear,
+              ),
               SizedBox(
                 height: 10.h,
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
@@ -37,24 +38,20 @@ class ProductsDetail extends GetView<ProductsDetailController> {
               height: 25.h,
             ),
             MyClearTextField(
-                controller: nameC,
-                hintText: "Product Name",
-                suffixIcon: IconButton(
-                  onPressed: nameC.clear,
-                  icon: const Icon(Icons.clear),
-                )),
+              keyboardType: TextInputType.name,
+              controller: nameC,
+              hintText: "Product Name",
+              onPressed: nameC.clear,
+            ),
             SizedBox(
               height: 10.h,
             ),
             MyClearTextField(
-                controller: priceC,
-                hintText: "Price per/kg",
-                suffixIcon: IconButton(
-                  onPressed: priceC.clear,
-                  icon: const Icon(
-                    Icons.clear,
-                  ),
-                )),
+              keyboardType: TextInputType.number,
+              controller: priceC,
+              hintText: "Price per/kg",
+              onPressed: priceC.clear,
+            ),
             SizedBox(
               height: 10.h,
             ),
@@ -100,7 +97,9 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                             actions: [
                               TextButton(
                                   onPressed: () => Get.back(),
-                                  child: const Text("CANCEL")),
+                                  child: Text("CANCEL",
+                                      style: TextStyle(
+                                          color: AppColor.appPrimary))),
                               TextButton(
                                   onPressed: () async {
                                     controller.isLoadingDelete(true);
@@ -109,8 +108,8 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                                             .deleteProduct(product.id);
                                     controller.isLoadingDelete(false);
 
-                                    Get.back(); // close dialog
-                                    Get.back(); //return to previous page
+                                    Get.back(); // tutup dialog
+                                    Get.back(); // kembali ke halaman sebelumnya
 
                                     Get.snackbar(
                                         hasil["error"] == true
@@ -119,9 +118,11 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                                         hasil["message"],
                                         duration: const Duration(seconds: 2));
                                   },
-                                  child: Obx(
-                                      () => controller.isLoadingDelete.isFalse
-                                          ? const Text("DELETE")
+                                  child: Obx(() =>
+                                      controller.isLoadingDelete.isFalse
+                                          ? Text("DELETE",
+                                              style: TextStyle(
+                                                  color: AppColor.appPrimary))
                                           : Container(
                                               padding: const EdgeInsets.all(2),
                                               height: 15.h,

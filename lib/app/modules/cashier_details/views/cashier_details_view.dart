@@ -37,24 +37,20 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
               height: 25.h,
             ),
             MyClearTextField(
-                controller: emailC,
-                hintText: "Cashier Email",
-                suffixIcon: IconButton(
-                  onPressed: emailC.clear,
-                  icon: const Icon(Icons.clear),
-                )),
+              keyboardType: TextInputType.emailAddress,
+              controller: emailC,
+              hintText: "Cashier Email",
+              onPressed: emailC.clear,
+            ),
             SizedBox(
               height: 10.h,
             ),
             MyClearTextField(
-                controller: passC,
-                hintText: "Cashier Password",
-                suffixIcon: IconButton(
-                  onPressed: passC.clear,
-                  icon: const Icon(
-                    Icons.clear,
-                  ),
-                )),
+              keyboardType: TextInputType.name,
+              controller: passC,
+              hintText: "Cashier Password",
+              onPressed: passC.clear,
+            ),
             SizedBox(
               height: 10.h,
             ),
@@ -99,7 +95,9 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
                             actions: [
                               TextButton(
                                   onPressed: () => Get.back(),
-                                  child: const Text("CANCEL")),
+                                  child: Text("CANCEL",
+                                      style: TextStyle(
+                                          color: AppColor.appPrimary))),
                               TextButton(
                                   onPressed: () async {
                                     controller.isLoadingDelete(true);
@@ -117,9 +115,11 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
                                         hasil["message"],
                                         duration: const Duration(seconds: 2));
                                   },
-                                  child: Obx(
-                                      () => controller.isLoadingDelete.isFalse
-                                          ? const Text("DELETE")
+                                  child: Obx(() =>
+                                      controller.isLoadingDelete.isFalse
+                                          ? Text("DELETE",
+                                              style: TextStyle(
+                                                  color: AppColor.appPrimary))
                                           : Container(
                                               padding: const EdgeInsets.all(2),
                                               height: 15.h,

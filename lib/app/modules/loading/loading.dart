@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ujikom_getx/utils/colors.dart';
+import '../../../utils/colors.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});

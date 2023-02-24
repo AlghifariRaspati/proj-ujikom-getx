@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../utils/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyEmailTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -23,7 +22,7 @@ class MyEmailTextField extends StatelessWidget {
           filled: true,
           hintText: hintText,
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           fillColor: Colors.grey.withOpacity(0.3),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),

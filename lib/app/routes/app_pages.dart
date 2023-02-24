@@ -12,6 +12,8 @@ import '../modules/cashier_details/bindings/cashier_details_binding.dart';
 import '../modules/cashier_details/views/cashier_details_view.dart';
 import '../modules/cashier_home/bindings/cashier_home_binding.dart';
 import '../modules/cashier_home/views/cashier_home_view.dart';
+import '../modules/cashier_transaction/bindings/cashier_transaction_binding.dart';
+import '../modules/cashier_transaction/views/cashier_transaction_view.dart';
 import '../modules/cashiers/bindings/cashiers_binding.dart';
 import '../modules/cashiers/views/cashiers_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -83,6 +85,11 @@ class AppPages {
       name: _Paths.cashier_details,
       page: () => CashierDetailsView(),
       binding: CashierDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.cashier_transaction,
+      page: () => CashierTransactionView(),
+      binding: CashierTransactionBinding(),
     ),
   ];
 }

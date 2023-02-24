@@ -18,8 +18,7 @@ class CashierDetailsController extends GetxController {
       await firestore.collection("users").doc(data["id"]).update({
         "email": data["email"],
         "password": data["password"],
-        "updated_at":
-            DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now().toLocal()),
+        "updated_at": DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
       });
 
       return {"error": false, "message": "Update User successful"};

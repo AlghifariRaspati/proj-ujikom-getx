@@ -21,6 +21,10 @@ abstract class Routes {
   static const activity_log = _Paths.activity_log;
   // ignore: constant_identifier_names
   static const cashier_details = _Paths.cashier_details;
+  // ignore: constant_identifier_names
+  static const cashier_transaction = _Paths.cashier_transaction;
+  // ignore: constant_identifier_names
+  
 }
 
 abstract class _Paths {
@@ -44,4 +48,6 @@ abstract class _Paths {
   static const activity_log = '/activity-log';
   // ignore: constant_identifier_names
   static const cashier_details = '/cashier-details';
+  // ignore: constant_identifier_names
+  static const cashier_transaction = '/cashier-transaction';
 }

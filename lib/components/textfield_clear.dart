@@ -1,40 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../utils/colors.dart';
-
 class MyClearTextField extends StatelessWidget {
-  // ignore: prefer_typing_uninitialized_variables
-  final controller;
+  final dynamic controller;
   final String hintText;
+  final TextInputType keyboardType;
 
-  // ignore: prefer_typing_uninitialized_variables
-  final suffixIcon;
+  final onPressed;
 
-  const MyClearTextField({
-    Key? key,
-    required this.suffixIcon,
-    required this.controller,
-    required this.hintText,
-  }) : super(key: key);
+  const MyClearTextField(
+      {Key? key,
+      required this.onPressed,
+      required this.controller,
+      required this.hintText,
+      required this.keyboardType})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50.w,
-      child: TextField(
+      child: TextFormField(
         autocorrect: false,
+        keyboardType: keyboardType,
         controller: controller,
         decoration: InputDecoration(
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
             filled: true,
             hintText: hintText,
-            fillColor: AppColor.appBase,
+            fillColor: Colors.grey.withOpacity(0.3),
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: AppColor.appGrey)),
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide.none),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColor.appSecondary)),
-            suffixIcon: suffixIcon),
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide.none),
+            suffixIcon: IconButton(
+              onPressed: onPressed,
+              icon: const Icon(
+                Icons.clear,
+              ),
+            )),
       ),
     );
   }

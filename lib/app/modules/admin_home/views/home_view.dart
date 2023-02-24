@@ -14,6 +14,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.appBase,
       appBar: AppBar(
         title: const Text('Hello, Admin'),
         actions: [
@@ -26,19 +27,24 @@ class HomeView extends GetView<HomeController> {
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: const Text("CANCEL"),
+                      child: Text(
+                        "CANCEL",
+                        style: TextStyle(color: AppColor.appPrimary),
+                      ),
                     ),
                     TextButton(
-                      onPressed: () async {
-                        Map<String, dynamic> hasil = await authC.logout();
-                        if (hasil["error"] == false) {
-                          Get.offAllNamed(Routes.login);
-                        } else {
-                          Get.snackbar("Error", hasil["error"]);
-                        }
-                      },
-                      child: const Text("CONFIRM"),
-                    )
+                        onPressed: () async {
+                          Map<String, dynamic> hasil = await authC.logout();
+                          if (hasil["error"] == false) {
+                            Get.offAllNamed(Routes.login);
+                          } else {
+                            Get.snackbar("Error", hasil["error"]);
+                          }
+                        },
+                        child: Text(
+                          "CONFIRM",
+                          style: TextStyle(color: AppColor.appPrimary),
+                        ))
                   ],
                 ),
               );
@@ -84,8 +90,9 @@ class HomeView extends GetView<HomeController> {
                 default:
               }
               return Material(
+                elevation: 6,
                 borderRadius: BorderRadius.circular(9),
-                color: AppColor.appLightGrey,
+                color: AppColor.appBase,
                 child: InkWell(
                   onTap: onTap,
                   borderRadius: BorderRadius.circular(9),
@@ -98,6 +105,7 @@ class HomeView extends GetView<HomeController> {
                           child: Icon(
                             icon,
                             size: 50,
+                            color: AppColor.appSecondary,
                           ),
                         ),
                         SizedBox(
@@ -105,7 +113,9 @@ class HomeView extends GetView<HomeController> {
                         ),
                         Text(
                           title,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: AppColor.appPrimary),
                         )
                       ]),
                 ),
