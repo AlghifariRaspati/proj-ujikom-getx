@@ -14,16 +14,21 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.appBase,
+      backgroundColor: AppColor.appFive,
       appBar: AppBar(
         title: const Text('Hello, Admin'),
+        backgroundColor: AppColor.appPrimary,
+        elevation: 0,
         actions: [
           IconButton(
             onPressed: () async {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  content: const Text("Are you sure you want to log out?"),
+                  content: Text(
+                    "Are you sure you want to log out?",
+                    style: TextStyle(color: AppColor.appPrimary),
+                  ),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
@@ -74,17 +79,17 @@ class HomeView extends GetView<HomeController> {
                   break;
                 case 1:
                   title = "Manage Product";
-                  icon = Icons.edit_document;
+                  icon = Icons.inventory;
                   onTap = () => Get.toNamed(Routes.products);
                   break;
                 case 2:
                   title = "Add Cashier";
-                  icon = Icons.person;
+                  icon = Icons.person_add_alt_1_rounded;
                   onTap = () => Get.toNamed(Routes.add_cashier);
                   break;
                 case 3:
                   title = "Edit Cashier";
-                  icon = Icons.edit_document;
+                  icon = Icons.edit;
                   onTap = () => Get.toNamed(Routes.cashiers);
                   break;
                 default:
@@ -114,6 +119,7 @@ class HomeView extends GetView<HomeController> {
                         Text(
                           title,
                           style: TextStyle(
+                              fontFamily: 'Nexa',
                               fontWeight: FontWeight.bold,
                               color: AppColor.appPrimary),
                         )

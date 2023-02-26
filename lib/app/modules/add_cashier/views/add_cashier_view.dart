@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:ujikom_getx/utils/colors.dart';
 
 import '../../../../components/textfield_clear.dart';
 import '../../../controllers/auth_controller.dart';
@@ -37,9 +38,12 @@ class AddCashierView extends GetView<AddCashierController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColor.appFive,
         appBar: AppBar(
           title: const Text('Add Cashier'),
           centerTitle: true,
+          backgroundColor: AppColor.appPrimary,
+          elevation: 0,
         ),
         body: SafeArea(
           child: ListView(
@@ -68,6 +72,7 @@ class AddCashierView extends GetView<AddCashierController> {
                 child: ElevatedButton(
                     onPressed: regCashier,
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColor.appSecondary,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(9)),
                     ),

@@ -13,15 +13,21 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.appFive,
       appBar: AppBar(
-        title: const Text('Hello, Admin'),
+        title: const Text('Hello, Owner'),
+        backgroundColor: AppColor.appPrimary,
+        elevation: 0,
         actions: [
           IconButton(
             onPressed: () async {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  content: const Text("Are you sure you want to log out?"),
+                  content: Text(
+                    "Are you sure you want to log out?",
+                    style: TextStyle(color: AppColor.appPrimary),
+                  ),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
@@ -64,12 +70,12 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
               switch (index) {
                 case 0:
                   title = "View Transaction logs";
-                  icon = Icons.note_add_rounded;
+                  icon = Icons.history_rounded;
                   onTap = () {};
                   break;
                 case 1:
                   title = "View user log activity";
-                  icon = Icons.person;
+                  icon = Icons.timeline_rounded;
                   onTap = () {};
                   break;
                 default:

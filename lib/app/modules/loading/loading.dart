@@ -19,6 +19,7 @@ class LoadingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.appFive,
       body: Center(
         child: CircularProgressIndicator(
           color: AppColor.appPrimary,

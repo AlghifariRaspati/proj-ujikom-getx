@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../components/textfield_clear.dart';
+import '../../../../utils/colors.dart';
 import '../controllers/add_product_controller.dart';
 
 class AddProductView extends GetView<AddProductController> {
@@ -13,9 +14,12 @@ class AddProductView extends GetView<AddProductController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColor.appFive,
         appBar: AppBar(
           title: const Text('Add Product'),
           centerTitle: true,
+          backgroundColor: AppColor.appPrimary,
+          elevation: 0,
         ),
         body: SafeArea(
           child: ListView(
@@ -65,6 +69,7 @@ class AddProductView extends GetView<AddProductController> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColor.appSecondary,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(9)),
                     ),

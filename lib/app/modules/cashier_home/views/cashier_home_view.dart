@@ -15,8 +15,11 @@ class CashierHomeView extends GetView<CashierHomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.appFive,
       appBar: AppBar(
         title: const Text('Hello, Cashier'),
+        backgroundColor: AppColor.appPrimary,
+        elevation: 0,
       ),
       body: SafeArea(
         child: GridView.builder(
@@ -39,13 +42,15 @@ class CashierHomeView extends GetView<CashierHomeController> {
                   break;
                 case 1:
                   title = "Log Out";
-                  icon = Icons.logout_rounded;
+                  icon = Icons.exit_to_app_rounded;
                   onTap = () async {
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                        content:
-                            const Text("Are you sure you want to log out?"),
+                        content: Text(
+                          "Are you sure you want to log out?",
+                          style: TextStyle(color: AppColor.appPrimary),
+                        ),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(context),
@@ -96,6 +101,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
                         Text(
                           title,
                           style: TextStyle(
+                              fontFamily: 'Nexa',
                               fontWeight: FontWeight.bold,
                               color: AppColor.appPrimary),
                         )

@@ -21,9 +21,12 @@ class ProductsDetail extends GetView<ProductsDetailController> {
     priceC.text = product.harga.toString();
 
     return Scaffold(
+        backgroundColor: AppColor.appFive,
         appBar: AppBar(
           title: const Text('Product Detail'),
+          backgroundColor: AppColor.appPrimary,
           centerTitle: true,
+          elevation: 0,
         ),
         body: ListView(
           padding: const EdgeInsets.all(20),
@@ -80,6 +83,7 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.appSecondary,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(9)),
                   ),

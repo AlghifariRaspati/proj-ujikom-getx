@@ -20,9 +20,12 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
     passC.text = user.pass;
 
     return Scaffold(
+        backgroundColor: AppColor.appFive,
         appBar: AppBar(
           title: const Text('Cashier Detail'),
+          backgroundColor: AppColor.appPrimary,
           centerTitle: true,
+          elevation: 0,
         ),
         body: ListView(
           padding: const EdgeInsets.all(20),

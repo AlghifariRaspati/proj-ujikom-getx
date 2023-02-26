@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../utils/colors.dart';
 import '../../../data/models/product_model.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/products_controller.dart';
@@ -13,9 +14,12 @@ class ProductsView extends GetView<ProductsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.appFive,
       appBar: AppBar(
         title: const Text('Products'),
+        backgroundColor: AppColor.appPrimary,
         centerTitle: true,
+        elevation: 0,
       ),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(

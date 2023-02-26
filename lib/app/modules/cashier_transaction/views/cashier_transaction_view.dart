@@ -6,6 +6,7 @@ import 'package:ujikom_getx/components/locked_textfield.dart';
 
 import '../../../../components/textfield_clear.dart';
 
+import '../../../../utils/colors.dart';
 import '../controllers/cashier_transaction_controller.dart';
 
 class CashierTransactionView extends GetView<CashierTransactionController> {
@@ -20,9 +21,12 @@ class CashierTransactionView extends GetView<CashierTransactionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColor.appFive,
         appBar: AppBar(
           title: const Text('Create Order'),
+          backgroundColor: AppColor.appPrimary,
           centerTitle: true,
+          elevation: 0,
         ),
         body: SafeArea(
           child: ListView(
@@ -87,6 +91,7 @@ class CashierTransactionView extends GetView<CashierTransactionController> {
                 child: ElevatedButton(
                     onPressed: () async {},
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColor.appSecondary,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(9)),
                     ),

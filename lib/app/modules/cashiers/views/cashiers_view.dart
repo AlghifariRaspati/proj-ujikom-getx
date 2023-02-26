@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import '../../../../utils/colors.dart';
 import '../../../data/models/user_model.dart';
 
 import '../../../routes/app_pages.dart';
@@ -14,9 +15,12 @@ class CashiersView extends GetView<CashiersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColor.appFive,
         appBar: AppBar(
           title: const Text('Cashiers'),
           centerTitle: true,
+          backgroundColor: AppColor.appPrimary,
+          elevation: 0,
         ),
         body: SafeArea(
           child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
