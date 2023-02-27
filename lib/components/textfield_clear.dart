@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ujikom_getx/utils/colors.dart';
 
 class MyClearTextField extends StatelessWidget {
   final dynamic controller;
@@ -37,8 +38,9 @@ class MyClearTextField extends StatelessWidget {
                 borderSide: BorderSide.none),
             suffixIcon: IconButton(
               onPressed: onPressed,
-              icon: const Icon(
+              icon: Icon(
                 Icons.clear,
+                color: AppColor.appPrimary,
               ),
             )),
       ),

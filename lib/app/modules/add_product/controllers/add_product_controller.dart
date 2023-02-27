@@ -19,22 +19,25 @@ class AddProductController extends GetxController {
         "id": hasil.id,
         "created_at": DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
       });
+
       String? uid = auth.currentUser?.uid;
       String email =
           auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
-      String dateTimeStr =
+      String timestamp =
           DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
+      String role = "admin";
+
       Map<String, dynamic> logData = {
         "email": email,
+        "role": role,
         "activity": "Added a Product",
         "id": uid,
+        "created_at": timestamp
       };
 
       await FirebaseFirestore.instance
-          .collection("users")
-          .doc(uid)
           .collection("logs")
-          .doc(dateTimeStr)
+          .doc(timestamp)
           .set(logData);
 
       return {"error": false, "message": "Add Product successful"};

@@ -1,23 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class ActivityLogController extends GetxController {
-  //TODO: Implement ActivityLogController
+  var isLogsSelected = true.obs;
+  var isTransactionsSelected = false.obs;
+  var isActivitySelected = false.obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> streamLogs() async* {
+    yield* firestore.collection("logs").snapshots();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

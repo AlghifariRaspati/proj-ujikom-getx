@@ -31,15 +31,6 @@ class ProductsDetail extends GetView<ProductsDetailController> {
         body: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Container(
-                color: AppColor.appGrey,
-              ),
-            ),
-            SizedBox(
-              height: 25.h,
-            ),
             MyClearTextField(
               keyboardType: TextInputType.name,
               controller: nameC,

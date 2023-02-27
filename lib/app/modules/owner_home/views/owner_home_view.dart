@@ -18,41 +18,6 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
         title: const Text('Hello, Owner'),
         backgroundColor: AppColor.appPrimary,
         elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: () async {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  content: Text(
-                    "Are you sure you want to log out?",
-                    style: TextStyle(color: AppColor.appPrimary),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text("CANCEL",
-                          style: TextStyle(color: AppColor.appPrimary)),
-                    ),
-                    TextButton(
-                      onPressed: () async {
-                        Map<String, dynamic> hasil = await authC.logout();
-                        if (hasil["error"] == false) {
-                          Get.offAllNamed(Routes.login);
-                        } else {
-                          Get.snackbar("Error", hasil["error"]);
-                        }
-                      },
-                      child: Text("CONFIRM",
-                          style: TextStyle(color: AppColor.appPrimary)),
-                    )
-                  ],
-                ),
-              );
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ],
       ),
       body: SafeArea(
         child: GridView.builder(
@@ -69,14 +34,43 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
 
               switch (index) {
                 case 0:
-                  title = "View Transaction logs";
+                  title = "Activity Logs";
                   icon = Icons.history_rounded;
-                  onTap = () {};
+                  onTap = () => Get.toNamed(Routes.activity_log);
                   break;
                 case 1:
-                  title = "View user log activity";
-                  icon = Icons.timeline_rounded;
-                  onTap = () {};
+                  title = "Log Out";
+                  icon = Icons.exit_to_app_rounded;
+                  onTap = () async {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        content: Text(
+                          "Are you sure to log out?",
+                          style: TextStyle(color: AppColor.appPrimary),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text("CANCEL",
+                                style: TextStyle(color: AppColor.appPrimary)),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              Map<String, dynamic> hasil = await authC.logout();
+                              if (hasil["error"] == false) {
+                                Get.offAllNamed(Routes.login);
+                              } else {
+                                Get.snackbar("Error", hasil["error"]);
+                              }
+                            },
+                            child: Text("CONFIRM",
+                                style: TextStyle(color: AppColor.appPrimary)),
+                          )
+                        ],
+                      ),
+                    );
+                  };
                   break;
                 default:
               }
@@ -100,7 +94,7 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
                           ),
                         ),
                         SizedBox(
-                          height: 10.h,
+                          height: 20.h,
                         ),
                         Text(
                           title,

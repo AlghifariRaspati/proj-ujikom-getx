@@ -78,7 +78,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.activity_log,
-      page: () => const ActivityLogView(),
+      page: () => ActivityLogView(),
       binding: ActivityLogBinding(),
     ),
     GetPage(

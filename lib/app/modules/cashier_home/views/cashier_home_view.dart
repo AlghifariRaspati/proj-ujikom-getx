@@ -48,7 +48,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
                       context: context,
                       builder: (context) => AlertDialog(
                         content: Text(
-                          "Are you sure you want to log out?",
+                          "Are you sureto log out?",
                           style: TextStyle(color: AppColor.appPrimary),
                         ),
                         actions: [
@@ -96,7 +96,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
                           ),
                         ),
                         SizedBox(
-                          height: 10.h,
+                          height: 20.h,
                         ),
                         Text(
                           title,

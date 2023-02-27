@@ -81,11 +81,11 @@ class CashiersView extends GetView<CashiersController> {
                                         children: [
                                           Row(
                                             children: [
-                                              const Text(
+                                              Text(
                                                 "Email: ",
                                                 style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                    fontWeight: FontWeight.bold,
+                                                    color: AppColor.appPrimary),
                                               ),
                                               Text(
                                                 data.email,
@@ -97,11 +97,11 @@ class CashiersView extends GetView<CashiersController> {
                                           ),
                                           Row(
                                             children: [
-                                              const Text(
+                                              Text(
                                                 "Password: ",
                                                 style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                    fontWeight: FontWeight.bold,
+                                                    color: AppColor.appPrimary),
                                               ),
                                               Text(data.pass),
                                             ],
@@ -113,10 +113,12 @@ class CashiersView extends GetView<CashiersController> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              const Text("Created at: ",
+                                              Text("Created at: ",
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.bold)),
+                                                          FontWeight.bold,
+                                                      color:
+                                                          AppColor.appPrimary)),
                                               Text(
                                                 DateFormat(
                                                         "yyyy-MM-dd, HH:mm:ss")
@@ -131,10 +133,12 @@ class CashiersView extends GetView<CashiersController> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              const Text("Updated at: ",
+                                              Text("Updated at: ",
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.bold)),
+                                                          FontWeight.bold,
+                                                      color:
+                                                          AppColor.appPrimary)),
                                               Text(
                                                 data.formattedUpdatedAt,
                                               ),
@@ -145,11 +149,11 @@ class CashiersView extends GetView<CashiersController> {
                                           ),
                                           Row(
                                             children: [
-                                              const Text(
+                                              Text(
                                                 "UID: ",
                                                 style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                    fontWeight: FontWeight.bold,
+                                                    color: AppColor.appPrimary),
                                               ),
                                               Text(
                                                 data.id,

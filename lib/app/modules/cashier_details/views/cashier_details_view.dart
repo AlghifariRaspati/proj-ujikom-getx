@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:ujikom_getx/components/locked_textfield.dart';
 
 import '../../../../components/textfield_clear.dart';
 import '../../../../utils/colors.dart';
@@ -30,20 +31,9 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
         body: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Container(
-                color: AppColor.appGrey,
-              ),
-            ),
-            SizedBox(
-              height: 25.h,
-            ),
-            MyClearTextField(
-              keyboardType: TextInputType.emailAddress,
+            LockedTextfield(
               controller: emailC,
               hintText: "Cashier Email",
-              onPressed: emailC.clear,
             ),
             SizedBox(
               height: 10.h,
@@ -81,6 +71,7 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.appSecondary,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(9)),
                   ),

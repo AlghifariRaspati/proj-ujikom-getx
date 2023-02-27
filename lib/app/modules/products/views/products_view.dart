@@ -77,9 +77,9 @@ class ProductsView extends GetView<ProductsController> {
                                 children: [
                                   Text(
                                     product.namaProduk,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColor.appPrimary),
                                   ),
                                   SizedBox(
                                     height: 5.h,
@@ -87,7 +87,9 @@ class ProductsView extends GetView<ProductsController> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      const Text("Price per/kg :"),
+                                      const Text(
+                                        "Price per/kg :",
+                                      ),
                                       SizedBox(
                                         width: 5.w,
                                       ),

@@ -26,7 +26,7 @@ class HomeView extends GetView<HomeController> {
                 context: context,
                 builder: (context) => AlertDialog(
                   content: Text(
-                    "Are you sure you want to log out?",
+                    "Are you sure to log out?",
                     style: TextStyle(color: AppColor.appPrimary),
                   ),
                   actions: [
@@ -114,7 +114,7 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                         SizedBox(
-                          height: 10.h,
+                          height: 20.h,
                         ),
                         Text(
                           title,
