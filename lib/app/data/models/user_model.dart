@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
 class UserModel {
@@ -6,7 +7,6 @@ class UserModel {
     required this.email,
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
     required this.pass,
   });
 
@@ -14,35 +14,33 @@ class UserModel {
   final String email;
   final String id;
   final DateTime createdAt;
-  final DateTime? updatedAt;
   final String pass;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    try {
+      return UserModel(
         id: json["id"] ?? "",
         email: json["email"] ?? "",
         pass: json["password"] ?? "",
         role: json["role"] ?? "",
-        createdAt: DateTime.parse(json["created_at"] ?? ""),
-        updatedAt: json["updated_at"] != null
-            ? DateTime.parse(json["updated_at"])
-            : null,
+        createdAt: (json["created_at"] as Timestamp).toDate(),
       );
+    } catch (e) {
+      return UserModel(
+        id: "",
+        email: "",
+        pass: "",
+        role: "",
+        createdAt: DateTime.now(),
+      );
+    }
+  }
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "email": email,
         "password": pass,
         "role": role,
-        "created_at": DateFormat("yyyy-MM-dd, HH:mm:ss").format(createdAt),
-        "updated_at": updatedAt != null
-            ? DateFormat("yyyy-MM-dd, HH:mm:ss").format(updatedAt!)
-            : null,
+        "created_at": createdAt,
       };
-
-  String get formattedUpdatedAt => updatedAt != null
-      ? DateFormat("yyyy-MM-dd, HH:mm:ss").format(updatedAt!)
-      : "";
-
-  String get formattedCreatedAt =>
-      DateFormat("yyyy-MM-dd, HH:mm:ss").format(createdAt);
 }

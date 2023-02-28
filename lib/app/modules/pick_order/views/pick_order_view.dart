@@ -1,22 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../utils/colors.dart';
 import '../../../data/models/product_model.dart';
 import '../../../routes/app_pages.dart';
-import '../controllers/products_controller.dart';
+import '../controllers/pick_order_controller.dart';
 
-class ProductsView extends GetView<ProductsController> {
-  const ProductsView({Key? key}) : super(key: key);
+class PickOrderView extends GetView<PickOrderController> {
+  const PickOrderView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.appFive,
       appBar: AppBar(
-        title: const Text('Products'),
+        title: const Text('Categories'),
         backgroundColor: AppColor.appPrimary,
         centerTitle: true,
         elevation: 0,
@@ -60,7 +62,7 @@ class ProductsView extends GetView<ProductsController> {
                   child: InkWell(
                     onTap: () {
                       Get.toNamed(
-                        Routes.products_detail,
+                        Routes.cashier_transaction,
                         arguments: product,
                       );
                     },
@@ -83,7 +85,7 @@ class ProductsView extends GetView<ProductsController> {
                                         color: AppColor.appPrimary),
                                   ),
                                   SizedBox(
-                                    height: 15.h,
+                                    height: 10.h,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -105,40 +107,6 @@ class ProductsView extends GetView<ProductsController> {
                                         ).format(int.parse(
                                             product.harga.toString())),
                                       ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 5.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Created at: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColor.appSecondary),
-                                      ),
-                                      Text(
-                                        DateFormat("yyyy-MM-dd, HH:mm:ss")
-                                            .format(product.createdAt),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 5.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      // ignore: prefer_const_constructors
-                                      Text(
-                                        "Item ID: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColor.appSecondary),
-                                      ),
-                                      Text(product.id),
                                     ],
                                   ),
                                 ],

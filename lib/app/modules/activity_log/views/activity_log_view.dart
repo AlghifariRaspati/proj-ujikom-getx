@@ -6,11 +6,11 @@ import 'package:intl/intl.dart';
 import 'package:ujikom_getx/app/data/models/logs_model.dart';
 import 'package:ujikom_getx/utils/colors.dart';
 
-import '../../../routes/app_pages.dart';
 import '../controllers/activity_log_controller.dart';
 
 class ActivityLogView extends GetView<ActivityLogController> {
-  const ActivityLogView({Key? key}) : super(key: key);
+  ActivityLogView({Key? key}) : super(key: key);
+  final dateFormat = DateFormat("yyyy-MM-dd, HH:mm:ss");
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +114,7 @@ class ActivityLogView extends GetView<ActivityLogController> {
                     );
                   }
 
-                  // Create a list of products from the stream data
+                  // buat list product dari stream data
                   final allLogs = List<LogsModel>.from(
                     snapLogs.data!.docs.map(
                       (doc) => LogsModel.fromJson(doc.data()),

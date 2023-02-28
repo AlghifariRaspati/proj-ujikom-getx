@@ -38,7 +38,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
                 case 0:
                   title = "Create Order";
                   icon = Icons.note_add_rounded;
-                  onTap = () => Get.toNamed(Routes.cashier_transaction);
+                  onTap = () => Get.toNamed(Routes.pick_order);
                   break;
                 case 1:
                   title = "Log Out";

@@ -11,7 +11,9 @@ import '../../../routes/app_pages.dart';
 import '../controllers/cashiers_controller.dart';
 
 class CashiersView extends GetView<CashiersController> {
-  const CashiersView({Key? key}) : super(key: key);
+  CashiersView({Key? key}) : super(key: key);
+  final dateFormat = DateFormat("yyyy-MM-dd, HH:mm:ss");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,11 +42,11 @@ class CashiersView extends GetView<CashiersController> {
                 }
 
                 // looping data
-                List<UserModel> allUsers = [];
-
-                for (var element in snapUser.data!.docs) {
-                  allUsers.add(UserModel.fromJson(element.data()));
-                }
+                final allUsers = List<UserModel>.from(
+                  snapUser.data!.docs.map(
+                    (doc) => UserModel.fromJson(doc.data()),
+                  ),
+                );
                 return SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Scrollbar(
@@ -123,24 +125,6 @@ class CashiersView extends GetView<CashiersController> {
                                                 DateFormat(
                                                         "yyyy-MM-dd, HH:mm:ss")
                                                     .format(data.createdAt),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 5.h,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text("Updated at: ",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color:
-                                                          AppColor.appPrimary)),
-                                              Text(
-                                                data.formattedUpdatedAt,
                                               ),
                                             ],
                                           ),

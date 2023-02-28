@@ -52,7 +52,7 @@ class AddCashierView extends GetView<AddCashierController> {
               MyClearTextField(
                 keyboardType: TextInputType.emailAddress,
                 controller: emailC,
-                hintText: "Email",
+                labelText: "Email",
                 onPressed: emailC.clear,
               ),
               SizedBox(
@@ -61,7 +61,7 @@ class AddCashierView extends GetView<AddCashierController> {
               MyClearTextField(
                 keyboardType: TextInputType.name,
                 controller: passC,
-                hintText: "Password",
+                labelText: "Password",
                 onPressed: passC.clear,
               ),
               SizedBox(

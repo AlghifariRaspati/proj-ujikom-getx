@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class LogsModel {
   LogsModel({
     required this.activity,
@@ -13,7 +15,7 @@ class LogsModel {
 
   factory LogsModel.fromJson(Map<String, dynamic> json) => LogsModel(
         activity: json["activity"] ?? "",
-        createdAt: DateTime.parse(json["created_at"] ?? ""),
+        createdAt: (json["created_at"] as Timestamp).toDate(),
         email: json["email"] ?? "",
         role: json["role"] ?? "",
       );

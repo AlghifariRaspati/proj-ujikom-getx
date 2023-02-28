@@ -24,7 +24,7 @@ abstract class Routes {
   // ignore: constant_identifier_names
   static const cashier_transaction = _Paths.cashier_transaction;
   // ignore: constant_identifier_names
-  
+  static const pick_order = _Paths.pick_order;
 }
 
 abstract class _Paths {
@@ -50,4 +50,6 @@ abstract class _Paths {
   static const cashier_details = '/cashier-details';
   // ignore: constant_identifier_names
   static const cashier_transaction = '/cashier-transaction';
+  // ignore: constant_identifier_names
+  static const pick_order = '/pick-order';
 }

@@ -20,6 +20,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/owner_home/bindings/owner_home_binding.dart';
 import '../modules/owner_home/views/owner_home_view.dart';
+import '../modules/pick_order/bindings/pick_order_binding.dart';
+import '../modules/pick_order/views/pick_order_view.dart';
 import '../modules/products/bindings/products_binding.dart';
 import '../modules/products/views/products_view.dart';
 import '../modules/products_detail/bindings/products_detail_binding.dart';
@@ -73,7 +75,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.cashiers,
-      page: () => const CashiersView(),
+      page: () => CashiersView(),
       binding: CashiersBinding(),
     ),
     GetPage(
@@ -90,6 +92,11 @@ class AppPages {
       name: _Paths.cashier_transaction,
       page: () => CashierTransactionView(),
       binding: CashierTransactionBinding(),
+    ),
+    GetPage(
+      name: _Paths.pick_order,
+      page: () => PickOrderView(),
+      binding: PickOrderBinding(),
     ),
   ];
 }

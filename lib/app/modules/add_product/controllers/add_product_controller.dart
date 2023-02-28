@@ -13,19 +13,20 @@ class AddProductController extends GetxController {
   Future<Map<String, dynamic>> addProduct(Map<String, dynamic> data) async {
     try {
       data['created_at'] = FieldValue.serverTimestamp();
+      Timestamp timestamp = Timestamp.now();
+      String? uid = auth.currentUser?.uid;
+      String email =
+          auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
+      String dateTimeStr =
+          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
+
+      String role = "admin";
 
       var hasil = await firestore.collection("products").add(data);
       await firestore.collection("products").doc(hasil.id).update({
         "id": hasil.id,
-        "created_at": DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+        "created_at": timestamp,
       });
-
-      String? uid = auth.currentUser?.uid;
-      String email =
-          auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
-      String timestamp =
-          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
-      String role = "admin";
 
       Map<String, dynamic> logData = {
         "email": email,
@@ -37,7 +38,7 @@ class AddProductController extends GetxController {
 
       await FirebaseFirestore.instance
           .collection("logs")
-          .doc(timestamp)
+          .doc(dateTimeStr)
           .set(logData);
 
       return {"error": false, "message": "Add Product successful"};

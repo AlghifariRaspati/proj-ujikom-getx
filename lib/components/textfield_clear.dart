@@ -4,16 +4,16 @@ import 'package:ujikom_getx/utils/colors.dart';
 
 class MyClearTextField extends StatelessWidget {
   final dynamic controller;
-  final String hintText;
+  final String labelText;
   final TextInputType keyboardType;
 
-  final onPressed;
+  final void Function()? onPressed;
 
   const MyClearTextField(
       {Key? key,
       required this.onPressed,
       required this.controller,
-      required this.hintText,
+      required this.labelText,
       required this.keyboardType})
       : super(key: key);
 
@@ -28,14 +28,17 @@ class MyClearTextField extends StatelessWidget {
             contentPadding:
                 EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
             filled: true,
-            hintText: hintText,
-            fillColor: Colors.grey.withOpacity(0.3),
+            labelText: labelText,
+            labelStyle: TextStyle(color: AppColor.appPrimary),
+            fillColor: AppColor.appBase,
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide.none),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: AppColor.appPrimary),
+            ),
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide.none),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: AppColor.appPrimary),
+            ),
             suffixIcon: IconButton(
               onPressed: onPressed,
               icon: Icon(

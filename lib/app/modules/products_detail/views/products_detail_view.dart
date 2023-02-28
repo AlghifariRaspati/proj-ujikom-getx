@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:ujikom_getx/components/cur_textfield.dart';
+import 'package:ujikom_getx/components/locked_textfield.dart';
 
 import '../../../../components/textfield_clear.dart';
 import '../../../../utils/colors.dart';
@@ -13,12 +16,14 @@ class ProductsDetail extends GetView<ProductsDetailController> {
   ProductsDetail({Key? key}) : super(key: key);
   final TextEditingController nameC = TextEditingController();
   final TextEditingController priceC = TextEditingController();
+  final TextEditingController dateC = TextEditingController();
 
   final ProductModel product = Get.arguments;
   @override
   Widget build(BuildContext context) {
     nameC.text = product.namaProduk;
     priceC.text = product.harga.toString();
+    dateC.text = DateFormat("yyyy-MM-dd HH:mm:ss").format(product.createdAt);
 
     return Scaffold(
         backgroundColor: AppColor.appFive,
@@ -34,20 +39,24 @@ class ProductsDetail extends GetView<ProductsDetailController> {
             MyClearTextField(
               keyboardType: TextInputType.name,
               controller: nameC,
-              hintText: "Product Name",
+              labelText: "Product Name",
               onPressed: nameC.clear,
             ),
             SizedBox(
               height: 10.h,
             ),
-            MyClearTextField(
+            CurTextfield(
               keyboardType: TextInputType.number,
               controller: priceC,
-              hintText: "Price per/kg",
+              labelText: "Price per/kg",
               onPressed: priceC.clear,
             ),
             SizedBox(
               height: 10.h,
+            ),
+            LockedTextfield(controller: dateC, labelText: "Created at"),
+            SizedBox(
+              height: 20.h,
             ),
             SizedBox(
               height: 50.h,

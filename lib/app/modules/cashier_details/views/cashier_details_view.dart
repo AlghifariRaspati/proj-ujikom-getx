@@ -33,7 +33,7 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
           children: [
             LockedTextfield(
               controller: emailC,
-              hintText: "Cashier Email",
+              labelText: "Cashier Email",
             ),
             SizedBox(
               height: 10.h,
@@ -41,7 +41,7 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
             MyClearTextField(
               keyboardType: TextInputType.name,
               controller: passC,
-              hintText: "Cashier Password",
+              labelText: "Cashier Password",
               onPressed: passC.clear,
             ),
             SizedBox(

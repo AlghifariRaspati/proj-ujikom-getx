@@ -28,7 +28,7 @@ class AddProductView extends GetView<AddProductController> {
               MyClearTextField(
                 keyboardType: TextInputType.name,
                 controller: nameC,
-                hintText: "Product Name",
+                labelText: "Product Name",
                 onPressed: nameC.clear,
               ),
               SizedBox(
@@ -37,7 +37,7 @@ class AddProductView extends GetView<AddProductController> {
               MyClearTextField(
                 keyboardType: TextInputType.number,
                 controller: priceC,
-                hintText: "Price per/kg",
+                labelText: "Price per/kg",
                 onPressed: priceC.clear,
               ),
               SizedBox(
