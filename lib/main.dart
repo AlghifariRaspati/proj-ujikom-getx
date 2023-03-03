@@ -36,7 +36,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // menunggu data dari firebase
     return ScreenUtilInit(
-      designSize: const Size(360, 690),
       builder: (context, child) => StreamBuilder<User?>(
         stream: auth.authStateChanges(),
         builder: (context, snapAuth) {
@@ -75,6 +74,7 @@ class MyApp extends StatelessWidget {
           return buildApp(Routes.login);
         },
       ),
+      designSize: const Size(360, 690),
     );
   }
 

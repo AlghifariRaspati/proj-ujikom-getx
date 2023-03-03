@@ -20,6 +20,44 @@ class CashierHomeView extends GetView<CashierHomeController> {
         title: const Text('Hello, Cashier'),
         backgroundColor: AppColor.appPrimary,
         elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () async {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  content: Text(
+                    "Are you sure to log out?",
+                    style: TextStyle(color: AppColor.appPrimary),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(
+                        "CANCEL",
+                        style: TextStyle(color: AppColor.appPrimary),
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: () async {
+                          Map<String, dynamic> hasil = await authC.logout();
+                          if (hasil["error"] == false) {
+                            Get.offAllNamed(Routes.login);
+                          } else {
+                            Get.snackbar("Error", hasil["error"]);
+                          }
+                        },
+                        child: Text(
+                          "CONFIRM",
+                          style: TextStyle(color: AppColor.appPrimary),
+                        ))
+                  ],
+                ),
+              );
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       body: SafeArea(
         child: GridView.builder(
@@ -37,42 +75,13 @@ class CashierHomeView extends GetView<CashierHomeController> {
               switch (index) {
                 case 0:
                   title = "Create Order";
-                  icon = Icons.note_add_rounded;
+                  icon = Icons.add_shopping_cart_rounded;
                   onTap = () => Get.toNamed(Routes.pick_order);
                   break;
                 case 1:
-                  title = "Log Out";
-                  icon = Icons.exit_to_app_rounded;
-                  onTap = () async {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        content: Text(
-                          "Are you sureto log out?",
-                          style: TextStyle(color: AppColor.appPrimary),
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: Text("CANCEL",
-                                style: TextStyle(color: AppColor.appPrimary)),
-                          ),
-                          TextButton(
-                            onPressed: () async {
-                              Map<String, dynamic> hasil = await authC.logout();
-                              if (hasil["error"] == false) {
-                                Get.offAllNamed(Routes.login);
-                              } else {
-                                Get.snackbar("Error", hasil["error"]);
-                              }
-                            },
-                            child: Text("CONFIRM",
-                                style: TextStyle(color: AppColor.appPrimary)),
-                          )
-                        ],
-                      ),
-                    );
-                  };
+                  title = "View Transactions";
+                  icon = Icons.description_rounded;
+                  onTap = () {};
                   break;
                 default:
               }
@@ -101,7 +110,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
                         Text(
                           title,
                           style: TextStyle(
-                              fontFamily: 'Nexa',
+                              fontFamily: 'Product Sans',
                               fontWeight: FontWeight.bold,
                               color: AppColor.appPrimary),
                         )

@@ -3,13 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ujikom_getx/utils/colors.dart';
 
-class MyClearTextField extends StatelessWidget {
+class ClearTextfield extends StatelessWidget {
   final dynamic controller;
   final String labelText;
   final TextInputType keyboardType;
   final void Function()? onPressed;
 
-  const MyClearTextField({
+  const ClearTextfield({
     Key? key,
     required this.onPressed,
     required this.controller,
@@ -25,8 +25,10 @@ class MyClearTextField extends StatelessWidget {
         keyboardType: keyboardType,
         controller: controller,
         inputFormatters: [
-          FilteringTextInputFormatter.deny(
-              RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%$#@!,.\s]')),
+          FilteringTextInputFormatter(
+            RegExp(r'^[a-zA-Z0-9\-\s]+$'),
+            allow: true,
+          )
         ],
         decoration: InputDecoration(
           contentPadding:

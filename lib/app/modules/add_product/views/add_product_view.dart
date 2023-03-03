@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../components/clear_textfield.dart';
 import '../../../../components/textfield_clear.dart';
 import '../../../../utils/colors.dart';
 import '../controllers/add_product_controller.dart';
@@ -25,7 +26,7 @@ class AddProductView extends GetView<AddProductController> {
           child: ListView(
             padding: const EdgeInsets.all(20),
             children: [
-              MyClearTextField(
+              ClearTextfield(
                 keyboardType: TextInputType.name,
                 controller: nameC,
                 labelText: "Product Name",
@@ -44,7 +45,7 @@ class AddProductView extends GetView<AddProductController> {
                 height: 10.h,
               ),
               SizedBox(
-                height: 50.h,
+                height: 40.h,
                 child: ElevatedButton(
                     onPressed: () async {
                       if (controller.isLoading.isFalse) {

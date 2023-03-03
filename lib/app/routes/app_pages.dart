@@ -26,6 +26,8 @@ import '../modules/products/bindings/products_binding.dart';
 import '../modules/products/views/products_view.dart';
 import '../modules/products_detail/bindings/products_detail_binding.dart';
 import '../modules/products_detail/views/products_detail_view.dart';
+import '../modules/trans_log/bindings/trans_log_binding.dart';
+import '../modules/trans_log/views/trans_log_view.dart';
 
 part 'app_routes.dart';
 
@@ -95,8 +97,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.pick_order,
-      page: () => PickOrderView(),
+      page: () => const PickOrderView(),
       binding: PickOrderBinding(),
+    ),
+    GetPage(
+      name: _Paths.trans_log,
+      page: () => TransLogView(),
+      binding: TransLogBinding(),
     ),
   ];
 }

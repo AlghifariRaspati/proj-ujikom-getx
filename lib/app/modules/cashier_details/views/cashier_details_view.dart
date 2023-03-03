@@ -48,7 +48,7 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
               height: 10.h,
             ),
             SizedBox(
-              height: 50.h,
+              height: 40.h,
               child: ElevatedButton(
                   onPressed: () async {
                     if (controller.isLoadingUpdate.isFalse) {

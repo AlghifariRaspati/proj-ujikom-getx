@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ujikom_getx/utils/colors.dart';
 
 class MyEmailTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -17,6 +19,10 @@ class MyEmailTextField extends StatelessWidget {
       keyboardType: TextInputType.emailAddress,
       autocorrect: false,
       controller: controller,
+      inputFormatters: [
+        FilteringTextInputFormatter.deny(
+            RegExp(r'[!#<>?":_`~;[\]\\|=+)(*&^%$#!,\s]')),
+      ],
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
           filled: true,
@@ -29,7 +35,7 @@ class MyEmailTextField extends StatelessWidget {
               borderSide: BorderSide.none),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide.none)),
+              borderSide: BorderSide(color: AppColor.appSecondary))),
     );
   }
 }

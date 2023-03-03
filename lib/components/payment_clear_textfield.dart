@@ -3,19 +3,31 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ujikom_getx/utils/colors.dart';
 
-class MyClearTextField extends StatelessWidget {
+class PaymentClearTextfield extends StatelessWidget {
   final dynamic controller;
   final String labelText;
   final TextInputType keyboardType;
-  final void Function()? onPressed;
 
-  const MyClearTextField({
-    Key? key,
-    required this.onPressed,
-    required this.controller,
-    required this.labelText,
-    required this.keyboardType,
-  }) : super(key: key);
+  final void Function(String)? onChanged;
+
+  const PaymentClearTextfield(
+      {Key? key,
+      required this.controller,
+      required this.labelText,
+      required this.keyboardType,
+      this.onChanged})
+      : super(key: key);
+
+  String? validateNonZero(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Value cannot be empty.';
+    } else if (value == "0") {
+      return 'Value must be greater than zero.';
+    } else if (value.startsWith("0")) {
+      return 'Value must not start with zero.';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +37,9 @@ class MyClearTextField extends StatelessWidget {
         keyboardType: keyboardType,
         controller: controller,
         inputFormatters: [
-          FilteringTextInputFormatter.deny(
-              RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%$#@!,.\s]')),
+          FilteringTextInputFormatter.deny(RegExp(r'[,. ]')),
         ],
+        validator: validateNonZero,
         decoration: InputDecoration(
           contentPadding:
               EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
@@ -43,14 +55,8 @@ class MyClearTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(color: AppColor.appPrimary),
           ),
-          suffixIcon: IconButton(
-            onPressed: onPressed,
-            icon: Icon(
-              Icons.clear,
-              color: AppColor.appPrimary,
-            ),
-          ),
         ),
+        onChanged: onChanged,
       ),
     );
   }

@@ -60,7 +60,7 @@ class HomeView extends GetView<HomeController> {
       ),
       body: SafeArea(
         child: GridView.builder(
-            itemCount: 4,
+            itemCount: 3,
             padding: const EdgeInsets.all(20),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -73,13 +73,13 @@ class HomeView extends GetView<HomeController> {
 
               switch (index) {
                 case 0:
-                  title = "Add Product";
-                  icon = Icons.note_add_rounded;
+                  title = "Add Category";
+                  icon = Icons.category_rounded;
                   onTap = () => Get.toNamed(Routes.add_product);
                   break;
                 case 1:
-                  title = "Manage Product";
-                  icon = Icons.inventory;
+                  title = "Manage Category";
+                  icon = Icons.settings_rounded;
                   onTap = () => Get.toNamed(Routes.products);
                   break;
                 case 2:
@@ -87,11 +87,7 @@ class HomeView extends GetView<HomeController> {
                   icon = Icons.person_add_alt_1_rounded;
                   onTap = () => Get.toNamed(Routes.add_cashier);
                   break;
-                case 3:
-                  title = "Edit Cashier";
-                  icon = Icons.edit;
-                  onTap = () => Get.toNamed(Routes.cashiers);
-                  break;
+
                 default:
               }
               return Material(

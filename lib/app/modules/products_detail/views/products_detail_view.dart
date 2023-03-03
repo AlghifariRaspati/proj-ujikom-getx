@@ -4,9 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:ujikom_getx/components/cur_textfield.dart';
+
 import 'package:ujikom_getx/components/locked_textfield.dart';
 
+import '../../../../components/clear_textfield.dart';
 import '../../../../components/textfield_clear.dart';
 import '../../../../utils/colors.dart';
 import '../../../data/models/product_model.dart';
@@ -36,7 +37,7 @@ class ProductsDetail extends GetView<ProductsDetailController> {
         body: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            MyClearTextField(
+            ClearTextfield(
               keyboardType: TextInputType.name,
               controller: nameC,
               labelText: "Product Name",
@@ -45,7 +46,7 @@ class ProductsDetail extends GetView<ProductsDetailController> {
             SizedBox(
               height: 10.h,
             ),
-            CurTextfield(
+            MyClearTextField(
               keyboardType: TextInputType.number,
               controller: priceC,
               labelText: "Price per/kg",
@@ -59,7 +60,7 @@ class ProductsDetail extends GetView<ProductsDetailController> {
               height: 20.h,
             ),
             SizedBox(
-              height: 50.h,
+              height: 40.h,
               child: ElevatedButton(
                   onPressed: () async {
                     if (controller.isLoadingUpdate.isFalse) {
@@ -72,6 +73,9 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                           "harga": int.tryParse(priceC.text) ?? 0
                         });
                         controller.isLoadingUpdate(false);
+
+                        Get.back();
+
                         Get.snackbar(
                             hasil["error"] == true ? "Error" : "Success",
                             hasil["message"],

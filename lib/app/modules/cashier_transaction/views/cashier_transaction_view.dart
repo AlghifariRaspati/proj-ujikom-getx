@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:ujikom_getx/components/locked_cur_text.dart';
 
 import 'package:ujikom_getx/components/locked_textfield.dart';
-
+import 'package:ujikom_getx/components/payment_clear_textfield.dart';
+import '../../../../components/clear_textfield.dart';
 import '../../../../components/textfield_clear.dart';
 
+import '../../../../components/weight_clear_textfield.dart';
 import '../../../../utils/colors.dart';
 import '../../../data/models/product_model.dart';
 import '../controllers/cashier_transaction_controller.dart';
@@ -21,7 +22,8 @@ class CashierTransactionView extends GetView<CashierTransactionController> {
   final TextEditingController numC = TextEditingController();
   final TextEditingController payC = TextEditingController();
   final TextEditingController kgC = TextEditingController();
-  final TextEditingController returnC = TextEditingController();
+  final TextEditingController totPriceC = TextEditingController();
+  final TextEditingController changeC = TextEditingController();
 
   final ProductModel product = Get.arguments;
 
@@ -44,12 +46,33 @@ class CashierTransactionView extends GetView<CashierTransactionController> {
               SizedBox(
                 height: 10.h,
               ),
+              LockedTextfield(
+                controller: prodNameC,
+                labelText: "Category Name",
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              LockedTextfield(
+                controller: priceC,
+                labelText: "Price per/kg",
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Divider(
+                thickness: 1,
+                color: AppColor.appSecondary,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
               Row(
                 children: [
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(right: 5.w),
-                      child: MyClearTextField(
+                      child: ClearTextfield(
                         keyboardType: TextInputType.name,
                         controller: nameC,
                         labelText: "Customer Name",
@@ -78,49 +101,55 @@ class CashierTransactionView extends GetView<CashierTransactionController> {
                   Expanded(
                       child: Padding(
                     padding: EdgeInsets.only(right: 5.w),
-                    child: MyClearTextField(
-                        onPressed: kgC.clear,
-                        controller: kgC,
-                        labelText: "Weight Amount",
-                        keyboardType: TextInputType.number),
+                    child: WeightClearTextfield(
+                      onPressed: kgC.clear,
+                      controller: kgC,
+                      labelText: "Weight Amount",
+                      keyboardType: TextInputType.number,
+                      onChanged: (text) {
+                        int weight = int.tryParse(text) ?? 0;
+                        int price = int.tryParse(priceC.text) ?? 0;
+                        totPriceC.text = (weight * price).toString();
+                        int pay = int.tryParse(payC.text) ?? 0;
+                        if (weight == 0 || pay == 0) {
+                          changeC.text = "";
+                        } else {
+                          int change = pay - (weight * price);
+                          changeC.text = change.toString();
+                        }
+                      },
+                    ),
                   )),
                   Expanded(
                       child: Padding(
                     padding: EdgeInsets.only(left: 5.w),
-                    child: MyClearTextField(
-                        onPressed: payC.clear,
-                        controller: payC,
-                        labelText: "Payment Amount",
-                        keyboardType: TextInputType.number),
+                    child: LockedTextfield(
+                        controller: totPriceC, labelText: "Price"),
                   ))
                 ],
               ),
               SizedBox(
                 height: 10.h,
               ),
-              Divider(
-                thickness: 1,
-                color: AppColor.appSecondary,
+              PaymentClearTextfield(
+                controller: payC,
+                labelText: "Payment Amount",
+                keyboardType: TextInputType.number,
+                onChanged: (text) {
+                  int price = int.tryParse(totPriceC.text) ?? 0;
+                  int pay = int.tryParse(text) ?? 0;
+                  if (price == 0 || pay == 0 || pay < price) {
+                    changeC.text = "";
+                  } else {
+                    int change = pay - price;
+                    changeC.text = change.toString();
+                  }
+                },
               ),
               SizedBox(
                 height: 10.h,
               ),
-              LockedTextfield(
-                controller: prodNameC,
-                labelText: "Category Name",
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              LockedCurTextfield(
-                controller: priceC,
-                labelText: "Price per/kg",
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              LockedCurTextfield(
-                  controller: returnC, labelText: "Change Amount"),
+              LockedTextfield(controller: changeC, labelText: "Change"),
               SizedBox(
                 height: 10.h,
               ),
@@ -131,34 +160,84 @@ class CashierTransactionView extends GetView<CashierTransactionController> {
               SizedBox(
                 height: 10.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    "Total:",
-                    style: TextStyle(
-                        color: AppColor.appSecondary,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.sp),
-                  ),
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    "PLACEHOLDER",
-                    style: TextStyle(
-                        color: AppColor.appPrimary,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.sp),
-                  ),
-                ],
-              ),
               SizedBox(
-                height: 15.h,
-              ),
-              SizedBox(
-                height: 50.h,
+                height: 40.h,
                 child: ElevatedButton(
-                    onPressed: () async {},
+                    onPressed: () async {
+                      if (controller.isLoading.isFalse) {
+                        if (nameC.text.isNotEmpty &&
+                            numC.text.isNotEmpty &&
+                            kgC.text.isNotEmpty &&
+                            payC.text.isNotEmpty) {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    content: const Text(
+                                        "are you sure to create this order?"),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () => Get.back(),
+                                          child: Text("CANCEL",
+                                              style: TextStyle(
+                                                  color: AppColor.appPrimary))),
+                                      TextButton(
+                                          onPressed: () async {
+                                            controller.isLoadingDelete(true);
+                                            Map<String, dynamic> hasil =
+                                                await controller
+                                                    .addTransaction({
+                                              "nama_pelanggan": nameC.text,
+                                              "nomor_telepon":
+                                                  int.tryParse(numC.text) ?? 0,
+                                              "nama_produk": prodNameC.text,
+                                              "harga_produk":
+                                                  int.tryParse(priceC.text) ??
+                                                      0,
+                                              "total_harga": int.tryParse(
+                                                      totPriceC.text) ??
+                                                  0,
+                                              "berat":
+                                                  int.tryParse(kgC.text) ?? 0,
+                                              "uang_bayar":
+                                                  int.tryParse(payC.text) ?? 0,
+                                            });
+                                            controller.isLoadingDelete(false);
+
+                                            Get.back(); // tutup dialog
+                                            Get.back(); // kembali ke halaman sebelumnya
+
+                                            Get.snackbar(
+                                                hasil["error"] == true
+                                                    ? "Error"
+                                                    : "Success",
+                                                hasil["message"],
+                                                duration:
+                                                    const Duration(seconds: 2));
+                                          },
+                                          child: Obx(() => controller
+                                                  .isLoadingDelete.isFalse
+                                              ? Text("CONFIRM",
+                                                  style: TextStyle(
+                                                      color:
+                                                          AppColor.appPrimary))
+                                              : Container(
+                                                  padding:
+                                                      const EdgeInsets.all(2),
+                                                  height: 15.h,
+                                                  width: 15.w,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: AppColor.appPrimary,
+                                                    strokeWidth: 2,
+                                                  ),
+                                                ))),
+                                    ],
+                                  ));
+                        } else {
+                          Get.snackbar("Error", "All fields must be filled");
+                        }
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColor.appSecondary,
                       shape: RoundedRectangleBorder(

@@ -12,8 +12,7 @@ class LockedTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: TextStyle(
-          color: Colors.grey.withOpacity(1), fontWeight: FontWeight.w500),
+      style: TextStyle(color: AppColor.appSecondary),
       enabled: false,
       autocorrect: false,
       controller: controller,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ujikom_getx/utils/colors.dart';
 
 class MyPassTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -20,6 +22,10 @@ class MyPassTextField extends StatelessWidget {
     return TextFormField(
       obscureText: obscureText,
       controller: controller,
+      inputFormatters: [
+        FilteringTextInputFormatter.deny(
+            RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%$#@!,.\s]')),
+      ],
       decoration: InputDecoration(
         filled: true,
         hintText: hintText,
@@ -31,7 +37,7 @@ class MyPassTextField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(color: AppColor.appSecondary),
         ),
         suffixIcon: suffixIcon,
       ),

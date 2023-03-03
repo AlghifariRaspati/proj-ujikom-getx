@@ -1,38 +1,46 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CashierTransactionController extends GetxController {
   RxBool isLoading = false.obs;
+  RxBool isLoadingDelete = false.obs;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-  var selectedCategory = ''.obs;
-  var selectedPrice = 0.obs;
-
-  void createOrder(
-      {required String name,
-      required String telephone,
-      required String paymentAmount}) async {
-    try {
-      isLoading.value = true;
-      await firestore.collection('orders').add({
-        'name': name,
-        'telephone': telephone,
-        'category': selectedCategory.value,
-        'price': selectedPrice.value,
-        'payment_amount': paymentAmount,
-      });
-      selectedCategory.value = '';
-      selectedPrice.value = 0;
-    } catch (e) {
-      print(e);
-    } finally {
-      isLoading.value = false;
-    }
-  }
+  final auth = FirebaseAuth.instance;
 
   Stream<QuerySnapshot<Map<String, dynamic>>> streamLogs() async* {
     yield* firestore.collection("products").snapshots();
+  }
+
+  Future<Map<String, dynamic>> addTransaction(Map<String, dynamic> data) async {
+    try {
+      data['created_at'] = FieldValue.serverTimestamp();
+      Timestamp timestamp = Timestamp.now();
+
+      String email =
+          auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
+
+      var hasil = await firestore.collection("transactions").add(data);
+      //item id
+      int id = Random().nextInt(1000000);
+
+      await firestore.collection("transactions").doc(hasil.id).update({
+        "email_kasir": email,
+        "nomor_unik": id,
+        "id": hasil.id,
+        "created_at": timestamp,
+      });
+
+      return {"error": false, "message": "Create Order successful"};
+    } on FirebaseAuthException catch (e) {
+      return {"error": true, "message": "${e.message}"};
+    } catch (e) {
+      return {"error": true, "message": "Failed to add Order"};
+    }
   }
 }

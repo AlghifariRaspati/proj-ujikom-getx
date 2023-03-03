@@ -18,6 +18,40 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
         title: const Text('Hello, Owner'),
         backgroundColor: AppColor.appPrimary,
         elevation: 0,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    content: Text(
+                      "Are you sure to log out?",
+                      style: TextStyle(color: AppColor.appPrimary),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text("CANCEL",
+                            style: TextStyle(color: AppColor.appPrimary)),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          Map<String, dynamic> hasil = await authC.logout();
+                          if (hasil["error"] == false) {
+                            Get.offAllNamed(Routes.login);
+                          } else {
+                            Get.snackbar("Error", hasil["error"]);
+                          }
+                        },
+                        child: Text("CONFIRM",
+                            style: TextStyle(color: AppColor.appPrimary)),
+                      )
+                    ],
+                  ),
+                );
+              },
+              icon: const Icon(Icons.exit_to_app_rounded))
+        ],
       ),
       body: SafeArea(
         child: GridView.builder(
@@ -39,38 +73,9 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
                   onTap = () => Get.toNamed(Routes.activity_log);
                   break;
                 case 1:
-                  title = "Log Out";
-                  icon = Icons.exit_to_app_rounded;
-                  onTap = () async {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        content: Text(
-                          "Are you sure to log out?",
-                          style: TextStyle(color: AppColor.appPrimary),
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: Text("CANCEL",
-                                style: TextStyle(color: AppColor.appPrimary)),
-                          ),
-                          TextButton(
-                            onPressed: () async {
-                              Map<String, dynamic> hasil = await authC.logout();
-                              if (hasil["error"] == false) {
-                                Get.offAllNamed(Routes.login);
-                              } else {
-                                Get.snackbar("Error", hasil["error"]);
-                              }
-                            },
-                            child: Text("CONFIRM",
-                                style: TextStyle(color: AppColor.appPrimary)),
-                          )
-                        ],
-                      ),
-                    );
-                  };
+                  title = "Transaction Logs";
+                  icon = Icons.analytics_rounded;
+                  onTap = () => Get.toNamed(Routes.trans_log);
                   break;
                 default:
               }

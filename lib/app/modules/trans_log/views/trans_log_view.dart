@@ -1,15 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:ujikom_getx/app/data/models/logs_model.dart';
-import 'package:ujikom_getx/utils/colors.dart';
+import 'package:ujikom_getx/app/data/models/transactions_model.dart';
 
-import '../controllers/activity_log_controller.dart';
+import '../../../../utils/colors.dart';
 
-class ActivityLogView extends GetView<ActivityLogController> {
-  ActivityLogView({Key? key}) : super(key: key);
+import '../controllers/trans_log_controller.dart';
+
+class TransLogView extends GetView<TransLogController> {
+  TransLogView({Key? key}) : super(key: key);
   final dateFormat = DateFormat("yyyy-MM-dd, HH:mm:ss");
 
   @override
@@ -20,7 +22,7 @@ class ActivityLogView extends GetView<ActivityLogController> {
         backgroundColor: AppColor.appPrimary,
         elevation: 0,
         title: const Text(
-          'Activity Logs',
+          'Transaction Logs',
           style: TextStyle(
               fontFamily: "Product Sans", fontWeight: FontWeight.w400),
         ),
@@ -43,18 +45,18 @@ class ActivityLogView extends GetView<ActivityLogController> {
 
                 if (snapLogs.data!.docs.isEmpty) {
                   return const Center(
-                    child: Text("No Product"),
+                    child: Text(
+                      "No Data",
+                    ),
                   );
                 }
 
                 // buat list product dari stream data
-                final allLogs = List<LogsModel>.from(
+                final allLogs = List<TransLogsModel>.from(
                   snapLogs.data!.docs.map(
-                    (doc) => LogsModel.fromJson(doc.data()),
+                    (doc) => TransLogsModel.fromJson(doc.data()),
                   ),
-                )
-                    .where((log) => log.activity != "Finished a Transaction")
-                    .toList(); // filter data
+                );
 
                 return ListView.builder(
                   physics: const BouncingScrollPhysics(),
@@ -78,7 +80,7 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text("Time: ",
+                                      Text("Created At: ",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: AppColor.appPrimary)),
@@ -94,7 +96,7 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                   Row(
                                     children: [
                                       Text(
-                                        "User: ",
+                                        "Cashier: ",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: AppColor.appPrimary),
@@ -109,12 +111,12 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Role: ",
+                                        "Transaction ID: ",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: AppColor.appPrimary),
                                       ),
-                                      Text(logs.role),
+                                      Text(logs.id),
                                     ],
                                   ),
                                   SizedBox(
@@ -124,12 +126,12 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Activity: ",
+                                        "Unique Number: ",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: AppColor.appPrimary),
                                       ),
-                                      Text(logs.activity),
+                                      Text(logs.nomorUnik.toString())
                                     ],
                                   ),
                                 ],

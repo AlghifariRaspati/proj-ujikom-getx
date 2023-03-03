@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ujikom_getx/utils/colors.dart';
 
+import '../../../../components/pass_create_textfield.dart';
 import '../../../../components/textfield_clear.dart';
 import '../../../controllers/auth_controller.dart';
 import '../controllers/add_cashier_controller.dart';
@@ -58,7 +59,7 @@ class AddCashierView extends GetView<AddCashierController> {
               SizedBox(
                 height: 10.h,
               ),
-              MyClearTextField(
+              PassCreateTextfield(
                 keyboardType: TextInputType.name,
                 controller: passC,
                 labelText: "Password",
@@ -68,7 +69,7 @@ class AddCashierView extends GetView<AddCashierController> {
                 height: 10.h,
               ),
               SizedBox(
-                height: 50.h,
+                height: 40.h,
                 child: ElevatedButton(
                     onPressed: regCashier,
                     style: ElevatedButton.styleFrom(
