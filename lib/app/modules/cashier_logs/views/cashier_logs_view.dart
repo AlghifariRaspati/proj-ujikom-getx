@@ -4,15 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:ujikom_getx/app/data/models/transactions_model.dart';
 
 import '../../../../utils/colors.dart';
+import '../../../data/models/transactions_model.dart';
 
 import '../../../routes/app_pages.dart';
-import '../controllers/trans_log_controller.dart';
+import '../controllers/cashier_logs_controller.dart';
 
-class TransLogView extends GetView<TransLogController> {
-  TransLogView({Key? key}) : super(key: key);
+class CashierLogsView extends GetView<CashierLogsController> {
+  CashierLogsView({Key? key}) : super(key: key);
   final dateFormat = DateFormat("yyyy-MM-dd, HH:mm:ss");
 
   @override
@@ -25,7 +25,7 @@ class TransLogView extends GetView<TransLogController> {
         title: const Text(
           'Transaction Logs',
           style: TextStyle(
-              fontFamily: "Product Sans", fontWeight: FontWeight.w400),
+              fontFamily: "Product Sans", fontWeight: FontWeight.w500),
         ),
         centerTitle: false,
       ),
@@ -160,25 +160,6 @@ class TransLogView extends GetView<TransLogController> {
           ],
         ),
       ),
-      floatingActionButton: Container(
-        margin: EdgeInsets.only(bottom: 20.h),
-        child: ElevatedButton(
-          onPressed: () {
-            controller.downloadCatalog();
-          },
-          style: ElevatedButton.styleFrom(
-            minimumSize: Size(260.w, 50.h),
-            backgroundColor: AppColor.appPrimary,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
-          ),
-          child: const Text(
-            "PRINT ALL DATA",
-            style: TextStyle(color: Colors.white, fontFamily: "Product Sans"),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

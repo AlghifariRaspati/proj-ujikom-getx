@@ -24,7 +24,7 @@ class ActivityLogView extends GetView<ActivityLogController> {
           style: TextStyle(
               fontFamily: "Product Sans", fontWeight: FontWeight.w400),
         ),
-        centerTitle: true,
+        centerTitle: false,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),

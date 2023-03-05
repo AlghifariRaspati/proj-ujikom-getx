@@ -5,12 +5,14 @@ class TransLogsModel {
     required this.berat,
     required this.hargaProduk,
     required this.id,
+    required this.kasirId,
     required this.namaPelanggan,
     required this.namaProduk,
     required this.nomorTelepon,
     required this.nomorUnik,
     required this.totalHarga,
     required this.uangBayar,
+    required this.kembalian,
     required this.activity,
     required this.createdAt,
     required this.email,
@@ -20,12 +22,14 @@ class TransLogsModel {
   final int berat;
   final int hargaProduk;
   final String id;
+  final String kasirId;
   final String namaPelanggan;
   final String namaProduk;
   final int nomorTelepon;
   final int nomorUnik;
   final int totalHarga;
   final int uangBayar;
+  final int kembalian;
   final String activity;
   final DateTime createdAt;
   final String email;
@@ -35,12 +39,14 @@ class TransLogsModel {
         berat: json["berat"] ?? 0,
         hargaProduk: json["harga_produk"] ?? 0,
         id: json["id"] ?? "",
+        kasirId: json["id_kasir"] ?? "",
         namaPelanggan: json["nama_pelanggan"] ?? "",
         namaProduk: json["nama_produk"] ?? "",
         nomorTelepon: json["nomor_telepon"] ?? 0,
         nomorUnik: json["nomor_unik"] ?? 0,
         totalHarga: json["total_harga"] ?? 0,
         uangBayar: json["uang_bayar"] ?? 0,
+        kembalian: json["kembalian"] ?? 0,
         activity: json["activity"] ?? "",
         createdAt: (json["created_at"] as Timestamp).toDate(),
         email: json["email_kasir"] ?? "",
@@ -51,12 +57,14 @@ class TransLogsModel {
         "berat": berat,
         "harga_produk": hargaProduk,
         "id": id,
+        "id_kasir": kasirId,
         "nama_pelanggan": namaPelanggan,
         "nama_produk": namaProduk,
         "nomor_telepon": nomorTelepon,
         "nomor_unik": nomorUnik,
         "total_harga": totalHarga,
         "uang_bayar": uangBayar,
+        "kembalian": kembalian,
         "activity": activity,
         "created_at": createdAt,
         "email_kasir": email,

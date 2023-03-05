@@ -12,6 +12,8 @@ import '../modules/cashier_details/bindings/cashier_details_binding.dart';
 import '../modules/cashier_details/views/cashier_details_view.dart';
 import '../modules/cashier_home/bindings/cashier_home_binding.dart';
 import '../modules/cashier_home/views/cashier_home_view.dart';
+import '../modules/cashier_logs/bindings/cashier_logs_binding.dart';
+import '../modules/cashier_logs/views/cashier_logs_view.dart';
 import '../modules/cashier_transaction/bindings/cashier_transaction_binding.dart';
 import '../modules/cashier_transaction/views/cashier_transaction_view.dart';
 import '../modules/cashiers/bindings/cashiers_binding.dart';
@@ -28,6 +30,8 @@ import '../modules/products_detail/bindings/products_detail_binding.dart';
 import '../modules/products_detail/views/products_detail_view.dart';
 import '../modules/trans_log/bindings/trans_log_binding.dart';
 import '../modules/trans_log/views/trans_log_view.dart';
+import '../modules/trans_log_details/bindings/trans_log_details_binding.dart';
+import '../modules/trans_log_details/views/trans_log_details_view.dart';
 
 part 'app_routes.dart';
 
@@ -104,6 +108,16 @@ class AppPages {
       name: _Paths.trans_log,
       page: () => TransLogView(),
       binding: TransLogBinding(),
+    ),
+    GetPage(
+      name: _Paths.cashier_logs,
+      page: () => CashierLogsView(),
+      binding: CashierLogsBinding(),
+    ),
+    GetPage(
+      name: _Paths.trans_log_details,
+      page: () => TransLogDetailsView(),
+      binding: TransLogDetailsBinding(),
     ),
   ];
 }

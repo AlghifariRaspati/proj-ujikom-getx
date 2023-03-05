@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class CashierTransactionController extends GetxController {
   RxBool isLoading = false.obs;
@@ -24,6 +23,8 @@ class CashierTransactionController extends GetxController {
 
       String email =
           auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
+      String uid =
+          auth.currentUser?.uid ?? ''; // ambil uid user yang sedang log in
 
       var hasil = await firestore.collection("transactions").add(data);
       //item id
@@ -33,6 +34,7 @@ class CashierTransactionController extends GetxController {
         "email_kasir": email,
         "nomor_unik": id,
         "id": hasil.id,
+        "id_kasir": uid,
         "created_at": timestamp,
       });
 

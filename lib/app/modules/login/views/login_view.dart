@@ -64,7 +64,7 @@ class LoginView extends GetView<LoginController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 20.h,
+                        height: 25.h,
                       ),
                       Center(
                         child: Image.asset(
@@ -81,12 +81,13 @@ class LoginView extends GetView<LoginController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const TitleText(
-                            text: "Laundry ",
+                            text: "Laundry",
                           ),
                           Text(
                             "Buddy",
                             style: TextStyle(
                                 color: AppColor.appSecondary,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 24.sp,
                                 fontFamily: "Product Sans"),
                           )

@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ujikom_getx/utils/colors.dart';
 
+import '../../../../components/email_create_textfield.dart';
 import '../../../../components/pass_create_textfield.dart';
-import '../../../../components/textfield_clear.dart';
+
 import '../../../controllers/auth_controller.dart';
 import '../controllers/add_cashier_controller.dart';
 
@@ -50,7 +51,7 @@ class AddCashierView extends GetView<AddCashierController> {
           child: ListView(
             padding: const EdgeInsets.all(20),
             children: [
-              MyClearTextField(
+              EmailCreateTextfield(
                 keyboardType: TextInputType.emailAddress,
                 controller: emailC,
                 labelText: "Email",

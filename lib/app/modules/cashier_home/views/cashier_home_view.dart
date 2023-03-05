@@ -81,7 +81,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
                 case 1:
                   title = "View Transactions";
                   icon = Icons.description_rounded;
-                  onTap = () {};
+                  onTap = () => Get.toNamed(Routes.cashier_logs);
                   break;
                 default:
               }

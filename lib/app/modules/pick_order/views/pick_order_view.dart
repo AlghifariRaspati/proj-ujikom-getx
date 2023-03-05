@@ -18,9 +18,13 @@ class PickOrderView extends GetView<PickOrderController> {
     return Scaffold(
       backgroundColor: AppColor.appFive,
       appBar: AppBar(
-        title: const Text('Categories'),
+        centerTitle: false,
+        title: const Text(
+          'Categories',
+          style: TextStyle(
+              fontFamily: 'Product Sans', fontWeight: FontWeight.w500),
+        ),
         backgroundColor: AppColor.appPrimary,
-        centerTitle: true,
         elevation: 0,
       ),
       body: SafeArea(

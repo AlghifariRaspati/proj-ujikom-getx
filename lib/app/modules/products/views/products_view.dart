@@ -16,7 +16,7 @@ class ProductsView extends GetView<ProductsController> {
     return Scaffold(
       backgroundColor: AppColor.appFive,
       appBar: AppBar(
-        title: const Text('Products'),
+        title: const Text('Category'),
         backgroundColor: AppColor.appPrimary,
         centerTitle: true,
         elevation: 0,
@@ -25,7 +25,7 @@ class ProductsView extends GetView<ProductsController> {
         child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: controller.streamProducts(),
           builder: (context, snapProducts) {
-            // Check if there's data
+            // mengecek jika ada data
             if (snapProducts.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -34,11 +34,11 @@ class ProductsView extends GetView<ProductsController> {
 
             if (snapProducts.data!.docs.isEmpty) {
               return const Center(
-                child: Text("No Product"),
+                child: Text("No Category"),
               );
             }
 
-            // Create a list of products from the stream data
+            // membuat list kategori dari stream data
             final allProducts = List<ProductModel>.from(
               snapProducts.data!.docs.map(
                 (doc) => ProductModel.fromJson(doc.data()),
@@ -70,7 +70,7 @@ class ProductsView extends GetView<ProductsController> {
                       child: IntrinsicHeight(
                         child: Row(
                           children: [
-                            // product content
+                            // konten produk
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,7 +131,6 @@ class ProductsView extends GetView<ProductsController> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      // ignore: prefer_const_constructors
                                       Text(
                                         "Item ID: ",
                                         style: TextStyle(
