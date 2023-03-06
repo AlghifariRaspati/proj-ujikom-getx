@@ -27,14 +27,17 @@ class HomeView extends GetView<HomeController> {
                 builder: (context) => AlertDialog(
                   content: Text(
                     "Are you sure to log out?",
-                    style: TextStyle(color: AppColor.appPrimary),
+                    style: TextStyle(
+                        color: AppColor.appPrimary, fontFamily: "Product Sans"),
                   ),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
                       child: Text(
                         "CANCEL",
-                        style: TextStyle(color: AppColor.appPrimary),
+                        style: TextStyle(
+                            color: AppColor.appPrimary,
+                            fontFamily: "Product Sans"),
                       ),
                     ),
                     TextButton(
@@ -48,7 +51,9 @@ class HomeView extends GetView<HomeController> {
                         },
                         child: Text(
                           "CONFIRM",
-                          style: TextStyle(color: AppColor.appPrimary),
+                          style: TextStyle(
+                              color: AppColor.appPrimary,
+                              fontFamily: "Product Sans"),
                         ))
                   ],
                 ),

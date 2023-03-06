@@ -71,186 +71,207 @@ class TransLogDetailsView extends GetView<TransLogDetailsController> {
         child: Card(
           elevation: 1,
           margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-          child: ListView(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            children: [
-              ListTile(
-                title: Text(
-                  'Category Name',
-                  style: TextStyle(fontFamily: "Product Sans", fontSize: 16.sp),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Customer',
+                        style: TextStyle(
+                            fontFamily: "Product Sans",
+                            fontSize: 14.sp,
+                            color: Colors.black.withOpacity(0.5)),
+                      ),
+                      Text(
+                        product.namaPelanggan,
+                        style: const TextStyle(fontFamily: "Product Sans"),
+                      ),
+                      SizedBox(height: 10.h),
+                      Text(
+                        'Telephone',
+                        style: TextStyle(
+                            fontFamily: "Product Sans",
+                            fontSize: 14.sp,
+                            color: Colors.black.withOpacity(0.5)),
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            "0",
+                            style: TextStyle(fontFamily: "Product Sans"),
+                          ),
+                          Text(
+                            product.nomorTelepon.toString(),
+                            style: const TextStyle(fontFamily: "Product Sans"),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.h),
+                      Text(
+                        'Created at',
+                        style: TextStyle(
+                            fontFamily: "Product Sans",
+                            fontSize: 14.sp,
+                            color: Colors.black.withOpacity(0.5)),
+                      ),
+                      Text(
+                        DateFormat("yyyy-MM-dd, HH:mm:ss")
+                            .format(product.createdAt),
+                        style: const TextStyle(fontFamily: "Product Sans"),
+                      ),
+                    ],
+                  ),
                 ),
-                subtitle: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          product.namaProduk,
-                          style: TextStyle(
-                              fontFamily: "Product Sans", fontSize: 14.sp),
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              product.berat.toString(),
-                              style: TextStyle(
-                                  fontFamily: "Product Sans", fontSize: 14.sp),
+                SizedBox(
+                  height: 15.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: const MySeparator(color: Colors.grey),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            product.namaProduk,
+                            style: TextStyle(
+                                fontFamily: "Product Sans",
+                                fontSize: 14.sp,
+                                color: Colors.black.withOpacity(0.5)),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                product.berat.toString(),
+                                style: TextStyle(
+                                  fontFamily: "Product Sans",
+                                  fontSize: 14.sp,
+                                  color: AppColor.appThree,
+                                ),
+                              ),
+                              Text(
+                                "kg",
+                                style: TextStyle(
+                                  fontFamily: "Product Sans",
+                                  fontSize: 14.sp,
+                                  color: AppColor.appThree,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Total Price",
+                            style: TextStyle(
+                                fontFamily: "Product Sans",
+                                fontSize: 14.sp,
+                                color: Colors.black.withOpacity(0.5)),
+                          ),
+                          Text(
+                            NumberFormat.currency(
+                              locale: 'id',
+                              symbol: 'Rp.',
+                              decimalDigits: 0,
+                            ).format(int.parse(product.totalHarga.toString())),
+                            style: TextStyle(
+                              fontFamily: "Product Sans",
+                              fontSize: 14.sp,
+                              color: AppColor.appThree,
                             ),
-                            Text(
-                              "kg",
-                              style: TextStyle(
-                                  fontFamily: "Product Sans", fontSize: 14.sp),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Payment Amount",
+                            style: TextStyle(
+                                fontFamily: "Product Sans",
+                                fontSize: 14.sp,
+                                color: Colors.black.withOpacity(0.5)),
+                          ),
+                          Text(
+                            NumberFormat.currency(
+                              locale: 'id',
+                              symbol: 'Rp.',
+                              decimalDigits: 0,
+                            ).format(int.parse(product.uangBayar.toString())),
+                            style: TextStyle(
+                              fontFamily: "Product Sans",
+                              fontSize: 14.sp,
+                              color: AppColor.appThree,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Total Price",
-                          style: TextStyle(
-                              fontFamily: "Product Sans", fontSize: 14.sp),
-                        ),
-                        Text(
-                          NumberFormat.currency(
-                            locale: 'id',
-                            symbol: 'Rp.',
-                            decimalDigits: 0,
-                          ).format(int.parse(product.totalHarga.toString())),
-                          style: TextStyle(
-                              fontFamily: "Product Sans", fontSize: 14.sp),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Payment Amount",
-                          style: TextStyle(
-                              fontFamily: "Product Sans", fontSize: 14.sp),
-                        ),
-                        Text(
-                          NumberFormat.currency(
-                            locale: 'id',
-                            symbol: 'Rp.',
-                            decimalDigits: 0,
-                          ).format(int.parse(product.uangBayar.toString())),
-                          style: TextStyle(
-                              fontFamily: "Product Sans", fontSize: 14.sp),
-                        ),
-                      ],
-                    ),
-                  ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: const MySeparator(color: Colors.grey),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Customer',
-                      style: TextStyle(
-                          fontFamily: "Product Sans",
-                          fontSize: 14.sp,
-                          color: Colors.black.withOpacity(0.5)),
-                    ),
-                    Text(
-                      product.namaPelanggan,
-                      style: const TextStyle(fontFamily: "Product Sans"),
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      'Telephone',
-                      style: TextStyle(
-                          fontFamily: "Product Sans",
-                          fontSize: 14.sp,
-                          color: Colors.black.withOpacity(0.5)),
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          "0",
-                          style: TextStyle(fontFamily: "Product Sans"),
-                        ),
-                        Text(
-                          product.nomorTelepon.toString(),
-                          style: const TextStyle(fontFamily: "Product Sans"),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      'Created at',
-                      style: TextStyle(
-                          fontFamily: "Product Sans",
-                          fontSize: 14.sp,
-                          color: Colors.black.withOpacity(0.5)),
-                    ),
-                    Text(
-                      DateFormat("yyyy-MM-dd, HH:mm:ss")
-                          .format(product.createdAt),
-                      style: const TextStyle(fontFamily: "Product Sans"),
-                    ),
-                  ],
+                SizedBox(
+                  height: 15.h,
                 ),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: const MySeparator(color: Colors.grey),
-              ),
-              SizedBox(
-                height: 25.h,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "Total Change",
-                      style: TextStyle(
-                          fontFamily: "Product Sans",
-                          fontSize: 16.sp,
-                          color: Colors.black.withOpacity(0.5)),
-                    ),
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    Text(
-                      NumberFormat.currency(
-                        locale: 'id',
-                        symbol: 'Rp.',
-                        decimalDigits: 0,
-                      ).format(int.parse(product.kembalian.toString())),
-                      style: TextStyle(
-                          color: AppColor.appThree,
-                          fontFamily: "Product Sans",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24.sp),
-                    ),
-                  ],
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: const MySeparator(color: Colors.grey),
                 ),
-              ),
-              SizedBox(height: 20.h),
-            ],
+                SizedBox(
+                  height: 25.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "Total Change",
+                        style: TextStyle(
+                            fontFamily: "Product Sans",
+                            fontSize: 16.sp,
+                            color: Colors.black.withOpacity(0.5)),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        NumberFormat.currency(
+                          locale: 'id',
+                          symbol: 'Rp.',
+                          decimalDigits: 0,
+                        ).format(int.parse(product.kembalian.toString())),
+                        style: TextStyle(
+                            color: AppColor.appThree,
+                            fontFamily: "Product Sans",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.sp),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20.h),
+              ],
+            ),
           ),
         ),
       ),

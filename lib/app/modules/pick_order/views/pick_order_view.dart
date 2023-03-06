@@ -68,10 +68,10 @@ class PickOrderView extends GetView<PickOrderController> {
               itemBuilder: (context, index) {
                 final product = allProducts[index];
                 return Card(
-                  elevation: 5,
-                  margin: EdgeInsets.only(bottom: 20.h),
+                  elevation: 2,
+                  margin: EdgeInsets.only(bottom: 15.h),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(9),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: InkWell(
                     onTap: () {
@@ -80,9 +80,9 @@ class PickOrderView extends GetView<PickOrderController> {
                         arguments: product,
                       );
                     },
-                    borderRadius: BorderRadius.circular(9),
+                    borderRadius: BorderRadius.circular(8),
                     child: Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(15),
                       child: IntrinsicHeight(
                         child: Row(
                           children: [
@@ -94,12 +94,12 @@ class PickOrderView extends GetView<PickOrderController> {
                                   Text(
                                     product.namaProduk,
                                     style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColor.appPrimary),
+                                        fontSize: 16.sp,
+                                        color: AppColor.appPrimary,
+                                        fontFamily: "Product Sans"),
                                   ),
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 5.h,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -107,8 +107,8 @@ class PickOrderView extends GetView<PickOrderController> {
                                       Text(
                                         "Price per/kg :",
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColor.appSecondary),
+                                            color: AppColor.appSecondary,
+                                            fontFamily: "Product Sans"),
                                       ),
                                       SizedBox(
                                         width: 5.w,
@@ -120,6 +120,10 @@ class PickOrderView extends GetView<PickOrderController> {
                                           decimalDigits: 0,
                                         ).format(int.parse(
                                             product.harga.toString())),
+                                        style: TextStyle(
+                                            color:
+                                                Colors.black.withOpacity(0.5),
+                                            fontFamily: "Product Sans"),
                                       ),
                                     ],
                                   ),

@@ -84,14 +84,16 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
                   showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                            content:
-                                const Text("are you sure to delete this user?"),
+                            content: const Text(
+                              "are you sure to delete this user?",
+                            ),
                             actions: [
                               TextButton(
                                   onPressed: () => Get.back(),
                                   child: Text("CANCEL",
                                       style: TextStyle(
-                                          color: AppColor.appPrimary))),
+                                          color: AppColor.appPrimary,
+                                          fontFamily: "Product Sans"))),
                               TextButton(
                                   onPressed: () async {
                                     controller.isLoadingDelete(true);
@@ -113,7 +115,8 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
                                       controller.isLoadingDelete.isFalse
                                           ? Text("DELETE",
                                               style: TextStyle(
-                                                  color: AppColor.appPrimary))
+                                                  color: AppColor.appPrimary,
+                                                  fontFamily: "Product Sans"))
                                           : Container(
                                               padding: const EdgeInsets.all(2),
                                               height: 15.h,

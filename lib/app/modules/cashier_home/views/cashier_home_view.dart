@@ -20,7 +20,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
         children: [
           Container(
             width: double.infinity,
-            height: 0.3.sh,
+            height: 0.2.sh + 50.h,
             decoration: BoxDecoration(
               color: AppColor.appPrimary,
               borderRadius: const BorderRadius.only(
@@ -34,6 +34,9 @@ class CashierHomeView extends GetView<CashierHomeController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: 30.h,
+                ),
                 Text(
                   'Hello, Cashier',
                   style: TextStyle(
@@ -54,7 +57,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
             ),
           ),
           Positioned(
-            top: 0.1.sh + 20.h,
+            top: 0.15.sh + 10.h,
             bottom: 0,
             left: 0,
             right: 0,
@@ -126,14 +129,16 @@ class CashierHomeView extends GetView<CashierHomeController> {
             builder: (context) => AlertDialog(
               content: Text(
                 "Are you sure to log out?",
-                style: TextStyle(color: AppColor.appPrimary),
+                style: TextStyle(
+                    color: AppColor.appPrimary, fontFamily: "Product Sans"),
               ),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
                   child: Text(
                     "CANCEL",
-                    style: TextStyle(color: AppColor.appPrimary),
+                    style: TextStyle(
+                        color: AppColor.appPrimary, fontFamily: "Product Sans"),
                   ),
                 ),
                 TextButton(
@@ -147,7 +152,9 @@ class CashierHomeView extends GetView<CashierHomeController> {
                     },
                     child: Text(
                       "CONFIRM",
-                      style: TextStyle(color: AppColor.appPrimary),
+                      style: TextStyle(
+                          color: AppColor.appPrimary,
+                          fontFamily: "Product Sans"),
                     ))
               ],
             ),

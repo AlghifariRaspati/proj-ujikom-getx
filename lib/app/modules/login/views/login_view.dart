@@ -171,7 +171,7 @@ class LoginView extends GetView<LoginController> {
                                           child:
                                               const CircularProgressIndicator(
                                             color: Colors.white,
-                                            strokeWidth: 2,
+                                            strokeWidth: 1,
                                           ),
                                         )),
                                 ),

@@ -74,10 +74,10 @@ class CashierLogsView extends GetView<CashierLogsController> {
                   itemBuilder: (context, index) {
                     final logs = allLogs[index];
                     return Card(
-                      elevation: 5,
+                      elevation: 2,
                       margin: EdgeInsets.only(bottom: 20.h),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(9),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: InkWell(
                         onTap: () async {
@@ -86,7 +86,7 @@ class CashierLogsView extends GetView<CashierLogsController> {
                             arguments: logs,
                           );
                         },
-                        borderRadius: BorderRadius.circular(9),
+                        borderRadius: BorderRadius.circular(8),
                         child: Container(
                           padding: const EdgeInsets.all(20),
                           child: IntrinsicHeight(
@@ -99,12 +99,20 @@ class CashierLogsView extends GetView<CashierLogsController> {
                                       children: [
                                         Text("Created At: ",
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColor.appPrimary)),
+                                                fontWeight: FontWeight.w600,
+                                                color: AppColor.appSecondary,
+                                                fontSize: 14.sp,
+                                                fontFamily: "Product Sans")),
                                         Expanded(
                                           child: Text(
                                             DateFormat("yyyy-MM-dd, HH:mm:ss")
-                                                .format(logs.createdAt),
+                                                .format(
+                                              logs.createdAt,
+                                            ),
+                                            style: TextStyle(
+                                                fontFamily: "Product Sans",
+                                                color: Colors.black
+                                                    .withOpacity(0.7)),
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
@@ -115,15 +123,19 @@ class CashierLogsView extends GetView<CashierLogsController> {
                                     ),
                                     Row(
                                       children: [
-                                        Text(
-                                          "Cashier: ",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.appPrimary),
-                                        ),
+                                        Text("Cashier: ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: AppColor.appSecondary,
+                                                fontSize: 14.sp,
+                                                fontFamily: "Product Sans")),
                                         Expanded(
                                           child: Text(
                                             logs.email,
+                                            style: TextStyle(
+                                                fontFamily: "Product Sans",
+                                                color: Colors.black
+                                                    .withOpacity(0.7)),
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
@@ -136,16 +148,19 @@ class CashierLogsView extends GetView<CashierLogsController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "Transaction ID: ",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColor.appPrimary,
-                                          ),
-                                        ),
+                                        Text("Transaction ID: ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: AppColor.appSecondary,
+                                                fontSize: 14.sp,
+                                                fontFamily: "Product Sans")),
                                         Expanded(
                                           child: Text(
                                             logs.id,
+                                            style: TextStyle(
+                                                fontFamily: "Product Sans",
+                                                color: Colors.black
+                                                    .withOpacity(0.7)),
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
@@ -158,18 +173,24 @@ class CashierLogsView extends GetView<CashierLogsController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "Unique Number: ",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.appPrimary),
-                                        ),
+                                        Text("Unique Number: ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: AppColor.appSecondary,
+                                                fontFamily: "Product Sans")),
                                         Expanded(
                                             child: Text(
                                           logs.nomorUnik.toString(),
+                                          style: TextStyle(
+                                              fontFamily: "Product Sans",
+                                              color: Colors.black
+                                                  .withOpacity(0.7)),
                                           overflow: TextOverflow.ellipsis,
                                         ))
                                       ],
+                                    ),
+                                    SizedBox(
+                                      height: 5.h,
                                     ),
                                   ],
                                 ),

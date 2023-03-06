@@ -101,13 +101,15 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                       context: context,
                       builder: (context) => AlertDialog(
                             content: const Text(
-                                "are you sure to delete this product?"),
+                                "are you sure to delete this product?",
+                                style: TextStyle(fontFamily: "Product Sans")),
                             actions: [
                               TextButton(
                                   onPressed: () => Get.back(),
                                   child: Text("CANCEL",
                                       style: TextStyle(
-                                          color: AppColor.appPrimary))),
+                                          color: AppColor.appPrimary,
+                                          fontFamily: "Product Sans"))),
                               TextButton(
                                   onPressed: () async {
                                     controller.isLoadingDelete(true);
@@ -130,7 +132,8 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                                       controller.isLoadingDelete.isFalse
                                           ? Text("DELETE",
                                               style: TextStyle(
-                                                  color: AppColor.appPrimary))
+                                                  color: AppColor.appPrimary,
+                                                  fontFamily: "Product Sans"))
                                           : Container(
                                               padding: const EdgeInsets.all(2),
                                               height: 15.h,

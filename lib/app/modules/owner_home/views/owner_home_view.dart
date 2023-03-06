@@ -26,13 +26,17 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
                   builder: (context) => AlertDialog(
                     content: Text(
                       "Are you sure to log out?",
-                      style: TextStyle(color: AppColor.appPrimary),
+                      style: TextStyle(
+                          color: AppColor.appPrimary,
+                          fontFamily: "Product Sans"),
                     ),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
                         child: Text("CANCEL",
-                            style: TextStyle(color: AppColor.appPrimary)),
+                            style: TextStyle(
+                                color: AppColor.appPrimary,
+                                fontFamily: "Product Sans")),
                       ),
                       TextButton(
                         onPressed: () async {
@@ -44,7 +48,9 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
                           }
                         },
                         child: Text("CONFIRM",
-                            style: TextStyle(color: AppColor.appPrimary)),
+                            style: TextStyle(
+                                color: AppColor.appPrimary,
+                                fontFamily: "Product Sans")),
                       )
                     ],
                   ),
