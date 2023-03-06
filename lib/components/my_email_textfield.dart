@@ -5,12 +5,12 @@ import 'package:ujikom_getx/utils/colors.dart';
 
 class MyEmailTextField extends StatelessWidget {
   final TextEditingController controller;
-  final String hintText;
+  final String labelText;
 
   const MyEmailTextField({
     Key? key,
     required this.controller,
-    required this.hintText,
+    required this.labelText,
   }) : super(key: key);
 
   @override
@@ -25,17 +25,19 @@ class MyEmailTextField extends StatelessWidget {
       ],
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-          filled: true,
-          hintText: hintText,
-          contentPadding:
-              EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-          fillColor: Colors.grey.withOpacity(0.3),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide.none),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: AppColor.appSecondary))),
+        labelText: labelText,
+        labelStyle: TextStyle(
+          color: AppColor.appSecondary,
+          fontFamily: "Product Sans",
+          fontSize: 14.sp,
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColor.appSecondary),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(width: 2, color: AppColor.appSecondary),
+        ),
+      ),
     );
   }
 }

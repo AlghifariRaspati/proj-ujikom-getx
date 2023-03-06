@@ -34,6 +34,14 @@ class CashierTransactionView extends GetView<CashierTransactionController> {
     return Scaffold(
         backgroundColor: AppColor.appFive,
         appBar: AppBar(
+          leading: IconButton(
+            iconSize: 24,
+            color: AppColor.appBase,
+            icon: const Icon(Icons.arrow_back_ios_rounded),
+            onPressed: () {
+              Get.back();
+            },
+          ),
           title: const Text(
             'Create Order',
             style: TextStyle(

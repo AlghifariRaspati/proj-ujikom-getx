@@ -82,9 +82,12 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: AppColor.appPrimary)),
-                                      Text(
-                                        DateFormat("yyyy-MM-dd, HH:mm:ss")
-                                            .format(logs.createdAt),
+                                      Expanded(
+                                        child: Text(
+                                          DateFormat("yyyy-MM-dd, HH:mm:ss")
+                                              .format(logs.createdAt),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -99,7 +102,12 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                             fontWeight: FontWeight.bold,
                                             color: AppColor.appPrimary),
                                       ),
-                                      Text(logs.email),
+                                      Expanded(
+                                        child: Text(
+                                          logs.email,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   SizedBox(
@@ -114,7 +122,12 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                             fontWeight: FontWeight.bold,
                                             color: AppColor.appPrimary),
                                       ),
-                                      Text(logs.role),
+                                      Expanded(
+                                        child: Text(
+                                          logs.role,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   SizedBox(
@@ -129,7 +142,11 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                             fontWeight: FontWeight.bold,
                                             color: AppColor.appPrimary),
                                       ),
-                                      Text(logs.activity),
+                                      Expanded(
+                                          child: Text(
+                                        logs.activity,
+                                        overflow: TextOverflow.ellipsis,
+                                      )),
                                     ],
                                   ),
                                 ],

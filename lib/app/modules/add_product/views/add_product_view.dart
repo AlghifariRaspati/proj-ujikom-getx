@@ -17,7 +17,7 @@ class AddProductView extends GetView<AddProductController> {
     return Scaffold(
         backgroundColor: AppColor.appFive,
         appBar: AppBar(
-          title: const Text('Add Product'),
+          title: const Text('Add Category'),
           centerTitle: true,
           backgroundColor: AppColor.appPrimary,
           elevation: 0,

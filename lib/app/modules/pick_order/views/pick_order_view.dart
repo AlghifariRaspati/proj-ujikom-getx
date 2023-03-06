@@ -18,11 +18,21 @@ class PickOrderView extends GetView<PickOrderController> {
     return Scaffold(
       backgroundColor: AppColor.appFive,
       appBar: AppBar(
+        leading: IconButton(
+          iconSize: 24,
+          color: AppColor.appBase,
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          onPressed: () {
+            Get.back();
+          },
+        ),
         centerTitle: false,
-        title: const Text(
+        title: Text(
           'Categories',
           style: TextStyle(
-              fontFamily: 'Product Sans', fontWeight: FontWeight.w500),
+              fontFamily: 'Product Sans',
+              fontWeight: FontWeight.w500,
+              color: AppColor.appBase),
         ),
         backgroundColor: AppColor.appPrimary,
         elevation: 0,

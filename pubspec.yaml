@@ -38,6 +38,6 @@ flutter:
       fonts:
         - asset: assets/fonts/Nexa-ExtraLight.ttf
         - asset: assets/fonts/Nexa-Heavy.ttf
-    - family: Product Sans    
+    - family: Product Sans
       fonts:
         - asset: assets/fonts/ProductSans-Regular.ttf

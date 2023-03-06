@@ -83,7 +83,7 @@ class ProductsView extends GetView<ProductsController> {
                                         color: AppColor.appPrimary),
                                   ),
                                   SizedBox(
-                                    height: 15.h,
+                                    height: 5.h,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,

@@ -93,9 +93,12 @@ class TransLogView extends GetView<TransLogController> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: AppColor.appPrimary)),
-                                        Text(
-                                          DateFormat("yyyy-MM-dd, HH:mm:ss")
-                                              .format(logs.createdAt),
+                                        Expanded(
+                                          child: Text(
+                                            DateFormat("yyyy-MM-dd, HH:mm:ss")
+                                                .format(logs.createdAt),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -110,7 +113,11 @@ class TransLogView extends GetView<TransLogController> {
                                               fontWeight: FontWeight.bold,
                                               color: AppColor.appPrimary),
                                         ),
-                                        Text(logs.email),
+                                        Expanded(
+                                            child: Text(
+                                          logs.email,
+                                          overflow: TextOverflow.ellipsis,
+                                        )),
                                       ],
                                     ),
                                     SizedBox(
@@ -120,11 +127,15 @@ class TransLogView extends GetView<TransLogController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "Transaction ID: ",
-                                          style: TextStyle(
+                                        Expanded(
+                                          child: Text(
+                                            "Transaction ID: ",
+                                            style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: AppColor.appPrimary),
+                                              color: AppColor.appPrimary,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
                                         ),
                                         Text(logs.id),
                                       ],
@@ -136,11 +147,15 @@ class TransLogView extends GetView<TransLogController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "Unique Number: ",
-                                          style: TextStyle(
+                                        Expanded(
+                                          child: Text(
+                                            "Unique Number: ",
+                                            style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: AppColor.appPrimary),
+                                              color: AppColor.appPrimary,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
                                         ),
                                         Text(logs.nomorUnik.toString())
                                       ],

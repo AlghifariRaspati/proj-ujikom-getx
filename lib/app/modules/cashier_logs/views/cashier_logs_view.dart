@@ -20,6 +20,14 @@ class CashierLogsView extends GetView<CashierLogsController> {
     return Scaffold(
       backgroundColor: AppColor.appFive,
       appBar: AppBar(
+        leading: IconButton(
+          iconSize: 24,
+          color: AppColor.appBase,
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          onPressed: () {
+            Get.back();
+          },
+        ),
         backgroundColor: AppColor.appPrimary,
         elevation: 0,
         title: const Text(
@@ -93,9 +101,12 @@ class CashierLogsView extends GetView<CashierLogsController> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: AppColor.appPrimary)),
-                                        Text(
-                                          DateFormat("yyyy-MM-dd, HH:mm:ss")
-                                              .format(logs.createdAt),
+                                        Expanded(
+                                          child: Text(
+                                            DateFormat("yyyy-MM-dd, HH:mm:ss")
+                                                .format(logs.createdAt),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -110,7 +121,12 @@ class CashierLogsView extends GetView<CashierLogsController> {
                                               fontWeight: FontWeight.bold,
                                               color: AppColor.appPrimary),
                                         ),
-                                        Text(logs.email),
+                                        Expanded(
+                                          child: Text(
+                                            logs.email,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     SizedBox(
@@ -123,10 +139,16 @@ class CashierLogsView extends GetView<CashierLogsController> {
                                         Text(
                                           "Transaction ID: ",
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.appPrimary),
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColor.appPrimary,
+                                          ),
                                         ),
-                                        Text(logs.id),
+                                        Expanded(
+                                          child: Text(
+                                            logs.id,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     SizedBox(
@@ -142,7 +164,11 @@ class CashierLogsView extends GetView<CashierLogsController> {
                                               fontWeight: FontWeight.bold,
                                               color: AppColor.appPrimary),
                                         ),
-                                        Text(logs.nomorUnik.toString())
+                                        Expanded(
+                                            child: Text(
+                                          logs.nomorUnik.toString(),
+                                          overflow: TextOverflow.ellipsis,
+                                        ))
                                       ],
                                     ),
                                   ],
