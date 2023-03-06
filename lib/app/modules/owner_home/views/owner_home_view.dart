@@ -76,18 +76,18 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
                     crossAxisSpacing: 20.h),
                 itemBuilder: (context, index) {
                   late String title;
-                  late IconData icon;
+                  late String imagePath;
                   late VoidCallback onTap;
 
                   switch (index) {
                     case 0:
                       title = "Activity Logs";
-                      icon = Icons.history_rounded;
+                      imagePath = "assets/images/history_color.png";
                       onTap = () => Get.toNamed(Routes.activity_log);
                       break;
                     case 1:
                       title = "Transaction Logs";
-                      icon = Icons.analytics_rounded;
+                      imagePath = "assets/images/transaction_color.png";
                       onTap = () => Get.toNamed(Routes.trans_log);
                       break;
                     default:
@@ -103,12 +103,10 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width: 50.w,
-                              height: 50.h,
-                              child: Icon(
-                                icon,
-                                size: 50,
-                                color: AppColor.appSecondary,
+                              width: 65.w,
+                              height: 65.h,
+                              child: Image.asset(
+                                imagePath,
                               ),
                             ),
                             SizedBox(
@@ -117,8 +115,10 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
                             Text(
                               title,
                               style: TextStyle(
+                                  fontFamily: 'Product Sans',
                                   fontWeight: FontWeight.bold,
-                                  color: AppColor.appPrimary),
+                                  color: AppColor.appPrimary,
+                                  fontSize: 16.sp),
                             )
                           ]),
                     ),

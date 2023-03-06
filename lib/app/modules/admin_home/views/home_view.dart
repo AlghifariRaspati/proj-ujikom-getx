@@ -124,7 +124,8 @@ class HomeView extends GetView<HomeController> {
                               style: TextStyle(
                                   fontFamily: 'Product Sans',
                                   fontWeight: FontWeight.bold,
-                                  color: AppColor.appPrimary),
+                                  color: AppColor.appPrimary,
+                                  fontSize: 16.sp),
                             )
                           ]),
                     ),
