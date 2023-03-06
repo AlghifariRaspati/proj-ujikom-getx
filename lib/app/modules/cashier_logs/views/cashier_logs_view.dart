@@ -47,8 +47,10 @@ class CashierLogsView extends GetView<CashierLogsController> {
               builder: (context, snapLogs) {
                 // cek jika ada data
                 if (snapLogs.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: AppColor.appPrimary,
+                    ),
                   );
                 }
 

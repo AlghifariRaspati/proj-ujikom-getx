@@ -27,6 +27,14 @@ class CashierHomeView extends GetView<CashierHomeController> {
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
               ),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  AppColor.appPrimary,
+                  AppColor.appSecondary,
+                ],
+              ),
             ),
           ),
           Padding(
@@ -160,8 +168,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
             ),
           );
         },
-        backgroundColor:
-            AppColor.appPrimary, // set the background color to blue
+        backgroundColor: AppColor.appPrimary,
         child: const Icon(Icons.exit_to_app_rounded),
       ),
     );

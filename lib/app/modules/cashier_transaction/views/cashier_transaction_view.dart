@@ -312,10 +312,8 @@ class CashierTransactionView extends GetView<CashierTransactionController> {
                                     fontWeight: FontWeight.w500,
                                     fontFamily: "Product Sans"),
                               )
-                            : SizedBox(
-                                width: 12.w,
-                                height: 12.h,
-                                child: const CircularProgressIndicator(
+                            : const SizedBox(
+                                child: CircularProgressIndicator(
                                   color: Colors.white,
                                   strokeWidth: 2,
                                 ),

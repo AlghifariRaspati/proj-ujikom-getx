@@ -43,8 +43,10 @@ class PickOrderView extends GetView<PickOrderController> {
           builder: (context, snapProducts) {
             // Check if there's data
             if (snapProducts.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Center(
+                child: CircularProgressIndicator(
+                  color: AppColor.appPrimary,
+                ),
               );
             }
 
@@ -64,7 +66,7 @@ class PickOrderView extends GetView<PickOrderController> {
             return ListView.builder(
               physics: const BouncingScrollPhysics(),
               itemCount: allProducts.length,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               itemBuilder: (context, index) {
                 final product = allProducts[index];
                 return Card(

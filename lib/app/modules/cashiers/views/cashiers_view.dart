@@ -19,8 +19,20 @@ class CashiersView extends GetView<CashiersController> {
     return Scaffold(
         backgroundColor: AppColor.appFive,
         appBar: AppBar(
-          title: const Text('Cashiers'),
-          centerTitle: true,
+          leading: IconButton(
+            iconSize: 24,
+            color: AppColor.appBase,
+            icon: const Icon(Icons.arrow_back_ios_rounded),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          title: const Text(
+            'Cashiers',
+            style: TextStyle(
+                fontFamily: "Product Sans", fontWeight: FontWeight.w500),
+          ),
+          centerTitle: false,
           backgroundColor: AppColor.appPrimary,
           elevation: 0,
         ),
@@ -30,8 +42,10 @@ class CashiersView extends GetView<CashiersController> {
               builder: (context, snapUser) {
                 //mengecek data
                 if (snapUser.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: AppColor.appPrimary,
+                    ),
                   );
                 }
 

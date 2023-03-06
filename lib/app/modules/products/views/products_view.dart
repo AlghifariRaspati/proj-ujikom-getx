@@ -16,9 +16,21 @@ class ProductsView extends GetView<ProductsController> {
     return Scaffold(
       backgroundColor: AppColor.appFive,
       appBar: AppBar(
-        title: const Text('Category'),
+        leading: IconButton(
+          iconSize: 24,
+          color: AppColor.appBase,
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        title: const Text(
+          'Category',
+          style: TextStyle(
+              fontFamily: "Product Sans", fontWeight: FontWeight.w500),
+        ),
         backgroundColor: AppColor.appPrimary,
-        centerTitle: true,
+        centerTitle: false,
         elevation: 0,
       ),
       body: SafeArea(
@@ -27,8 +39,10 @@ class ProductsView extends GetView<ProductsController> {
           builder: (context, snapProducts) {
             // mengecek jika ada data
             if (snapProducts.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Center(
+                child: CircularProgressIndicator(
+                  color: AppColor.appPrimary,
+                ),
               );
             }
 
@@ -48,14 +62,14 @@ class ProductsView extends GetView<ProductsController> {
             return ListView.builder(
               physics: const BouncingScrollPhysics(),
               itemCount: allProducts.length,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               itemBuilder: (context, index) {
                 final product = allProducts[index];
                 return Card(
-                  elevation: 5,
+                  elevation: 2,
                   margin: EdgeInsets.only(bottom: 20.h),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(9),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: InkWell(
                     onTap: () {
@@ -64,7 +78,7 @@ class ProductsView extends GetView<ProductsController> {
                         arguments: product,
                       );
                     },
-                    borderRadius: BorderRadius.circular(9),
+                    borderRadius: BorderRadius.circular(8),
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       child: IntrinsicHeight(
@@ -78,9 +92,9 @@ class ProductsView extends GetView<ProductsController> {
                                   Text(
                                     product.namaProduk,
                                     style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColor.appPrimary),
+                                        fontSize: 16.sp,
+                                        color: AppColor.appPrimary,
+                                        fontFamily: "Product Sans"),
                                   ),
                                   SizedBox(
                                     height: 5.h,
@@ -91,8 +105,8 @@ class ProductsView extends GetView<ProductsController> {
                                       Text(
                                         "Price per/kg :",
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColor.appSecondary),
+                                            color: AppColor.appSecondary,
+                                            fontFamily: "Product Sans"),
                                       ),
                                       SizedBox(
                                         width: 5.w,
@@ -104,6 +118,10 @@ class ProductsView extends GetView<ProductsController> {
                                           decimalDigits: 0,
                                         ).format(int.parse(
                                             product.harga.toString())),
+                                        style: TextStyle(
+                                            color:
+                                                Colors.black.withOpacity(0.5),
+                                            fontFamily: "Product Sans"),
                                       ),
                                     ],
                                   ),
@@ -116,12 +134,16 @@ class ProductsView extends GetView<ProductsController> {
                                       Text(
                                         "Created at: ",
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColor.appSecondary),
+                                            color: AppColor.appSecondary,
+                                            fontFamily: "Product Sans"),
                                       ),
                                       Text(
                                         DateFormat("yyyy-MM-dd, HH:mm:ss")
                                             .format(product.createdAt),
+                                        style: TextStyle(
+                                            color:
+                                                Colors.black.withOpacity(0.5),
+                                            fontFamily: "Product Sans"),
                                       ),
                                     ],
                                   ),
@@ -134,10 +156,16 @@ class ProductsView extends GetView<ProductsController> {
                                       Text(
                                         "Item ID: ",
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColor.appSecondary),
+                                            color: AppColor.appSecondary,
+                                            fontFamily: "Product Sans"),
                                       ),
-                                      Text(product.id),
+                                      Text(
+                                        product.id,
+                                        style: TextStyle(
+                                            color:
+                                                Colors.black.withOpacity(0.5),
+                                            fontFamily: "Product Sans"),
+                                      ),
                                     ],
                                   ),
                                 ],

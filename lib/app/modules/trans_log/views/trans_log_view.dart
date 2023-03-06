@@ -20,6 +20,14 @@ class TransLogView extends GetView<TransLogController> {
     return Scaffold(
       backgroundColor: AppColor.appFive,
       appBar: AppBar(
+        leading: IconButton(
+          iconSize: 24,
+          color: AppColor.appBase,
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          onPressed: () {
+            Get.back();
+          },
+        ),
         backgroundColor: AppColor.appPrimary,
         elevation: 0,
         title: const Text(
@@ -39,8 +47,10 @@ class TransLogView extends GetView<TransLogController> {
               builder: (context, snapLogs) {
                 // cek jika ada data
                 if (snapLogs.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: AppColor.appPrimary,
+                    ),
                   );
                 }
 
@@ -66,10 +76,10 @@ class TransLogView extends GetView<TransLogController> {
                   itemBuilder: (context, index) {
                     final logs = allLogs[index];
                     return Card(
-                      elevation: 5,
+                      elevation: 2,
                       margin: EdgeInsets.only(bottom: 20.h),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(9),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: InkWell(
                         onTap: () async {
@@ -78,89 +88,139 @@ class TransLogView extends GetView<TransLogController> {
                             arguments: logs,
                           );
                         },
-                        borderRadius: BorderRadius.circular(9),
+                        borderRadius: BorderRadius.circular(8),
                         child: Container(
                           padding: const EdgeInsets.all(20),
                           child: IntrinsicHeight(
                             child: Row(children: [
                               Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text("Created At: ",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColor.appPrimary)),
-                                        Expanded(
-                                          child: Text(
-                                            DateFormat("yyyy-MM-dd, HH:mm:ss")
-                                                .format(logs.createdAt),
-                                            overflow: TextOverflow.ellipsis,
+                                child: IntrinsicHeight(
+                                  child: Row(children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text("Created At: ",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color:
+                                                          AppColor.appSecondary,
+                                                      fontSize: 14.sp,
+                                                      fontFamily:
+                                                          "Product Sans")),
+                                              Expanded(
+                                                child: Text(
+                                                  DateFormat(
+                                                          "yyyy-MM-dd, HH:mm:ss")
+                                                      .format(
+                                                    logs.createdAt,
+                                                  ),
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          "Product Sans",
+                                                      color: Colors.black
+                                                          .withOpacity(0.7)),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Cashier: ",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.appPrimary),
-                                        ),
-                                        Expanded(
-                                            child: Text(
-                                          logs.email,
-                                          overflow: TextOverflow.ellipsis,
-                                        )),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            "Transaction ID: ",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.appPrimary,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
+                                          SizedBox(
+                                            height: 5.h,
                                           ),
-                                        ),
-                                        Text(logs.id),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            "Unique Number: ",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.appPrimary,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
+                                          Row(
+                                            children: [
+                                              Text("Cashier: ",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color:
+                                                          AppColor.appSecondary,
+                                                      fontSize: 14.sp,
+                                                      fontFamily:
+                                                          "Product Sans")),
+                                              Expanded(
+                                                child: Text(
+                                                  logs.email,
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          "Product Sans",
+                                                      color: Colors.black
+                                                          .withOpacity(0.7)),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        Text(logs.nomorUnik.toString())
-                                      ],
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Text("Transaction ID: ",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color:
+                                                          AppColor.appSecondary,
+                                                      fontSize: 14.sp,
+                                                      fontFamily:
+                                                          "Product Sans")),
+                                              Expanded(
+                                                child: Text(
+                                                  logs.id,
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          "Product Sans",
+                                                      color: Colors.black
+                                                          .withOpacity(0.7)),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Text("Unique Number: ",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color:
+                                                          AppColor.appSecondary,
+                                                      fontFamily:
+                                                          "Product Sans")),
+                                              Expanded(
+                                                  child: Text(
+                                                logs.nomorUnik.toString(),
+                                                style: TextStyle(
+                                                    fontFamily: "Product Sans",
+                                                    color: Colors.black
+                                                        .withOpacity(0.7)),
+                                                overflow: TextOverflow.ellipsis,
+                                              ))
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ],
+                                  ]),
                                 ),
                               ),
                             ]),
@@ -182,8 +242,8 @@ class TransLogView extends GetView<TransLogController> {
             controller.downloadCatalog();
           },
           style: ElevatedButton.styleFrom(
-            minimumSize: Size(260.w, 50.h),
-            backgroundColor: AppColor.appPrimary,
+            minimumSize: Size(310.w, 40.h),
+            backgroundColor: AppColor.appSecondary,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
           ),

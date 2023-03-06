@@ -23,9 +23,21 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
     return Scaffold(
         backgroundColor: AppColor.appFive,
         appBar: AppBar(
-          title: const Text('Cashier Detail'),
+          leading: IconButton(
+            iconSize: 24,
+            color: AppColor.appBase,
+            icon: const Icon(Icons.arrow_back_ios_rounded),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          title: const Text(
+            'Cashier Detail',
+            style: TextStyle(
+                fontFamily: "Product Sans", fontWeight: FontWeight.w500),
+          ),
           backgroundColor: AppColor.appPrimary,
-          centerTitle: true,
+          centerTitle: false,
           elevation: 0,
         ),
         body: ListView(
@@ -119,11 +131,9 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
                                                   fontFamily: "Product Sans"))
                                           : Container(
                                               padding: const EdgeInsets.all(2),
-                                              height: 15.h,
-                                              width: 15.w,
                                               child: CircularProgressIndicator(
-                                                color: Colors.lightBlue,
-                                                strokeWidth: 1.w,
+                                                color: AppColor.appPrimary,
+                                                strokeWidth: 2,
                                               ),
                                             ))),
                             ],

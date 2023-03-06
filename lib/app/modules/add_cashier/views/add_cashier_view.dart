@@ -40,58 +40,73 @@ class AddCashierView extends GetView<AddCashierController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.appFive,
-        appBar: AppBar(
-          title: const Text('Add Cashier'),
-          centerTitle: true,
-          backgroundColor: AppColor.appPrimary,
-          elevation: 0,
+      backgroundColor: AppColor.appFive,
+      appBar: AppBar(
+        leading: IconButton(
+          iconSize: 24,
+          color: AppColor.appBase,
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          onPressed: () {
+            Get.back();
+          },
         ),
-        body: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.all(20),
-            children: [
-              EmailCreateTextfield(
-                keyboardType: TextInputType.emailAddress,
-                controller: emailC,
-                labelText: "Email",
-                onPressed: emailC.clear,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              PassCreateTextfield(
-                keyboardType: TextInputType.name,
-                controller: passC,
-                labelText: "Password",
-                onPressed: passC.clear,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              SizedBox(
-                height: 40.h,
-                child: ElevatedButton(
-                    onPressed: regCashier,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.appSecondary,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(9)),
+        title: const Text(
+          'Add Cashier',
+          style: TextStyle(
+              fontFamily: "Product Sans", fontWeight: FontWeight.w500),
+        ),
+        centerTitle: false,
+        backgroundColor: AppColor.appPrimary,
+        elevation: 0,
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            EmailCreateTextfield(
+              keyboardType: TextInputType.emailAddress,
+              controller: emailC,
+              labelText: "Email",
+              onPressed: emailC.clear,
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            PassCreateTextfield(
+              keyboardType: TextInputType.name,
+              controller: passC,
+              labelText: "Password",
+              onPressed: passC.clear,
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: Container(
+        margin: EdgeInsets.only(bottom: 20.h),
+        child: ElevatedButton(
+            onPressed: regCashier,
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(280.w, 40.h),
+              backgroundColor: AppColor.appSecondary,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(9)),
+            ),
+            child: Obx(() => controller.isLoading.isFalse
+                ? const Text(
+                    "Add Cashier",
+                    style: TextStyle(fontFamily: "Product Sans"),
+                  )
+                : const SizedBox(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2,
                     ),
-                    child: Obx(() => controller.isLoading.isFalse
-                        ? const Text("Add Cashier")
-                        : Container(
-                            padding: const EdgeInsets.all(2),
-                            height: 15.h,
-                            width: 15.w,
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 1.w,
-                            ),
-                          ))),
-              )
-            ],
-          ),
-        ));
+                  ))),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
   }
 }

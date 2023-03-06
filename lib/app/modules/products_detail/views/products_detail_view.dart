@@ -29,9 +29,21 @@ class ProductsDetail extends GetView<ProductsDetailController> {
     return Scaffold(
         backgroundColor: AppColor.appFive,
         appBar: AppBar(
-          title: const Text('Product Detail'),
+          leading: IconButton(
+            iconSize: 24,
+            color: AppColor.appBase,
+            icon: const Icon(Icons.arrow_back_ios_rounded),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          title: const Text(
+            'Product Detail',
+            style: TextStyle(
+                fontFamily: "Product Sans", fontWeight: FontWeight.w500),
+          ),
           backgroundColor: AppColor.appPrimary,
-          centerTitle: true,
+          centerTitle: false,
           elevation: 0,
         ),
         body: ListView(
@@ -91,9 +103,12 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(9)),
                   ),
-                  child: Obx(() => Text(controller.isLoadingUpdate.isFalse
-                      ? "Save"
-                      : "Loading..."))),
+                  child: Obx(() => Text(
+                        controller.isLoadingUpdate.isFalse
+                            ? "Save"
+                            : "Loading...",
+                        style: const TextStyle(fontFamily: "Product Sans"),
+                      ))),
             ),
             TextButton(
                 onPressed: () async {
@@ -136,10 +151,8 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                                                   fontFamily: "Product Sans"))
                                           : Container(
                                               padding: const EdgeInsets.all(2),
-                                              height: 15.h,
-                                              width: 15.w,
                                               child: CircularProgressIndicator(
-                                                color: Colors.lightBlue,
+                                                color: AppColor.appPrimary,
                                                 strokeWidth: 1.w,
                                               ),
                                             ))),
@@ -148,7 +161,8 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                 },
                 child: Text(
                   "Delete Product",
-                  style: TextStyle(color: Colors.red[900]),
+                  style: TextStyle(
+                      color: Colors.red[900], fontFamily: "Product Sans"),
                 ))
           ],
         ));

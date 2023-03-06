@@ -17,6 +17,14 @@ class ActivityLogView extends GetView<ActivityLogController> {
     return Scaffold(
       backgroundColor: AppColor.appFive,
       appBar: AppBar(
+        leading: IconButton(
+          iconSize: 24,
+          color: AppColor.appBase,
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          onPressed: () {
+            Get.back();
+          },
+        ),
         backgroundColor: AppColor.appPrimary,
         elevation: 0,
         title: const Text(
@@ -36,14 +44,16 @@ class ActivityLogView extends GetView<ActivityLogController> {
               builder: (context, snapLogs) {
                 // cek jika ada data
                 if (snapLogs.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: AppColor.appPrimary,
+                    ),
                   );
                 }
 
                 if (snapLogs.data!.docs.isEmpty) {
                   return const Center(
-                    child: Text("No Product"),
+                    child: Text("No Data"),
                   );
                 }
 
@@ -80,12 +90,18 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                     children: [
                                       Text("Time: ",
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.appPrimary)),
+                                              fontWeight: FontWeight.w600,
+                                              color: AppColor.appSecondary,
+                                              fontSize: 14.sp,
+                                              fontFamily: "Product Sans")),
                                       Expanded(
                                         child: Text(
                                           DateFormat("yyyy-MM-dd, HH:mm:ss")
                                               .format(logs.createdAt),
+                                          style: TextStyle(
+                                              fontFamily: "Product Sans",
+                                              color: Colors.black
+                                                  .withOpacity(0.7)),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
@@ -96,15 +112,19 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        "User: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColor.appPrimary),
-                                      ),
+                                      Text("User: ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: AppColor.appSecondary,
+                                              fontSize: 14.sp,
+                                              fontFamily: "Product Sans")),
                                       Expanded(
                                         child: Text(
                                           logs.email,
+                                          style: TextStyle(
+                                              fontFamily: "Product Sans",
+                                              color: Colors.black
+                                                  .withOpacity(0.7)),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
@@ -116,15 +136,19 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        "Role: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColor.appPrimary),
-                                      ),
+                                      Text("Role: ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: AppColor.appSecondary,
+                                              fontSize: 14.sp,
+                                              fontFamily: "Product Sans")),
                                       Expanded(
                                         child: Text(
                                           logs.role,
+                                          style: TextStyle(
+                                              fontFamily: "Product Sans",
+                                              color: Colors.black
+                                                  .withOpacity(0.7)),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
@@ -136,15 +160,19 @@ class ActivityLogView extends GetView<ActivityLogController> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        "Activity: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColor.appPrimary),
-                                      ),
+                                      Text("Activity: ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: AppColor.appSecondary,
+                                              fontSize: 14.sp,
+                                              fontFamily: "Product Sans")),
                                       Expanded(
                                           child: Text(
                                         logs.activity,
+                                        style: TextStyle(
+                                            fontFamily: "Product Sans",
+                                            color:
+                                                Colors.black.withOpacity(0.7)),
                                         overflow: TextOverflow.ellipsis,
                                       )),
                                     ],

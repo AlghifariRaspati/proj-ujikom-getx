@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:ujikom_getx/utils/colors.dart';
 import 'app/controllers/auth_controller.dart';
 
 import 'app/modules/loading/loading.dart';
@@ -81,6 +82,9 @@ class MyApp extends StatelessWidget {
   GetMaterialApp buildApp(String initialRoute) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch()
+              .copyWith(secondary: AppColor.appPrimary)),
       initialRoute: initialRoute,
       getPages: AppPages.routes,
     );

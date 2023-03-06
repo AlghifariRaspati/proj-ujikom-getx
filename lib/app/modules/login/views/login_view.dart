@@ -131,7 +131,7 @@ class LoginView extends GetView<LoginController> {
                               style: ElevatedButton.styleFrom(
                                 minimumSize: Size(260.w, 40.h),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(9),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
                                 padding: EdgeInsets.zero,
                                 elevation: 0,
@@ -165,11 +165,8 @@ class LoginView extends GetView<LoginController> {
                                               fontWeight: FontWeight.w500,
                                               fontFamily: "Product Sans"),
                                         )
-                                      : SizedBox(
-                                          width: 12.w,
-                                          height: 12.h,
-                                          child:
-                                              const CircularProgressIndicator(
+                                      : const SizedBox(
+                                          child: CircularProgressIndicator(
                                             color: Colors.white,
                                             strokeWidth: 1,
                                           ),

@@ -14,120 +14,165 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.appFive,
-      appBar: AppBar(
-        title: const Text('Hello, Admin'),
-        backgroundColor: AppColor.appPrimary,
-        elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: () async {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  content: Text(
-                    "Are you sure to log out?",
-                    style: TextStyle(
-                        color: AppColor.appPrimary, fontFamily: "Product Sans"),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text(
-                        "CANCEL",
-                        style: TextStyle(
-                            color: AppColor.appPrimary,
-                            fontFamily: "Product Sans"),
-                      ),
-                    ),
-                    TextButton(
-                        onPressed: () async {
-                          Map<String, dynamic> hasil = await authC.logout();
-                          if (hasil["error"] == false) {
-                            Get.offAllNamed(Routes.login);
-                          } else {
-                            Get.snackbar("Error", hasil["error"]);
-                          }
-                        },
-                        child: Text(
-                          "CONFIRM",
-                          style: TextStyle(
-                              color: AppColor.appPrimary,
-                              fontFamily: "Product Sans"),
-                        ))
-                  ],
+      backgroundColor: AppColor.appBase,
+      body: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 0.2.sh + 50.h,
+            decoration: BoxDecoration(
+              color: AppColor.appPrimary,
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  AppColor.appPrimary,
+                  AppColor.appSecondary,
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 30.h,
                 ),
-              );
-            },
-            icon: const Icon(Icons.logout),
+                Text(
+                  'Hello, Admin',
+                  style: TextStyle(
+                      fontSize: 24.sp,
+                      color: AppColor.appFive,
+                      fontFamily: "Product Sans",
+                      fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  'Welcome Back!',
+                  style: TextStyle(
+                      fontSize: 16.sp,
+                      color: AppColor.appFive,
+                      fontFamily: "Product Sans",
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 0.15.sh + 10.h,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: GridView.builder(
+                itemCount: 3,
+                padding: const EdgeInsets.all(20),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 20.w,
+                    crossAxisSpacing: 20.h),
+                itemBuilder: (context, index) {
+                  late String title;
+                  late String imagePath;
+                  late VoidCallback onTap;
+
+                  switch (index) {
+                    case 0:
+                      title = "Add Category";
+                      imagePath = "assets/images/add_color.png";
+                      onTap = () => Get.toNamed(Routes.add_product);
+                      break;
+                    case 1:
+                      title = "Manage Category";
+                      imagePath = "assets/images/settings_color.png";
+                      onTap = () => Get.toNamed(Routes.products);
+                      break;
+                    case 2:
+                      title = "Add Cashier";
+                      imagePath = "assets/images/add_user_color.png";
+                      onTap = () => Get.toNamed(Routes.add_cashier);
+                      break;
+
+                    default:
+                  }
+                  return Material(
+                    elevation: 6,
+                    borderRadius: BorderRadius.circular(9),
+                    color: AppColor.appBase,
+                    child: InkWell(
+                      onTap: onTap,
+                      borderRadius: BorderRadius.circular(9),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 65.w,
+                              height: 65.h,
+                              child: Image.asset(
+                                imagePath,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Text(
+                              title,
+                              style: TextStyle(
+                                  fontFamily: 'Product Sans',
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColor.appPrimary),
+                            )
+                          ]),
+                    ),
+                  );
+                }),
           ),
         ],
       ),
-      body: SafeArea(
-        child: GridView.builder(
-            itemCount: 3,
-            padding: const EdgeInsets.all(20),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 20.w,
-                crossAxisSpacing: 20.h),
-            itemBuilder: (context, index) {
-              late String title;
-              late IconData icon;
-              late VoidCallback onTap;
-
-              switch (index) {
-                case 0:
-                  title = "Add Category";
-                  icon = Icons.category_rounded;
-                  onTap = () => Get.toNamed(Routes.add_product);
-                  break;
-                case 1:
-                  title = "Manage Category";
-                  icon = Icons.settings_rounded;
-                  onTap = () => Get.toNamed(Routes.products);
-                  break;
-                case 2:
-                  title = "Add Cashier";
-                  icon = Icons.person_add_alt_1_rounded;
-                  onTap = () => Get.toNamed(Routes.add_cashier);
-                  break;
-
-                default:
-              }
-              return Material(
-                elevation: 6,
-                borderRadius: BorderRadius.circular(9),
-                color: AppColor.appBase,
-                child: InkWell(
-                  onTap: onTap,
-                  borderRadius: BorderRadius.circular(9),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 50.w,
-                          height: 50.h,
-                          child: Icon(
-                            icon,
-                            size: 50,
-                            color: AppColor.appSecondary,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20.h,
-                        ),
-                        Text(
-                          title,
-                          style: TextStyle(
-                              fontFamily: 'Nexa',
-                              fontWeight: FontWeight.bold,
-                              color: AppColor.appPrimary),
-                        )
-                      ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              content: Text(
+                "Are you sure to log out?",
+                style: TextStyle(
+                    color: AppColor.appPrimary, fontFamily: "Product Sans"),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    "CANCEL",
+                    style: TextStyle(
+                        color: AppColor.appPrimary, fontFamily: "Product Sans"),
+                  ),
                 ),
-              );
-            }),
+                TextButton(
+                    onPressed: () async {
+                      Map<String, dynamic> hasil = await authC.logout();
+                      if (hasil["error"] == false) {
+                        Get.offAllNamed(Routes.login);
+                      } else {
+                        Get.snackbar("Error", hasil["error"]);
+                      }
+                    },
+                    child: Text(
+                      "CONFIRM",
+                      style: TextStyle(
+                          color: AppColor.appPrimary,
+                          fontFamily: "Product Sans"),
+                    ))
+              ],
+            ),
+          );
+        },
+        backgroundColor: AppColor.appPrimary,
+        child: const Icon(Icons.exit_to_app_rounded),
       ),
     );
   }
