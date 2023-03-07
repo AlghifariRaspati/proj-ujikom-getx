@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:ujikom_getx/components/locked_textfield.dart';
 import 'package:ujikom_getx/components/payment_clear_textfield.dart';
 import '../../../../components/clear_textfield.dart';
+import '../../../../components/telephone_textfield.dart';
 import '../../../../components/textfield_clear.dart';
 
 import '../../../../components/weight_clear_textfield.dart';
@@ -139,11 +140,12 @@ class CashierTransactionView extends GetView<CashierTransactionController> {
               SizedBox(
                 height: 10.h,
               ),
-              MyClearTextField(
+              TelephoneTextfield(
                 keyboardType: TextInputType.number,
                 controller: numC,
                 labelText: "Telephone",
                 onPressed: numC.clear,
+                validator: validateTelephoneNumber,
               ),
               SizedBox(
                 height: 10.h,
