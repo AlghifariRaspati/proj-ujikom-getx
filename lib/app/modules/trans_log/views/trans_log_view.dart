@@ -14,6 +14,7 @@ import '../controllers/trans_log_controller.dart';
 class TransLogView extends GetView<TransLogController> {
   TransLogView({Key? key}) : super(key: key);
   final dateFormat = DateFormat("yyyy-MM-dd, HH:mm:ss");
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

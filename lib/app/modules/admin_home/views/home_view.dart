@@ -69,7 +69,7 @@ class HomeView extends GetView<HomeController> {
             left: 0,
             right: 0,
             child: GridView.builder(
-                itemCount: 3,
+                itemCount: 4,
                 padding: const EdgeInsets.all(20),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -95,6 +95,11 @@ class HomeView extends GetView<HomeController> {
                       title = "Add Cashier";
                       imagePath = "assets/images/add_user_color.png";
                       onTap = () => Get.toNamed(Routes.add_cashier);
+                      break;
+                    case 3:
+                      title = "Edit Cashier";
+                      imagePath = "assets/images/edit_color.png";
+                      onTap = () => Get.toNamed(Routes.cashiers);
                       break;
 
                     default:
@@ -165,8 +170,7 @@ class HomeView extends GetView<HomeController> {
                     child: Text(
                       "CONFIRM",
                       style: TextStyle(
-                          color: AppColor.appPrimary,
-                          fontFamily: "Product Sans"),
+                          color: Colors.red[900], fontFamily: "Product Sans"),
                     ))
               ],
             ),

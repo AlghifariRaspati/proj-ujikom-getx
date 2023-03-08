@@ -158,8 +158,7 @@ class OwnerHomeView extends GetView<OwnerHomeController> {
                     child: Text(
                       "CONFIRM",
                       style: TextStyle(
-                          color: AppColor.appPrimary,
-                          fontFamily: "Product Sans"),
+                          color: Colors.red[900], fontFamily: "Product Sans"),
                     ))
               ],
             ),

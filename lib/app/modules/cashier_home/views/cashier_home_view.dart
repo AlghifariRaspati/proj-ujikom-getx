@@ -161,8 +161,7 @@ class CashierHomeView extends GetView<CashierHomeController> {
                     child: Text(
                       "CONFIRM",
                       style: TextStyle(
-                          color: AppColor.appPrimary,
-                          fontFamily: "Product Sans"),
+                          color: Colors.red[900], fontFamily: "Product Sans"),
                     ))
               ],
             ),

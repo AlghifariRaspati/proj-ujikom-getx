@@ -100,7 +100,7 @@ class LoginView extends GetView<LoginController> {
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: SizedBox(
                     child: Material(
-                      elevation: 1,
+                      elevation: 2,
                       borderRadius: BorderRadius.circular(25),
                       color: AppColor.appBase,
                       child: Padding(

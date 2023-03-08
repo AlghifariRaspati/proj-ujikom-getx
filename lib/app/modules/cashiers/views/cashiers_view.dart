@@ -100,11 +100,16 @@ class CashiersView extends GetView<CashiersController> {
                                               Text(
                                                 "Email: ",
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: AppColor.appPrimary),
+                                                    color:
+                                                        AppColor.appSecondary,
+                                                    fontFamily: "Product Sans"),
                                               ),
                                               Text(
                                                 data.email,
+                                                style: TextStyle(
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontFamily: "Product Sans"),
                                               ),
                                             ],
                                           ),
@@ -116,10 +121,17 @@ class CashiersView extends GetView<CashiersController> {
                                               Text(
                                                 "Password: ",
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: AppColor.appPrimary),
+                                                    color:
+                                                        AppColor.appSecondary,
+                                                    fontFamily: "Product Sans"),
                                               ),
-                                              Text(data.pass),
+                                              Text(
+                                                data.pass,
+                                                style: TextStyle(
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontFamily: "Product Sans"),
+                                              ),
                                             ],
                                           ),
                                           SizedBox(
@@ -129,16 +141,21 @@ class CashiersView extends GetView<CashiersController> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              Text("Created at: ",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color:
-                                                          AppColor.appPrimary)),
+                                              Text(
+                                                "Created at: ",
+                                                style: TextStyle(
+                                                    color:
+                                                        AppColor.appSecondary,
+                                                    fontFamily: "Product Sans"),
+                                              ),
                                               Text(
                                                 DateFormat(
                                                         "yyyy-MM-dd, HH:mm:ss")
                                                     .format(data.createdAt),
+                                                style: TextStyle(
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontFamily: "Product Sans"),
                                               ),
                                             ],
                                           ),
@@ -150,11 +167,16 @@ class CashiersView extends GetView<CashiersController> {
                                               Text(
                                                 "UID: ",
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: AppColor.appPrimary),
+                                                    color:
+                                                        AppColor.appSecondary,
+                                                    fontFamily: "Product Sans"),
                                               ),
                                               Text(
                                                 data.id,
+                                                style: TextStyle(
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontFamily: "Product Sans"),
                                               ),
                                             ],
                                           ),

@@ -45,6 +45,67 @@ class ProductsDetail extends GetView<ProductsDetailController> {
           backgroundColor: AppColor.appPrimary,
           centerTitle: false,
           elevation: 0,
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                PopupMenuItem(
+                  value: 1,
+                  child: Text(
+                    'Delete User',
+                    style: TextStyle(
+                        color: Colors.red[900], fontFamily: "Product Sans"),
+                  ),
+                ),
+              ],
+              onSelected: (value) async {
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          content: const Text(
+                              "are you sure to delete this product?",
+                              style: TextStyle(fontFamily: "Product Sans")),
+                          actions: [
+                            TextButton(
+                                onPressed: () => Get.back(),
+                                child: Text("CANCEL",
+                                    style: TextStyle(
+                                        color: AppColor.appPrimary,
+                                        fontFamily: "Product Sans"))),
+                            TextButton(
+                                onPressed: () async {
+                                  controller.isLoadingDelete(true);
+                                  Map<String, dynamic> hasil = await controller
+                                      .deleteProduct(product.id);
+                                  controller.isLoadingDelete(false);
+
+                                  Get.back(); // tutup dialog
+                                  Get.back(); // kembali ke halaman sebelumnya
+
+                                  Get.snackbar(
+                                      hasil["error"] == true
+                                          ? "Error"
+                                          : "Success",
+                                      hasil["message"],
+                                      duration: const Duration(seconds: 2));
+                                },
+                                child: Obx(() =>
+                                    controller.isLoadingDelete.isFalse
+                                        ? Text("DELETE",
+                                            style: TextStyle(
+                                                color: Colors.red[900],
+                                                fontFamily: "Product Sans"))
+                                        : Container(
+                                            padding: const EdgeInsets.all(2),
+                                            child: CircularProgressIndicator(
+                                              color: AppColor.appPrimary,
+                                              strokeWidth: 1.w,
+                                            ),
+                                          ))),
+                          ],
+                        ));
+              },
+            ),
+          ],
         ),
         body: ListView(
           padding: const EdgeInsets.all(20),
@@ -110,60 +171,6 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                         style: const TextStyle(fontFamily: "Product Sans"),
                       ))),
             ),
-            TextButton(
-                onPressed: () async {
-                  showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                            content: const Text(
-                                "are you sure to delete this product?",
-                                style: TextStyle(fontFamily: "Product Sans")),
-                            actions: [
-                              TextButton(
-                                  onPressed: () => Get.back(),
-                                  child: Text("CANCEL",
-                                      style: TextStyle(
-                                          color: AppColor.appPrimary,
-                                          fontFamily: "Product Sans"))),
-                              TextButton(
-                                  onPressed: () async {
-                                    controller.isLoadingDelete(true);
-                                    Map<String, dynamic> hasil =
-                                        await controller
-                                            .deleteProduct(product.id);
-                                    controller.isLoadingDelete(false);
-
-                                    Get.back(); // tutup dialog
-                                    Get.back(); // kembali ke halaman sebelumnya
-
-                                    Get.snackbar(
-                                        hasil["error"] == true
-                                            ? "Error"
-                                            : "Success",
-                                        hasil["message"],
-                                        duration: const Duration(seconds: 2));
-                                  },
-                                  child: Obx(() =>
-                                      controller.isLoadingDelete.isFalse
-                                          ? Text("DELETE",
-                                              style: TextStyle(
-                                                  color: AppColor.appPrimary,
-                                                  fontFamily: "Product Sans"))
-                                          : Container(
-                                              padding: const EdgeInsets.all(2),
-                                              child: CircularProgressIndicator(
-                                                color: AppColor.appPrimary,
-                                                strokeWidth: 1.w,
-                                              ),
-                                            ))),
-                            ],
-                          ));
-                },
-                child: Text(
-                  "Delete Product",
-                  style: TextStyle(
-                      color: Colors.red[900], fontFamily: "Product Sans"),
-                ))
           ],
         ));
   }

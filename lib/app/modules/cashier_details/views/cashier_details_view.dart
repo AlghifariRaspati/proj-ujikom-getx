@@ -39,6 +39,67 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
           backgroundColor: AppColor.appPrimary,
           centerTitle: false,
           elevation: 0,
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                PopupMenuItem(
+                  value: 1,
+                  child: Text(
+                    'Delete User',
+                    style: TextStyle(
+                        color: Colors.red[900], fontFamily: "Product Sans"),
+                  ),
+                ),
+              ],
+              onSelected: (value) async {
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          content: const Text(
+                            "are you sure to delete this user?",
+                          ),
+                          actions: [
+                            TextButton(
+                                onPressed: () => Get.back(),
+                                child: Text("CANCEL",
+                                    style: TextStyle(
+                                        color: AppColor.appPrimary,
+                                        fontFamily: "Product Sans"))),
+                            TextButton(
+                                onPressed: () async {
+                                  controller.isLoadingDelete(true);
+                                  Map<String, dynamic> hasil =
+                                      await controller.deleteUser(user.id);
+                                  controller.isLoadingDelete(false);
+
+                                  Get.back();
+                                  Get.back();
+
+                                  Get.snackbar(
+                                      hasil["error"] == true
+                                          ? "Error"
+                                          : "Success",
+                                      hasil["message"],
+                                      duration: const Duration(seconds: 2));
+                                },
+                                child: Obx(() =>
+                                    controller.isLoadingDelete.isFalse
+                                        ? Text("DELETE",
+                                            style: TextStyle(
+                                                color: Colors.red[900],
+                                                fontFamily: "Product Sans"))
+                                        : Container(
+                                            padding: const EdgeInsets.all(2),
+                                            child: CircularProgressIndicator(
+                                              color: AppColor.appPrimary,
+                                              strokeWidth: 2,
+                                            ),
+                                          ))),
+                          ],
+                        ));
+              },
+            ),
+          ],
         ),
         body: ListView(
           padding: const EdgeInsets.all(20),
@@ -91,58 +152,6 @@ class CashierDetailsView extends GetView<CashierDetailsController> {
                       ? "Save"
                       : "Loading..."))),
             ),
-            TextButton(
-                onPressed: () async {
-                  showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                            content: const Text(
-                              "are you sure to delete this user?",
-                            ),
-                            actions: [
-                              TextButton(
-                                  onPressed: () => Get.back(),
-                                  child: Text("CANCEL",
-                                      style: TextStyle(
-                                          color: AppColor.appPrimary,
-                                          fontFamily: "Product Sans"))),
-                              TextButton(
-                                  onPressed: () async {
-                                    controller.isLoadingDelete(true);
-                                    Map<String, dynamic> hasil =
-                                        await controller.deleteUser(user.id);
-                                    controller.isLoadingDelete(false);
-
-                                    Get.back(); // close dialog
-                                    Get.back(); //return to previous page
-
-                                    Get.snackbar(
-                                        hasil["error"] == true
-                                            ? "Error"
-                                            : "Success",
-                                        hasil["message"],
-                                        duration: const Duration(seconds: 2));
-                                  },
-                                  child: Obx(() =>
-                                      controller.isLoadingDelete.isFalse
-                                          ? Text("DELETE",
-                                              style: TextStyle(
-                                                  color: AppColor.appPrimary,
-                                                  fontFamily: "Product Sans"))
-                                          : Container(
-                                              padding: const EdgeInsets.all(2),
-                                              child: CircularProgressIndicator(
-                                                color: AppColor.appPrimary,
-                                                strokeWidth: 2,
-                                              ),
-                                            ))),
-                            ],
-                          ));
-                },
-                child: Text(
-                  "Delete User",
-                  style: TextStyle(color: Colors.red[900]),
-                ))
           ],
         ));
   }
