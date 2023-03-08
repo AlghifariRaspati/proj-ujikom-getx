@@ -52,20 +52,31 @@ class LoginView extends GetView<LoginController> {
         body: Center(
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
                   height: 25.h,
                 ),
                 Center(
-                  child: Image.asset(
-                    'assets/images/laundry_detergent.png',
-                    width: 128.w,
-                    height: 128.h,
-                    fit: BoxFit.contain,
+                  child: Container(
+                    width: 150.w,
+                    height: 150.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColor.appBase,
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        'assets/images/laundry_detergent.png',
+                        width: 128.w,
+                        height: 128.h,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height: 15.h,
+                  height: 10.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
