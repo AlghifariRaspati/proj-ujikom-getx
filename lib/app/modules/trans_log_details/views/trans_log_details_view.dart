@@ -107,7 +107,7 @@ class TransLogDetailsView extends GetView<TransLogDetailsController> {
                       Row(
                         children: [
                           const Text(
-                            "0",
+                            "+62 ",
                             style: TextStyle(fontFamily: "Product Sans"),
                           ),
                           Text(
