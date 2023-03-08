@@ -150,7 +150,28 @@ class TransLogDetailsView extends GetView<TransLogDetailsController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
+                            "Category",
+                            style: TextStyle(
+                              fontFamily: "Product Sans",
+                              fontSize: 14.sp,
+                              color: Colors.black.withOpacity(0.5),
+                            ),
+                          ),
+                          Text(
                             product.namaProduk,
+                            style: TextStyle(
+                              color: AppColor.appThree,
+                              fontSize: 14.sp,
+                              fontFamily: "Product Sans",
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Weight",
                             style: TextStyle(
                                 fontFamily: "Product Sans",
                                 fontSize: 14.sp,
@@ -175,7 +196,7 @@ class TransLogDetailsView extends GetView<TransLogDetailsController> {
                                 ),
                               ),
                             ],
-                          ),
+                          )
                         ],
                       ),
                       Row(
