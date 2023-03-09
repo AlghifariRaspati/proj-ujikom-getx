@@ -15,12 +15,11 @@ class AddProductController extends GetxController {
       data['created_at'] = FieldValue.serverTimestamp();
       Timestamp timestamp = Timestamp.now();
       String? uid = auth.currentUser?.uid;
+      String role = "admin";
       String email =
           auth.currentUser?.email ?? ''; // ambil email user yang sedang log in
       String dateTimeStr =
           DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
-
-      String role = "admin";
 
       var hasil = await firestore.collection("products").add(data);
       await firestore.collection("products").doc(hasil.id).update({

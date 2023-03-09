@@ -28,14 +28,13 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
-  // mengambil role user dari firebase
   final FirebaseAuth auth = FirebaseAuth.instance;
   final CollectionReference usersRef =
       FirebaseFirestore.instance.collection('users');
 
   @override
   Widget build(BuildContext context) {
-    // menunggu data dari firebase
+    // saat menunggu data dari firebase
     return ScreenUtilInit(
       builder: (context, child) => StreamBuilder<User?>(
         stream: auth.authStateChanges(),
@@ -52,8 +51,8 @@ class MyApp extends StatelessWidget {
                 if (snapUser.connectionState == ConnectionState.waiting) {
                   return const LoadingScreen();
                 }
-                // mengarahkan default screen user berdasarkan role
 
+                // role checker / middleware
                 final userData = snapUser.data?.data() as Map<String, dynamic>?;
 
                 final userRole = userData?['role'] as String? ?? 'unknown';
