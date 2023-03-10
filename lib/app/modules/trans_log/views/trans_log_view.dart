@@ -55,7 +55,7 @@ class TransLogView extends GetView<TransLogController> {
                   );
                 }
 
-                if (snapLogs.data!.docs.isEmpty) {
+                if (snapLogs.data == null || snapLogs.data!.docs.isEmpty) {
                   return const Center(
                     child: Text(
                       "No Data",

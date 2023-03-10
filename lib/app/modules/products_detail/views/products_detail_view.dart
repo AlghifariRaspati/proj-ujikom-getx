@@ -51,7 +51,7 @@ class ProductsDetail extends GetView<ProductsDetailController> {
                 PopupMenuItem(
                   value: 1,
                   child: Text(
-                    'Delete User',
+                    'Delete Product',
                     style: TextStyle(
                         color: Colors.red[900], fontFamily: "Product Sans"),
                   ),
